@@ -1,6 +1,6 @@
 package system;
 
-public class Manager {
+public class Manager extends Driver {
 	
 	public Manager() {
 		
