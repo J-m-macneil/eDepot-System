@@ -13,7 +13,6 @@ public abstract class Driver {
 		
 	
 		input.close();
-		
 	}
 
 	public String getUsername() {
