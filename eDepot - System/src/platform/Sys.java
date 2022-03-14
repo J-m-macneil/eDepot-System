@@ -18,7 +18,7 @@ public class Sys {
 	// Declare an new array list to store the 'driver.txt' data.
 	//private static final ArrayList<Driver> Driver = new ArrayList<Driver>();
 
-	public static void main(String[] args) throws Exception {
+	public void run() {
 
 		// Set a default value to choice, to allow user input.
 		String choice = "";
