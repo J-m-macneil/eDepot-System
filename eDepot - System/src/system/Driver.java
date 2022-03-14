@@ -11,8 +11,8 @@ public abstract class Driver {
 	
 	public Driver() {
 		
-	
 		input.close();
+		
 	}
 
 	public String getUsername() {
