@@ -1,6 +1,6 @@
 package system;
 
-public class Driver {
+public abstract class Driver {
 
 	protected String username;
 	protected String password;
