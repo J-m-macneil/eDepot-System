@@ -1,11 +1,18 @@
 package system;
 
+import java.util.Scanner;
+
 public abstract class Driver {
+	
+	private static final Scanner input = new Scanner(System.in);
 
 	protected String username;
 	protected String password;
 	
 	public Driver() {
+		
+	
+		input.close();
 		
 	}
 
