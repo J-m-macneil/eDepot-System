@@ -6,7 +6,7 @@ import system.Depot;
 
 public class Sys {
 
-	Depot getDepot() {
+	public Depot getDepot() {
 		return null; //needs changing
 
 	}
