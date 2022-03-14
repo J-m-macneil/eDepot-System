@@ -5,7 +5,13 @@ import system.Depot;
 
 public class Sys {
 
-	// Declare the Scanner for keyboard input, to allow the user to input through the console.
+	Depot getDepot() {
+		return null; // needs changing
+
+	}
+
+	// Declare the Scanner for keyboard input, to allow the user to input through
+	// the console.
 	private final Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) throws Exception {
@@ -13,7 +19,8 @@ public class Sys {
 		// Set a default value to choice, to allow user input.
 		String choice = "";
 
-		// Declare a do while loop, to repeat through the room booking systems main menu.
+		// Declare a do while loop, to repeat through the room booking systems main
+		// menu.
 		do {
 			// Print a repeating main menu, inside the do while loop.
 			System.out.println("\n-- MAIN MENU --");
@@ -28,27 +35,28 @@ public class Sys {
 			// Allow the lower case value 'q' to be entered when exiting the program.
 			choice = input.next().toUpperCase();
 
-			// Declare a switch statement, to select one of the menu code blocks to be executed.
+			// Declare a switch statement, to select one of the menu code blocks to be
+			// executed.
 			switch (choice) {
 
 			case "1": {
 				// Set a choice for the method 'LogOn' to be executed.
-				//logOn();
+				// logOn();
 				break;
 			}
 			case "2": {
 				// Set a choice for the method 'createSchedule' to be executed.
-				//displaySchedule
+				// displaySchedule
 				break;
 			}
 			case "3": {
 				// Set a choice for the method 'createSchedule' to be executed.
-				//createSchedule
+				// createSchedule
 				break;
 			}
 			case "4": {
 				// Set a choice for the method 'createSchedule' to be executed.
-				//re-assignVehile
+				// re-assignVehile
 				break;
 			}
 			case "Q": {
@@ -60,22 +68,14 @@ public class Sys {
 			}
 			// Set a default value, for when errors occur in the console application.
 			default: {
-				// Set a default message, to allow the user to know when an incorrect value has been entered.
+				// Set a default message, to allow the user to know when an incorrect value has
+				// been entered.
 				System.out.println("Im sorry you have entered an incorrect value, please try again:");
 			}
 
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
 		} while (!choice.equals("Q"));
-	}
-
-	public Sys() {
-
-	}
-
-	public Depot getDepot() {
-		return null; // needs changing
-
 	}
 
 }
