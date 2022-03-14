@@ -20,6 +20,7 @@ public class Sys {
 			System.out.println("1 - Login");
 			System.out.println("2 - View Work Schedule");
 			System.out.println("3 - Create Work Schedule");
+			System.out.println("4 - Re-assign Vehicle");
 			System.out.println("Q - Quit");
 			System.out.print("Pick : ");
 
@@ -43,6 +44,11 @@ public class Sys {
 			case "3": {
 				// Set a choice for the method 'createSchedule' to be executed.
 				//createSchedule
+				break;
+			}
+			case "4": {
+				// Set a choice for the method 'createSchedule' to be executed.
+				//re-assignVehile
 				break;
 			}
 			case "Q": {
