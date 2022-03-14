@@ -1,12 +1,12 @@
 package system;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+
 
 public class WorkSchedule {
 	
 	// Declare an new array list 'Schedule', to store the 'schedule.txt' data.
-	private static final ArrayList<WorkSchedule> Schedule = new ArrayList<WorkSchedule>();  
+	// private static final ArrayList<WorkSchedule> Schedule = new ArrayList<WorkSchedule>();  
 
 	private String client;
 	private LocalDate startDate;
