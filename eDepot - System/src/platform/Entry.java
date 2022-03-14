@@ -2,7 +2,8 @@ package platform;
 
 public class Entry {
 
-	public static void main(String[] args) {
+	// Small static main method to ensure NQF5 best practice
+	public static void main(String[] args) {  
 		Sys system = new Sys();
 		system.run();
 
