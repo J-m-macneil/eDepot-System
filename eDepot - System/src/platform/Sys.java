@@ -12,7 +12,7 @@ public class Sys {
 
 	// Declare the Scanner for keyboard input, to allow the user to input through
 	// the console.
-	private final Scanner input = new Scanner(System.in);
+	private static final Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) throws Exception {
 
