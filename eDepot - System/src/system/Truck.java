@@ -8,7 +8,7 @@ public class Truck extends Vehicle {
 		
 	}
 
-	public <T extends Vehicle>int getCargoCapacity() {
+	public <T extends Vehicle> int getCargoCapacity() {
 		return cargoCapacity;
 	}
 
