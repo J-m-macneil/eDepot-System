@@ -9,7 +9,10 @@ public abstract class Driver {
 	protected String username;
 	protected String password;
 	
-	public Driver() {
+	public Driver(String username, String password) {
+		
+	this.username = username;
+	this.password = password;
 		
 		input.close();
 		
@@ -39,8 +42,26 @@ public abstract class Driver {
 		return false; // needs changing
 	}
 	
-	public boolean checkPassword() {
-		return false; // needs changing
+	public boolean checkUsername(String username) {
+		if (this.getUsername().equals(username)) {
+			return true;
+		}
+		return false; 
 		
+	}
+	
+	public boolean checkPassword(String password) {
+		if (this.getPassword().equals(password)) {
+			return true;
+		}
+		return false; 
+		
+	}
+	
+	public boolean checkUsernameAndPassword (String username, String password) {
+		if (this.getUsername().equals(username) && this.getPassword().equals(password)) {
+			return true;
+		}
+		return false;	
 	}
 }

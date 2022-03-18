@@ -1,8 +1,10 @@
 package platform;
 
+import java.util.ArrayList;
 import java.util.Scanner;
-
 import system.Depot;
+import system.Driver;
+import system.WorkSchedule;
 
 public class Sys {
 
@@ -16,7 +18,8 @@ public class Sys {
 	private static final Scanner input = new Scanner(System.in);
 	
 	// Declare an new array list to store the 'driver.txt' data.
-	//private static final ArrayList<Driver> Driver = new ArrayList<Driver>();
+	private static final ArrayList<WorkSchedule> Schedule = new ArrayList<WorkSchedule>();
+	private static final ArrayList<Driver> User = new ArrayList<Driver>();
 
 	public void run() {
 
