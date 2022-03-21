@@ -12,7 +12,7 @@ public class Depot {
 		
 	}
 	
-	public void logOn() {
+	public void logOn(String userName, String passWord) {
 		
 	}
 	

@@ -19,7 +19,8 @@ public class Sys {
 	// private static final ArrayList<Driver> Driver = new ArrayList<Driver>();
 
 	public void run() {
-
+		
+		Depot depot = new Depot();
 		// Set a default value to choice, to allow user input.
 		String choice = "";
 
@@ -44,6 +45,11 @@ public class Sys {
 			switch (choice) {
 
 			case "1": {
+				System.out.print("Please enter your username: ");
+				String userName = input.nextLine();
+				System.out.print("Please enter your password: ");
+				String passWord = input.nextLine();
+				depot.logOn(userName, passWord);
 				// Set a choice for the method 'LogOn' to be executed.
 				// logOn();
 				break;
