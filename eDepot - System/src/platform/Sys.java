@@ -46,9 +46,9 @@ public class Sys {
 
 			case "1": {
 				System.out.print("Please enter your username: ");
-				String userName = input.nextLine();
+				String userName = input.next();
 				System.out.print("Please enter your password: ");
-				String passWord = input.nextLine();
+				String passWord = input.next();
 				depot.logOn(userName, passWord);
 				// Set a choice for the method 'LogOn' to be executed.
 				// logOn();
