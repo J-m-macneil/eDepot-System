@@ -24,7 +24,6 @@ public class Sys {
 	public void run() {
 		
 		Depot depot = new Depot();
-		Driver drivers = new Driver(null, null);
 		// Set a default value to choice, to allow user input.
 		String choice = "";
 
@@ -49,16 +48,11 @@ public class Sys {
 			switch (choice) {
 
 			case "1": {
-				System.out.print("Please enter your username: ");
-				String userName = input.next();
-				System.out.print("Please enter your password: ");
-				String passWord = input.next();
-				if(drivers.checkUsernameAndPassword(userName, passWord) == true) {
-					depot.logOn(userName, passWord);
-				} else {
-					System.out.println("Login failed. Please try again");
-				}
-				
+				System.out.println("Please enter your username: ");
+				String username = input.next();
+				System.out.println("Please enter your password: ");
+				String password = input.next();
+				depot.logOn(username, password);
 				// Set a choice for the method 'LogOn' to be executed.
 				// logOn();
 				break;

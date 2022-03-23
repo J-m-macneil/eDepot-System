@@ -1,6 +1,9 @@
 package system;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Depot {
 
@@ -8,19 +11,34 @@ public class Depot {
 	/* public Depot() {
 	
 	} */
-	
-	private ArrayList<Driver> drivers;
+
+// Commented out unfinished csv file fields and method body
+/*	private ArrayList<Driver> drivers;
+	private File driverCSV; */
 	
 	public void logOn(String userName, String passWord) {
-		if(null == drivers) {
-			drivers = new ArrayList<Driver>();
+		
+		/* new ArrayList<Driver>();
+		new File("Drivers.csv");
+		try {
+			Scanner read = new Scanner(driverCSV);
+			read.useDelimiter(",");
+			boolean login = false;
+			while (read.nextLine() != null) {
+				String username = read.next();
+				String password = read.next();
+				
+			}
 			
-			// now need to add csv file to arraylist and link to user input in Sys
+			
+		
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 		
-		
-		
-	}
+		*/
+	} 
 
 	public void setUpWorkSchedule() { // add method body
 		
