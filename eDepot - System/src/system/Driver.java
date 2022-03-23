@@ -2,7 +2,7 @@ package system;
 
 import java.util.Scanner;
 
-public abstract class Driver {
+public class Driver {
 	
 	private static final Scanner input = new Scanner(System.in);
 

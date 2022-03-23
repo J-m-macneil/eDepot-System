@@ -3,24 +3,28 @@ package platform;
 import java.util.Scanner;
 
 import system.Depot;
+import system.Driver;
 
 public class Sys {
-
-	public Depot getDepot() {
-		return null; //needs changing
-
-	}
-
-	// Declare the Scanner for keyboard input, to allow the user to input through
-	// the console.
-	private static final Scanner input = new Scanner(System.in);
 	
-	// Declare an new array list to store the 'driver.txt' data.
-	// private static final ArrayList<Driver> Driver = new ArrayList<Driver>();
+	
+	 public Depot getDepot() {
+		return null; // may need changing
+
+	} 
+	 
+	 public Driver getDriver(String username, String password) {
+		return null; // may need changing
+		 
+	 }
+
+	// Declare the Scanner for keyboard input, to allow the user to input through the console.
+	private static final Scanner input = new Scanner(System.in);
 
 	public void run() {
 		
 		Depot depot = new Depot();
+		Driver drivers = new Driver(null, null);
 		// Set a default value to choice, to allow user input.
 		String choice = "";
 
@@ -49,7 +53,12 @@ public class Sys {
 				String userName = input.next();
 				System.out.print("Please enter your password: ");
 				String passWord = input.next();
-				depot.logOn(userName, passWord);
+				if(drivers.checkUsernameAndPassword(userName, passWord) == true) {
+					depot.logOn(userName, passWord);
+				} else {
+					System.out.println("Login failed. Please try again");
+				}
+				
 				// Set a choice for the method 'LogOn' to be executed.
 				// logOn();
 				break;
