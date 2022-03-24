@@ -22,8 +22,7 @@ public class Sys {
 	private static final Scanner input = new Scanner(System.in);
 
 	public void run() {
-		
-		Depot depot = new Depot();
+	
 		// Set a default value to choice, to allow user input.
 		String choice = "";
 
@@ -46,13 +45,9 @@ public class Sys {
 			// Declare a switch statement, to select one of the menu code blocks to be
 			// executed.
 			switch (choice) {
-
 			case "1": {
-				System.out.println("Please enter your username: ");
-				String username = input.next();
-				System.out.println("Please enter your password: ");
-				String password = input.next();
-				depot.logOn(username, password);
+				
+			   login(); 
 				// Set a choice for the method 'LogOn' to be executed.
 				// logOn();
 				break;
@@ -89,6 +84,16 @@ public class Sys {
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
 		} while (!choice.equals("Q"));
+	}
+	
+	public void login(){
+		
+		System.out.println("Please enter a username:");
+		String username = input.next();
+		System.out.println("Please enter a password:");
+		String password = input.next();
+		Depot depot = new Depot();
+		depot.logOn(username, password);
 	}
 
 }

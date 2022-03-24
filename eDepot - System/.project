@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>Drivers.csv</name>
-			<type>1</type>
-			<location>C:/Users/mabai/OneDrive/Documents/LJMU Year 2/Semester 2/5104COMP Object Oriented Systems Development/Code/Drivers.csv</location>
-		</link>
-	</linkedResources>
 </projectDescription>
