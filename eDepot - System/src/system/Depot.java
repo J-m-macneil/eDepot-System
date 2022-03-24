@@ -72,7 +72,7 @@ public class Depot {
 			public void logOn(String username, String password) {
 				// Print to the console the array list 'Rooms', to show the full list of rooms data.
 				System.out.println("\n-- Login --");
-				System.out.println("Please enter your username:");
+				System.out.print("Please enter your username:");
 				// Set the username to the next String, typed in the console application.
 				username = input.next();
 				System.out.print("Enter your password:\n");
@@ -98,7 +98,7 @@ public class Depot {
 					if (logOn.checkUsernameAndPassword(username,password)) {
 						loggedOn = true;
 						// Print a message for the true value, allowing the user to know when they have logged on.
-						System.out.println("\nThankyou " + username + " you have logged on!");
+						System.out.print("\nThankyou " + username + " you have logged on!");
 					}
 				if (!correctUsername) {
 					// Print a message for the boolean 'coorectUsername' false value.
@@ -106,11 +106,11 @@ public class Depot {
 				}
 				if (!correctPassword) {
 					// Print a message for the boolean 'correctPassword' false value.
-					System.out.println("\nYour password does not have a match on the system");
+					System.out.print("\nYour password does not have a match on the system");
 				}
 				if (!correctUsername && !correctPassword) {
 					// Print a message for the boolean 'correctUsername' and 'correctPassword' false value.
-					System.out.println("\nYour username and password is invalid");
+					System.out.print("\nYour username and password is invalid");
 				}
 			}
 		}	

@@ -88,12 +88,10 @@ public class Sys {
 	}
 	
 	public void login(){
-		
-		//Depot depot = new Depot();
-		
+		// Parameters may need changing
 		new Depot().logOn(null, null);
 		
-		//depot.logOn(null, null);
+		
 	}
 
 }
