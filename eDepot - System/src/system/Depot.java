@@ -69,20 +69,18 @@ public class Depot {
 			}
 
 			// Declare a 'logOn' method.
-			public void logOn(String username, String password) {
+			public void logOn() {
 				// Print to the console the array list 'Rooms', to show the full list of rooms data.
 				System.out.println("\n-- Login --");
 				System.out.print("Please enter your username:");
 				// Set the username to the next String, typed in the console application.
-				username = input.next();
-				System.out.print("Enter your password:\n");
+				String username = input.next();
+				System.out.print("Enter your password:");
 				// Set the password to the next String, typed in the console application.
-				password = input.next().toLowerCase();
+				String password = input.next().toLowerCase();
 				boolean correctUsername = false;
 				boolean correctPassword = false;
 				boolean loggedOn = false;
-				
-
 				// Loop through the User file data.
 				for (int i = 0; i < User.size(); i++) {
 					// Get the User file data.
@@ -95,9 +93,9 @@ public class Depot {
 						correctPassword = true;
 					}
 					// Declare an if statement to match the username and password, against the Driver file data.
-					if (logOn.checkUsernameAndPassword(username,password)) {
-						loggedOn = true;
+					if (logOn.checkUsernameAndPassword(username,password, loggedOn)) {
 						// Print a message for the true value, allowing the user to know when they have logged on.
+						loggedOn = true;
 						System.out.print("\nThankyou " + username + " you have logged on!");
 					}
 				if (!correctUsername) {
@@ -110,6 +108,7 @@ public class Depot {
 				}
 				if (!correctUsername && !correctPassword) {
 					// Print a message for the boolean 'correctUsername' and 'correctPassword' false value.
+					loggedOn = false;
 					System.out.print("\nYour username and password is invalid");
 				}
 			}

@@ -87,11 +87,10 @@ public class Sys {
 		} while (!choice.equals("Q"));
 	}
 	
-	public void login(){
-		// Parameters may need changing
-		new Depot().logOn(null, null);
+	public static void login() {
 		
-		
+		new Depot().logOn();
 	}
+
 
 }

@@ -58,7 +58,7 @@ public class Driver {
 		
 	}
 	
-	public boolean checkUsernameAndPassword (String username, String password) {
+	public boolean checkUsernameAndPassword (String username, String password, boolean loggedOn) {
 		if (this.getUsername().equals(username) && this.getPassword().equals(password)) {
 			return true;
 		}
