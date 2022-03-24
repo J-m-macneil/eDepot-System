@@ -48,7 +48,7 @@ public class Sys {
 			switch (choice) {
 			case "1": {
 				
-			   login(); 
+				new Depot().logOn();
 				// Set a choice for the method 'LogOn' to be executed.
 				// logOn();
 				break;
@@ -87,10 +87,4 @@ public class Sys {
 		} while (!choice.equals("Q"));
 	}
 	
-	public static void login() {
-		
-		new Depot().logOn();
-	}
-
-
 }
