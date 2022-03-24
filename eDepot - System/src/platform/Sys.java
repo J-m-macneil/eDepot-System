@@ -92,8 +92,7 @@ public class Sys {
 		String username = input.next();
 		System.out.println("Please enter a password:");
 		String password = input.next();
-		Depot depot = new Depot();
-		depot.logOn(username, password);
+		new Depot().logOn();
 	}
 
 }
