@@ -22,6 +22,7 @@ public class Sys {
 	private static final Scanner input = new Scanner(System.in);
 
 	public void run() {
+		
 	
 		// Set a default value to choice, to allow user input.
 		String choice = "";
@@ -88,12 +89,11 @@ public class Sys {
 	
 	public void login(){
 		
-		System.out.println("Please enter a username:");
-		String username = input.next();
-		System.out.println("Please enter a password:");
-		String password = input.next();
-		Depot depot = new Depot();
-		depot.logOn(username, password);
+		//Depot depot = new Depot();
+		
+		new Depot().logOn(null, null);
+		
+		//depot.logOn(null, null);
 	}
 
 }
