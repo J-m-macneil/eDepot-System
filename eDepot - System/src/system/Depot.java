@@ -45,10 +45,11 @@ public class Depot {
 		boolean correctUsername = false;
 		boolean correctPassword = false;
 		boolean loggedOn = false;
+		Manager logOn = null;
 		// Loop through the User file data.
 		for (int i = 0; i < manager.size(); i++) {
 			// Get the User file data.
-			Manager logOn = manager.get(i);
+			logOn = manager.get(i);
 			// Declare an if statement to match the username and password, against the
 			// Driver file data.
 			if (logOn.checkUsername(userName)) {
@@ -57,28 +58,28 @@ public class Depot {
 			if (logOn.checkPassword(passWord)) {
 				correctPassword = true;
 			}
-			// Declare an if statement to match the username and password, against the
-			// Driver file data.
 			if (logOn.checkUsernameAndPassword(userName, passWord, loggedOn)) {
 				// Print a message for the true value, allowing the user to know when they have
 				// logged on.
 				loggedOn = true;
 				System.out.print("\nThankyou " + userName + " you have logged on!");
 			}
-			if (!correctUsername) {
-				// Print a message for the boolean 'coorectUsername' false value.
-				System.out.println("\nYour username does not have a match on the system");
-			}
-			if (!correctPassword) {
-				// Print a message for the boolean 'correctPassword' false value.
-				System.out.print("\nYour password does not have a match on the system");
-			}
-			if (!correctUsername && !correctPassword) {
-				// Print a message for the boolean 'correctUsername' and 'correctPassword' false
-				// value.
-				loggedOn = false;
-				System.out.print("\nYour username and password is invalid");
-			}
+			// Declare an if statement to match the username and password, against the
+			// Driver file data.
+		}
+		if (!correctUsername) {
+			// Print a message for the boolean 'coorectUsername' false value.
+			System.out.println("\nYour username does not have a match on the system");
+		}
+		if (!correctPassword) {
+			// Print a message for the boolean 'correctPassword' false value.
+			System.out.print("\nYour password does not have a match on the system");
+		}
+		if (!correctUsername && !correctPassword) {
+			// Print a message for the boolean 'correctUsername' and 'correctPassword' false
+			// value.
+			loggedOn = false;
+			System.out.print("\nYour username and password is invalid");
 		}
 		if (manager.size() == 0) {
 			System.out.println("No managers enrolled in depot!");
