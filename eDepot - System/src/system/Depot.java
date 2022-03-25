@@ -40,21 +40,21 @@ public class Depot {
 	}
 
 	// Declare a 'logOn' method.
-	public boolean logOn(String userName, String password) throws FileNotFoundException {
+	public boolean logOn(String userName, String passWord) throws FileNotFoundException {
 		loadDriver();
 		boolean correctUsername = false;
 		boolean loggedOn = false;
-		Driver logOn = null;
+		Driver driver = null;
 		// Loop through the User file data.
 		for (int i = 0; i < drivers.size(); i++) {
 			// Get the User file data.
-			logOn = drivers.get(i);
+			driver = drivers.get(i);
 			// Declare an if statement to match the username and password, against the
 			// Driver file data.
-			if (logOn.checkUsername(userName)) {
+			if (driver.checkUsername(userName)) {
 				correctUsername = true;
 			}
-			if (logOn.verifyLogin(userName, password)) {
+			if (driver.verifyLogin(userName, passWord)) {
 				// Print a message for the true value, allowing the user to know when they have
 				// logged on.
 				correctUsername = true;
