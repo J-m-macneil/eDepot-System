@@ -40,10 +40,9 @@ public class Depot {
 	}
 
 	// Declare a 'logOn' method.
-	public void logOn(String userName, String passWord) {
+	public void logOn(String userName, String password) throws FileNotFoundException {
 		loadDriver();
 		boolean correctUsername = false;
-		boolean correctPassword = false;
 		boolean loggedOn = false;
 		Driver logOn = null;
 		// Loop through the User file data.
@@ -55,31 +54,22 @@ public class Depot {
 			if (logOn.checkUsername(userName)) {
 				correctUsername = true;
 			}
-			if (logOn.checkPassword(passWord)) {
-				correctPassword = true;
-			}
-			if (logOn.checkUsernameAndPassword(userName, passWord, loggedOn)) {
+			if (logOn.verifyLogin(userName, password)) {
 				// Print a message for the true value, allowing the user to know when they have
 				// logged on.
 				loggedOn = true;
-				System.out.print("\nThankyou " + userName + " you have logged on!\n");
+				System.out.print("\nThankyou " + userName + " you have logged on!\n");	
 			}
-			// Declare an if statement to match the username and password, against the
-			// Driver file data.
 		}
 		if (!correctUsername) {
 			// Print a message for the boolean 'coorectUsername' false value.
 			System.out.println("\nYour username does not have a match on the system\n");
 		}
-		if (!correctPassword) {
-			// Print a message for the boolean 'correctPassword' false value.
-			System.out.print("\nYour password does not have a match on the system");
-		}
-		if (!correctUsername && !correctPassword) {
+		if (!loggedOn) {
 			// Print a message for the boolean 'correctUsername' and 'correctPassword' false
 			// value.
 			loggedOn = false;
-			System.out.print("\nYour username and password is invalid");
+			System.out.println("\nSorry " + userName + " your username and password do not match!\n");
 		}
 		if (drivers.size() == 0) {
 			System.out.println("Everyone's on the roads!");

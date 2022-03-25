@@ -1,5 +1,6 @@
 package platform;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import system.Depot;
@@ -21,7 +22,7 @@ public class Sys {
 	// Declare the Scanner for keyboard input, to allow the user to input through the console.
 	private static final Scanner input = new Scanner(System.in);
 
-	public void run() {
+	public void run() throws FileNotFoundException {
 		
 		// Set a default value to choice, to allow user input.
 		String choice = "";
@@ -46,15 +47,14 @@ public class Sys {
 			// executed.
 			switch (choice) {
 			case "1": {
+				// Set a choice for the method 'LogOn' to be executed.
 				Depot depot = new Depot();
 				System.out.println("\n-- Login --\n");
 				System.out.print("Please enter your username: ");
 				String userName = input.next();
 				System.out.print("Please enter your password: ");
-				String passWord = input.next();
-				depot.logOn(userName, passWord);
-				// Set a choice for the method 'LogOn' to be executed.
-				// logOn();
+				String password = input.next();
+				depot.logOn(userName, password);
 				break;
 			}
 			case "2": {
@@ -88,5 +88,4 @@ public class Sys {
 			// Declare a while loop, to loop through the menu until the program is quit.
 		} while (!choice.equals("Q"));
 	}
-	
 }
