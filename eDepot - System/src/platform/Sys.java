@@ -73,8 +73,6 @@ public class Sys {
 				break;
 			}
 			case "Q": {
-				// Set the inputed data to save to the file on exit.
-				// saveToFile();
 				// Print a message to the console when the application is quit.
 				System.out.println("-- GOODBYE --");
 				break;
