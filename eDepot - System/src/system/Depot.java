@@ -9,7 +9,7 @@ public class Depot {
 	
 	final static Scanner input = new Scanner(System.in);
 	
-	final static ArrayList<Driver> User = new ArrayList<Driver>();
+	final static ArrayList<Manager> manager = new ArrayList<Manager>();
 
 	
 	public Depot() {
@@ -49,7 +49,7 @@ public class Depot {
 //	}
 	
 	// Declare a 'loadDriver' method, to allow the user data to be access through the method.
-			public void loadDriver() throws FileNotFoundException {
+			public void loadManager() throws FileNotFoundException {
 				
 				// Declaring a Scanner with 'driver.txt' source, to allow the system to read the user data.
 				Scanner file = new Scanner(new FileReader("Managers.txt"));
@@ -61,7 +61,7 @@ public class Depot {
 					// Set the password to the next String in the file.
 					String password = file.next();
 					// Add the variables to the 'User' array list.
-					User.add(new Driver(username, password));
+					manager.add(new Manager(username, password));
 					
 				}
 				// Close the scanner file.
@@ -82,9 +82,9 @@ public class Depot {
 				boolean correctPassword = false;
 				boolean loggedOn = false;
 				// Loop through the User file data.
-				for (int i = 0; i < User.size(); i++) {
+				for (int i = 0; i < manager.size(); i++) {
 					// Get the User file data.
-					Driver logOn = User.get(i);
+					Manager logOn = manager.get(i);
 					// Declare an if statement to match the username and password, against the Driver file data.
 					if (logOn.checkUsername(username)) {
 						correctUsername = true;
