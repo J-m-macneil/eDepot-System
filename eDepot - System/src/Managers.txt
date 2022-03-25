@@ -1,2 +1,2 @@
-GlynofLpool,1234
-SorrenofMchester,5678
+GlynofLpool,GH1234
+SorrenofMchester,SH5678

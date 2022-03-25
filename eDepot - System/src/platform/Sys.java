@@ -23,7 +23,6 @@ public class Sys {
 
 	public void run() {
 		
-	
 		// Set a default value to choice, to allow user input.
 		String choice = "";
 
@@ -48,7 +47,7 @@ public class Sys {
 			switch (choice) {
 			case "1": {
 				
-				new Depot().logOn();
+				new Depot().logOn(username, password);
 				// Set a choice for the method 'LogOn' to be executed.
 				// logOn();
 				break;
