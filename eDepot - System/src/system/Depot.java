@@ -12,8 +12,8 @@ public class Depot {
 	final static ArrayList<Manager> manager = new ArrayList<Manager>();
 
 	
-	public Depot() {
-	}
+	//public Depot() {
+	//}
 	
 	// Declare a 'loadDriver' method, to allow the user data to be access through the method.
 			public void loadManager() throws FileNotFoundException {
@@ -36,15 +36,7 @@ public class Depot {
 			}
 
 			// Declare a 'logOn' method.
-			public void logOn() {
-				// Print to the console the array list 'Rooms', to show the full list of rooms data.
-				System.out.println("\n-- Login --");
-				System.out.print("Please enter your username:");
-				// Set the username to the next String, typed in the console application.
-				String username = input.next();
-				System.out.print("Enter your password:");
-				// Set the password to the next String, typed in the console application.
-				String password = input.next().toLowerCase();
+			public void logOn(String userName, String passWord) {
 				boolean correctUsername = false;
 				boolean correctPassword = false;
 				boolean loggedOn = false;
@@ -53,17 +45,17 @@ public class Depot {
 					// Get the User file data.
 					Manager logOn = manager.get(i);
 					// Declare an if statement to match the username and password, against the Driver file data.
-					if (logOn.checkUsername(username)) {
+					if (logOn.checkUsername(userName)) {
 						correctUsername = true;
 					}
-					if (logOn.checkPassword(password)) {
+					if (logOn.checkPassword(passWord)) {
 						correctPassword = true;
 					}
 					// Declare an if statement to match the username and password, against the Driver file data.
-					if (logOn.checkUsernameAndPassword(username,password, loggedOn)) {
+					if (logOn.checkUsernameAndPassword(userName,passWord, loggedOn)) {
 						// Print a message for the true value, allowing the user to know when they have logged on.
 						loggedOn = true;
-						System.out.print("\nThankyou " + username + " you have logged on!");
+						System.out.print("\nThankyou " + userName + " you have logged on!");
 					}
 				if (!correctUsername) {
 					// Print a message for the boolean 'coorectUsername' false value.

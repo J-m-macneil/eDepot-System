@@ -47,7 +47,12 @@ public class Sys {
 			switch (choice) {
 			case "1": {
 				Depot depot = new Depot();
-				depot.logOn();
+				System.out.println("\n-- Login --\n");
+				System.out.print("Please enter your username: ");
+				String userName = input.next();
+				System.out.print("Please enter your password: ");
+				String passWord = input.next();
+				depot.logOn(userName, passWord);
 				// Set a choice for the method 'LogOn' to be executed.
 				// logOn();
 				break;
