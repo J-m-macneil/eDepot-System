@@ -76,7 +76,9 @@ public class Driver {
 				{
 					loggedOn = true;
 				}
-				else loggedOn = false;
+				else {
+					loggedOn = false;
+				}
 			}
 			file.close();
 		} 

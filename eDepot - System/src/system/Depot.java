@@ -57,15 +57,17 @@ public class Depot {
 			if (logOn.verifyLogin(userName, password)) {
 				// Print a message for the true value, allowing the user to know when they have
 				// logged on.
+				correctUsername = true;
 				loggedOn = true;
 				System.out.print("\nThankyou " + userName + " you have logged on!\n");	
+				break;
 			}
 		}
 		if (!correctUsername) {
 			// Print a message for the boolean 'coorectUsername' false value.
 			System.out.println("\nYour username does not have a match on the system\n");
 		}
-		if (!loggedOn) {
+		else if (!loggedOn) {
 			// Print a message for the boolean 'correctUsername' and 'correctPassword' false
 			// value.
 			loggedOn = false;
