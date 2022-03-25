@@ -25,7 +25,7 @@ public class Depot {
 		//try {
 			//file = new Scanner(new FileReader("src//Drivers.txt"));
 			// Loop through the files data.
-			while (file.hasNext()) {
+			while (file.hasNextLine()) {
 				// Set the username to the next String in the file.
 				String username = file.nextLine();
 				// Set the password to the next String in the file.
@@ -74,7 +74,7 @@ public class Depot {
 			System.out.println("\nSorry " + userName + " your username and password do not match!\n");
 		}
 		if (drivers.size() == 0) {
-			System.out.println("Everyone's on the roads!");
+			System.out.println("\nEveryone's on the roads!");
 		}
 		return false;
 

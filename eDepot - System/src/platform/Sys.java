@@ -7,23 +7,23 @@ import system.Depot;
 import system.Driver;
 
 public class Sys {
-	
-	
-	 public Depot getDepot() {
+
+	public Depot getDepot() {
 		return null; // may need changing
 
-	} 
-	 
-	 public Driver getDriver(String username, String password) {
-		return null; // may need changing
-		 
-	 }
+	}
 
-	// Declare the Scanner for keyboard input, to allow the user to input through the console.
+	public Driver getDriver(String username, String password) {
+		return null; // may need changing
+
+	}
+
+	// Declare the Scanner for keyboard input, to allow the user to input through
+	// the console.
 	private static final Scanner input = new Scanner(System.in);
 
 	public void run() throws FileNotFoundException {
-		
+
 		boolean loggedOn = false;
 		while (!loggedOn) {
 			Depot depot = new Depot();
@@ -34,9 +34,10 @@ public class Sys {
 			String password = input.next();
 			loggedOn = depot.logOn(userName, password);
 		}
+		// Declare a do while loop, to repeat through the room booking systems main
+		// menu.
 		// Set a default value to choice, to allow user input.
 		String choice = "";
-		// Declare a do while loop, to repeat through the room booking systems main menu.
 		do {
 			// Print a repeating main menu, inside the do while loop.
 			System.out.println("\n-- MAIN MENU --");
@@ -47,8 +48,8 @@ public class Sys {
 			System.out.print("Pick : ");
 
 			// Allow the user to specify which option on they would like to select.
-			// Allow the lower case value 'q' to be entered when exiting the program.
-			choice = input.next().toUpperCase();
+			// Allow the upper case value 'Q' to be entered when exiting the program.
+			choice = input.nextLine().toUpperCase();
 
 			// Declare a switch statement, to select one of the menu code blocks to be
 			// executed.
@@ -79,9 +80,8 @@ public class Sys {
 				// been entered.
 				System.out.println("Im sorry you have entered an incorrect value, please try again:");
 			}
-
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
-		} while (!choice.equals("Q"));
+		} while (!choice.equals("Q") && input.hasNextLine());
 	}
 }
