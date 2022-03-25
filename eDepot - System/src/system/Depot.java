@@ -59,7 +59,7 @@ public class Depot {
 				// logged on.
 				correctUsername = true;
 				loggedOn = true;
-				System.out.print("\nThankyou " + userName + " you have logged on!\n");
+				System.out.print("\nThankyou " + userName + " you have logged on!");
 				return true;
 			}
 		}
