@@ -1,5 +1,6 @@
 package platform;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import system.Depot;
@@ -21,7 +22,7 @@ public class Sys {
 	// Declare the Scanner for keyboard input, to allow the user to input through the console.
 	private static final Scanner input = new Scanner(System.in);
 
-	public void run() {
+	public void run() throws FileNotFoundException {
 		
 		// Set a default value to choice, to allow user input.
 		String choice = "";
