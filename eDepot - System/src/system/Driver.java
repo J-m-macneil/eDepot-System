@@ -54,14 +54,6 @@ public class Driver {
 
 	}
 
-	public boolean checkPassword(String password) {
-		if (this.getPassword().equals(password)) {
-			return true;
-		}
-		return false;
-
-	}
-
 	public boolean verifyLogin(String username, String password, boolean loggedOn) {
 
 		Scanner file = null;
