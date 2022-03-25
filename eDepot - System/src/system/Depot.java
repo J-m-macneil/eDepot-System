@@ -62,14 +62,14 @@ public class Depot {
 				// Print a message for the true value, allowing the user to know when they have
 				// logged on.
 				loggedOn = true;
-				System.out.print("\nThankyou " + userName + " you have logged on!");
+				System.out.print("\nThankyou " + userName + " you have logged on!\n");
 			}
 			// Declare an if statement to match the username and password, against the
 			// Driver file data.
 		}
 		if (!correctUsername) {
 			// Print a message for the boolean 'coorectUsername' false value.
-			System.out.println("\nYour username does not have a match on the system");
+			System.out.println("\nYour username does not have a match on the system\n");
 		}
 		if (!correctPassword) {
 			// Print a message for the boolean 'correctPassword' false value.
