@@ -46,8 +46,8 @@ public class Sys {
 			// executed.
 			switch (choice) {
 			case "1": {
-				
-				new Depot().logOn(username, password);
+				Depot depot = new Depot();
+				depot.logOn();
 				// Set a choice for the method 'LogOn' to be executed.
 				// logOn();
 				break;
