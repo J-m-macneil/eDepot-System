@@ -47,15 +47,8 @@ public class Sys {
 			// executed.
 			switch (choice) {
 			case "1": {
-				Depot depot = new Depot();
-				System.out.println("\n-- Login --\n");
-				System.out.print("Please enter your username: ");
-				String userName = input.next();
-				System.out.print("Please enter your password: ");
-				String passWord = input.next();
-				depot.logOn(userName, passWord);
 				// Set a choice for the method 'LogOn' to be executed.
-				// logOn();
+				login();
 				break;
 			}
 			case "2": {
@@ -90,6 +83,16 @@ public class Sys {
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
 		} while (!choice.equals("Q"));
+	}
+	
+	public void login() throws FileNotFoundException {
+		Depot depot = new Depot();
+		System.out.println("\n-- Login --\n");
+		System.out.print("Please enter your username: ");
+		String userName = input.next();
+		System.out.print("Please enter your password: ");
+		String password = input.next();
+		depot.logOn(userName, password);
 	}
 	
 }

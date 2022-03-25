@@ -54,13 +54,11 @@ public class Depot {
 			if (logOn.checkUsername(userName)) {
 				correctUsername = true;
 			}
-			if (logOn.verifyLogin(userName, password, loggedOn)) {
+			if (logOn.verifyLogin(userName, password)) {
 				// Print a message for the true value, allowing the user to know when they have
 				// logged on.
 				loggedOn = true;
-				System.out.print("\nThankyou " + userName + " you have logged on!\n");
-			} else {
-				System.out.println("\nSorry " + userName + " your username and password do not match!\n");
+				System.out.print("\nThankyou " + userName + " you have logged on!\n");	
 			}
 		}
 		if (!correctUsername) {
@@ -71,7 +69,7 @@ public class Depot {
 			// Print a message for the boolean 'correctUsername' and 'correctPassword' false
 			// value.
 			loggedOn = false;
-			System.out.print("\nYour username and password is invalid");
+			System.out.println("\nSorry " + userName + " your username and password do not match!\n");
 		}
 		if (drivers.size() == 0) {
 			System.out.println("Everyone's on the roads!");

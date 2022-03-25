@@ -54,11 +54,12 @@ public class Driver {
 
 	}
 
-	public boolean verifyLogin(String username, String password, boolean loggedOn) {
+	public boolean verifyLogin(String username, String password) {
 
 		Scanner file = null;
 		String tempUsername = "";
 		String tempPassword = "";
+		boolean loggedOn = false;
 
 		try {
 
