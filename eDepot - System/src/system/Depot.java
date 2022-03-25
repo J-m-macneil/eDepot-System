@@ -16,13 +16,14 @@ public class Depot {
 
 	// Declare a 'loadDriver' method, to allow the user data to be access through
 	// the method.
-	public void loadDriver() {
+	public void loadDriver() throws FileNotFoundException {
 
 		// Declaring a Scanner with 'driver.txt' source, to allow the system to read the
 		// user data.
-		Scanner file = null;
-		try {
-			file = new Scanner(new FileReader("src//Drivers.txt"));
+		// Scanner file = null;
+		Scanner file = new Scanner(new FileReader("src//Drivers.txt"));
+		//try {
+			//file = new Scanner(new FileReader("src//Drivers.txt"));
 			// Loop through the files data.
 			while (file.hasNext()) {
 				// Set the username to the next String in the file.
@@ -32,15 +33,14 @@ public class Depot {
 				// Add the variables to the 'User' array list.
 				drivers.add(new Manager(username, password));
 				// Close the scanner file.
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} file.close();
+		//	}
+		//} catch (FileNotFoundException e) {
+		//	e.printStackTrace();
+		} //file.close();
 	}
 
 	// Declare a 'logOn' method.
-	public void logOn(String userName, String password) throws FileNotFoundException {
+	public boolean logOn(String userName, String password) throws FileNotFoundException {
 		loadDriver();
 		boolean correctUsername = false;
 		boolean loggedOn = false;
@@ -59,13 +59,13 @@ public class Depot {
 				// logged on.
 				correctUsername = true;
 				loggedOn = true;
-				System.out.print("\nThankyou " + userName + " you have logged on!\n");	
-				break;
+				System.out.print("\nThankyou " + userName + " you have logged on!\n");
+				return true;
 			}
 		}
 		if (!correctUsername) {
 			// Print a message for the boolean 'coorectUsername' false value.
-			System.out.println("\nYour username does not have a match on the system\n");
+			System.out.println("\nYour username does not have a match on the system");
 		}
 		else if (!loggedOn) {
 			// Print a message for the boolean 'correctUsername' and 'correctPassword' false
@@ -76,6 +76,7 @@ public class Depot {
 		if (drivers.size() == 0) {
 			System.out.println("Everyone's on the roads!");
 		}
+		return false;
 
 	}
 

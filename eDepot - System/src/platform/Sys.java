@@ -24,18 +24,25 @@ public class Sys {
 
 	public void run() throws FileNotFoundException {
 		
+		boolean loggedOn = false;
+		while (!loggedOn) {
+			Depot depot = new Depot();
+			System.out.println("\n-- Login --\n");
+			System.out.print("Please enter your username: ");
+			String userName = input.next();
+			System.out.print("Please enter your password: ");
+			String password = input.next();
+			loggedOn = depot.logOn(userName, password);
+		}
 		// Set a default value to choice, to allow user input.
 		String choice = "";
-
-		// Declare a do while loop, to repeat through the room booking systems main
-		// menu.
+		// Declare a do while loop, to repeat through the room booking systems main menu.
 		do {
 			// Print a repeating main menu, inside the do while loop.
 			System.out.println("\n-- MAIN MENU --");
-			System.out.println("1 - Login");
-			System.out.println("2 - View Work Schedule");
-			System.out.println("3 - Create Work Schedule");
-			System.out.println("4 - Re-assign Vehicle");
+			System.out.println("1 - View Work Schedule");
+			System.out.println("2 - Create Work Schedule");
+			System.out.println("3 - Re-assign Vehicle");
 			System.out.println("Q - Quit");
 			System.out.print("Pick : ");
 
@@ -47,27 +54,16 @@ public class Sys {
 			// executed.
 			switch (choice) {
 			case "1": {
-				// Set a choice for the method 'LogOn' to be executed.
-				Depot depot = new Depot();
-				System.out.println("\n-- Login --\n");
-				System.out.print("Please enter your username: ");
-				String userName = input.next();
-				System.out.print("Please enter your password: ");
-				String password = input.next();
-				depot.logOn(userName, password);
-				break;
-			}
-			case "2": {
 				// Set a choice for the method 'createSchedule' to be executed.
 				// displaySchedule
 				break;
 			}
-			case "3": {
+			case "2": {
 				// Set a choice for the method 'createSchedule' to be executed.
 				// createSchedule
 				break;
 			}
-			case "4": {
+			case "3": {
 				// Set a choice for the method 'createSchedule' to be executed.
 				// re-assignVehile
 				break;
