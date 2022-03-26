@@ -38,7 +38,7 @@ public class Sys {
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
 		String choice = "";
-		
+
 		do {
 			// Print a repeating main menu, inside the do while loop.
 			System.out.println("\n-- MAIN MENU --");
@@ -66,9 +66,9 @@ public class Sys {
 				System.out.print("Please enter your clients name: ");
 				String client = input.next();
 				System.out.print("Please the schedule start date: ");
-				//LocalDate startDate = input.next();
+				// LocalDate startDate = input.next();
 				System.out.print("Please the schedule end date: ");
-				//LocalDate endDate = input.next();
+				// LocalDate endDate = input.next();
 				depot.saveToFile(client, null, null);
 				// Set a choice for the method 'createSchedule' to be executed.
 				// createSchedule
@@ -86,7 +86,8 @@ public class Sys {
 			}
 			// Set a default value, for when errors occur in the console application.
 			default: {
-				// Set a default message, to allow the user to know when an incorrect value has been entered.
+				// Set a default message, to allow the user to know when an incorrect value has
+				// been entered.
 				System.out.println("Im sorry you have entered an incorrect value, please try again:");
 			}
 			}
