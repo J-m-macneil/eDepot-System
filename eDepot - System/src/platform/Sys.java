@@ -14,7 +14,7 @@ public class Sys {
 
 	}
 
-	public Driver getDriver(String username, String password) {
+	public Driver getDriver(String userName, String passWord) {
 		return null; // may need changing
 
 	}
@@ -43,7 +43,7 @@ public class Sys {
 
 		do {
 			// Print a repeating main menu, inside the do while loop.
-			System.out.println("\n--" + userName + "'s MAIN MENU --");
+			System.out.println("\n--" + userName.toUpperCase() + "'S MAIN MENU --");
 			System.out.println("1 - View Work Schedule");
 			System.out.println("2 - Create Work Schedule");
 			System.out.println("3 - Re-assign Vehicle");
@@ -64,7 +64,7 @@ public class Sys {
 			}
 			case "2": {
 				Depot depot = new Depot();
-				System.out.println("\n-- Create Work Schedule --\n");
+				System.out.println("\n-- CREATE WORK SCHEDULE --\n");
 				System.out.print("Please enter your clients name: ");
 				String client = input.next();
 				System.out.print("Please the schedule start date: ");
@@ -90,7 +90,7 @@ public class Sys {
 			default: {
 				// Set a default message, to allow the user to know when an incorrect value has
 				// been entered.
-				System.out.println("Im sorry you have entered an incorrect value, please try again:");
+				System.out.println("I'm sorry you have entered an incorrect value, please try again:");
 			}
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
