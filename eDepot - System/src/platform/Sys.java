@@ -1,6 +1,7 @@
 package platform;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import system.Depot;
@@ -65,10 +66,10 @@ public class Sys {
 				System.out.print("Please enter your clients name: ");
 				String client = input.next();
 				System.out.print("Please the schedule start date: ");
-				String startDate = input.next();
+				//LocalDate startDate = input.next();
 				System.out.print("Please the schedule end date: ");
-				String endDate = input.next();
-				depot.saveToFile(client, startDate, endDate);
+				//LocalDate endDate = input.next();
+				depot.saveToFile(client, null, null);
 				// Set a choice for the method 'createSchedule' to be executed.
 				// createSchedule
 				break;

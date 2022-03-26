@@ -109,7 +109,7 @@ public class Depot {
 	}
 
 	// Declare a saveToFile method, which loops through the schedule arraylist and maps the data to the Schedule.txt file.
-	public void saveToFile(String client, String startDate, String endDate) {
+	public void saveToFile(String client, LocalDate startDate, LocalDate endDate) {
 		// Declare a try statement, to allow the saveToFile data to be tested for errors while it is being executed.
 		try {
 			// Declare a 'FileWriter' to write the data to the 'schedule.txt'
