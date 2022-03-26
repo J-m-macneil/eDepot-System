@@ -31,11 +31,11 @@ public class Depot {
 		// Loop through the files data.
 		while (file.hasNextLine()) {
 			// Set the username to the next String in the file.
-			String username = file.nextLine();
+			String userName = file.nextLine();
 			// Set the password to the next String in the file.
-			String password = file.nextLine();
+			String passWord = file.nextLine();
 			// Add the variables to the 'User' array list.
-			drivers.add(new Manager(username, password));
+			drivers.add(new Driver(userName, passWord));
 			// Close the scanner file.
 			// }
 			// } catch (FileNotFoundException e) {
@@ -49,6 +49,7 @@ public class Depot {
 		boolean correctUserName = false;
 		boolean loggedOn = false;
 		Driver driver = null;
+		// Manager manager = null;
 		// Loop through the User file data.
 		for (int i = 0; i < drivers.size(); i++) {
 			// Get the User file data.
