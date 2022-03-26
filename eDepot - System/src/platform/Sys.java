@@ -58,7 +58,7 @@ public class Sys {
 			// executed.
 			switch (choice) {
 			case "1": {
-				// Set a choice for the method 'createSchedule' to be executed.
+				// Set a choice for the method 'displaySchedule' to be executed.
 				// displaySchedule
 				break;
 			}
@@ -77,7 +77,7 @@ public class Sys {
 				break;
 			}
 			case "3": {
-				// Set a choice for the method 'createSchedule' to be executed.
+				// Set a choice for the method 're-assignVehicle' to be executed.
 				// re-assignVehile
 				break;
 			}
