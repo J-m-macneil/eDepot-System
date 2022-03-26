@@ -117,7 +117,7 @@ public class Depot {
 			// Declare a for loop to loop through the rooms array list data.
 			for (int i = 0; i < schedule.size(); i++) {
 				// Declare a writer to write the text back to the schedule array list.
-				writer.write(schedule.get(i).SaveFileToString() + "\n");
+				writer.write(schedule.get(i).SaveScheduleToFile() + "\n");
 			}
 			// Close the 'FileWriter' stream.
 			writer.close();
