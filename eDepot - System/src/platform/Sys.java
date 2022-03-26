@@ -50,7 +50,7 @@ public class Sys {
 
 			// Allow the user to specify which option on they would like to select.
 			// Allow the upper case value 'Q' to be entered when exiting the program.
-			choice = input.nextLine().toUpperCase();
+			choice = input.next().toUpperCase();
 
 			// Declare a switch statement, to select one of the menu code blocks to be
 			// executed.
