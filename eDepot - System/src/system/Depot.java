@@ -5,14 +5,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Depot {
 
 	final static Scanner input = new Scanner(System.in);
 
-	final static ArrayList<Driver> drivers = new ArrayList<Driver>();
-	final static ArrayList<WorkSchedule> schedule = new ArrayList<WorkSchedule>();
+	final static List<Driver> drivers = new ArrayList<Driver>();
+	final static List<WorkSchedule> schedule = new ArrayList<WorkSchedule>();
 
 	// public Depot() {
 	// }
