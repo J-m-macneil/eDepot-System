@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import system.Depot;
 import system.Driver;
+import system.WorkSchedule;
 
 public class Sys {
 
@@ -34,10 +35,10 @@ public class Sys {
 			String password = input.next();
 			loggedOn = depot.logOn(userName, password);
 		}
-		// Declare a do while loop, to repeat through the room booking systems main
-		// menu.
+		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
 		String choice = "";
+		
 		do {
 			// Print a repeating main menu, inside the do while loop.
 			System.out.println("\n-- MAIN MENU --");
@@ -60,6 +61,15 @@ public class Sys {
 				break;
 			}
 			case "2": {
+				Depot depot = new Depot();
+				System.out.println("\n-- Create Work Schedule --\n");
+				System.out.print("Please enter your clients name: ");
+				String client = input.next();
+				System.out.print("Please the schedule start date: ");
+				String startDate = input.next();
+				System.out.print("Please the schedule end date: ");
+				String endDate = input.next();
+				depot.saveToFile(client, startDate, endDate);
 				// Set a choice for the method 'createSchedule' to be executed.
 				// createSchedule
 				break;
@@ -76,12 +86,11 @@ public class Sys {
 			}
 			// Set a default value, for when errors occur in the console application.
 			default: {
-				// Set a default message, to allow the user to know when an incorrect value has
-				// been entered.
+				// Set a default message, to allow the user to know when an incorrect value has been entered.
 				System.out.println("Im sorry you have entered an incorrect value, please try again:");
 			}
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
-		} while (!choice.equals("Q") && input.hasNextLine());
+		} while (!choice.equals("Q"));
 	}
 }

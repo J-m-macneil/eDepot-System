@@ -21,7 +21,7 @@ public class WorkSchedule {
 	}
 
 	// Declare a 'toStringheader' to print and format a message alongside the variable types when executed.
-	public String toString() {
+	public String SaveFileToString() {
 		return "Client Name: " + client + "    " + "Start Date: " + startDate + "    " + "End Date: " + endDate;
 	}
 

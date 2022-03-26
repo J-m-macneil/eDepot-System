@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Driver {
 
-	private static final Scanner input = new Scanner(System.in);
+	
 	final static ArrayList<Driver> drivers = new ArrayList<Driver>();
 
 	protected String username;
@@ -17,8 +17,6 @@ public class Driver {
 
 		this.username = username;
 		this.password = password;
-
-		input.close();
 
 	}
 
