@@ -11,30 +11,30 @@ public class Driver {
 	
 	final static List<Driver> drivers = new ArrayList<Driver>();
 
-	protected String username;
-	protected String password;
+	protected String userName;
+	protected String passWord;
 
-	public Driver(String username, String password) {
+	public Driver(String userName, String passWord) {
 
-		this.username = username;
-		this.password = password;
+		this.userName = userName;
+		this.passWord = passWord;
 
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
-		return password;
+		return passWord;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String passWord) {
+		this.passWord = passWord;
 	}
 
 	public void setSchedule() {
@@ -45,19 +45,19 @@ public class Driver {
 		return false; // needs changing
 	}
 
-	public boolean checkUsername(String username) {
-		if (this.getUsername().equals(username)) {
+	public boolean checkUserName(String userName) {
+		if (this.getUserName().equals(userName)) {
 			return true;
 		}
 		return false;
 
 	}
 
-	public boolean verifyLogin(String username, String password) {
+	public boolean verifyLogin(String userName, String passWord) {
 
 		Scanner file = null;
-		String tempUsername = "";
-		String tempPassword = "";
+		String tempUserName = "";
+		String tempPassWord = "";
 		boolean loggedOn = false;
 
 		try {
@@ -68,10 +68,10 @@ public class Driver {
 
 			// Loop through the files data.
 			while (file.hasNext() && !loggedOn) {
-				tempUsername = file.next();
-				tempPassword = file.next();
+				tempUserName = file.next();
+				tempPassWord = file.next();
 
-				if (tempUsername.trim().equals(username.trim()) && tempPassword.trim().equals(password.trim())) 
+				if (tempUserName.trim().equals(userName.trim()) && tempPassWord.trim().equals(passWord.trim())) 
 				{
 					loggedOn = true;
 				}
