@@ -26,8 +26,8 @@ public class Sys {
 	public void run() throws FileNotFoundException {
 
 		boolean loggedOn = false;
-		String userName = null;
-		String passWord;
+		String userName = "";
+		String passWord = "";
 		while (!loggedOn) {
 			Depot depot = new Depot();
 			System.out.println("\n-- LOGIN --\n");
