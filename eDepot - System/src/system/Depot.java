@@ -13,6 +13,7 @@ public class Depot {
 	final static Scanner input = new Scanner(System.in);
 
 	final static List<Driver> drivers = new ArrayList<Driver>();
+	final static List<Manager> managers = new ArrayList<Manager>();
 	final static List<WorkSchedule> schedule = new ArrayList<WorkSchedule>();
 
 	// public Depot() {
@@ -36,15 +37,34 @@ public class Depot {
 			drivers.add(new Driver(userName, passWord));
 		} 
 	}
+	
+	public void loadManager() throws FileNotFoundException {
+
+		// Declaring a Scanner with 'driver.txt' source, to allow the system to read the
+		// user data.
+		// Scanner file = null;
+		Scanner file = new Scanner(new FileReader("src//Managers.txt"));
+		// Loop through the files data.
+		while (file.hasNextLine()) {
+			// Set the username to the next String in the file.
+			String userName = file.nextLine();
+			// Set the password to the next String in the file.
+			String passWord = file.nextLine();
+			// Add the variables to the 'drivers' array list.
+			managers.add(new Manager(userName, passWord));
+		} 
+	}
+	
 
 	// Declare a 'logOn' method.
 	public boolean logOn(String userName, String passWord) throws FileNotFoundException {
 		loadDriver();
+		loadManager();
 		boolean correctUserName = false;
 		boolean loggedOn = false;
 		Driver driver = null;
-		// Manager manager = null;
-		// Loop through the User file data.
+		Manager manager = null;
+		// Loop through the Driver file data.
 		for (int i = 0; i < drivers.size(); i++) {
 			// Get the User file data.
 			driver = drivers.get(i);
@@ -54,6 +74,24 @@ public class Depot {
 				correctUserName = true;
 			}
 			if (driver.verifyLogin(userName, passWord)) {
+				// Print a message for the true value, allowing the user to know when they have
+				// logged on.
+				correctUserName = true;
+				loggedOn = true;
+				System.out.print("\nThankyou " + userName + " you have logged on!\n");
+				return true;
+			}
+		}
+		//Loop through the Manager file data
+		for (int i = 0; i < managers.size(); i++) {
+			// Get the User file data.
+			manager = managers.get(i);
+			// Declare an if statement to match the username and password, against the
+			// Driver file data.
+			if (manager.checkUserName(userName)) {
+				correctUserName = true;
+			}
+			if (manager.verifyLogin(userName, passWord)) {
 				// Print a message for the true value, allowing the user to know when they have
 				// logged on.
 				correctUserName = true;
