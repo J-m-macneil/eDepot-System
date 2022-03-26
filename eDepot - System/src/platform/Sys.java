@@ -26,14 +26,16 @@ public class Sys {
 	public void run() throws FileNotFoundException {
 
 		boolean loggedOn = false;
+		String userName = null;
+		String passWord;
 		while (!loggedOn) {
 			Depot depot = new Depot();
 			System.out.println("\n-- Login --\n");
 			System.out.print("Please enter your username: ");
-			String userName = input.next();
+			userName = input.next();
 			System.out.print("Please enter your password: ");
-			String password = input.next();
-			loggedOn = depot.logOn(userName, password);
+			passWord = input.next();
+			loggedOn = depot.logOn(userName, passWord);
 		}
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
@@ -41,7 +43,7 @@ public class Sys {
 		
 		do {
 			// Print a repeating main menu, inside the do while loop.
-			System.out.println("\n-- MAIN MENU --");
+			System.out.println("\n--" + userName + "'s MAIN MENU --");
 			System.out.println("1 - View Work Schedule");
 			System.out.println("2 - Create Work Schedule");
 			System.out.println("3 - Re-assign Vehicle");
