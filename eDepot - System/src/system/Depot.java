@@ -26,21 +26,15 @@ public class Depot {
 		// user data.
 		// Scanner file = null;
 		Scanner file = new Scanner(new FileReader("src//Drivers.txt"));
-		// try {
-		// file = new Scanner(new FileReader("src//Drivers.txt"));
 		// Loop through the files data.
 		while (file.hasNextLine()) {
 			// Set the username to the next String in the file.
 			String userName = file.nextLine();
 			// Set the password to the next String in the file.
 			String passWord = file.nextLine();
-			// Add the variables to the 'User' array list.
+			// Add the variables to the 'drivers' array list.
 			drivers.add(new Driver(userName, passWord));
-			// Close the scanner file.
-			// }
-			// } catch (FileNotFoundException e) {
-			// e.printStackTrace();
-		} // file.close();
+		} 
 	}
 
 	// Declare a 'logOn' method.
