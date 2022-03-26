@@ -43,7 +43,7 @@ public class Sys {
 
 		do {
 			// Print a repeating main menu, inside the do while loop.
-			System.out.println("\n--" + userName.toUpperCase() + "'S MAIN MENU --");
+			System.out.println("\n--" + userName.toUpperCase() + "'S MAIN MENU --\n");
 			System.out.println("1 - View Work Schedule");
 			System.out.println("2 - Create Work Schedule");
 			System.out.println("3 - Re-assign Vehicle");
