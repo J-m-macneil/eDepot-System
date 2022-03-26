@@ -30,7 +30,7 @@ public class Sys {
 		String passWord;
 		while (!loggedOn) {
 			Depot depot = new Depot();
-			System.out.println("\n-- Login --\n");
+			System.out.println("\n-- LOGIN --\n");
 			System.out.print("Please enter your username: ");
 			userName = input.next();
 			System.out.print("Please enter your password: ");
