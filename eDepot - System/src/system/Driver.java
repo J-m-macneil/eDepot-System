@@ -77,7 +77,6 @@ public class Driver {
 			file.close();
 		} 
 		catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return loggedOn;
