@@ -66,7 +66,7 @@ public class Depot {
 		Manager manager = null;
 		// Loop through the Driver file data.
 		for (int i = 0; i < drivers.size(); i++) {
-			// Get the User file data.
+			// Get the Driver file data.
 			driver = drivers.get(i);
 			// Declare an if statement to match the username and password, against the
 			// Driver file data.
@@ -84,10 +84,10 @@ public class Depot {
 		}
 		//Loop through the Manager file data
 		for (int i = 0; i < managers.size(); i++) {
-			// Get the User file data.
+			// Get the Manager file data.
 			manager = managers.get(i);
 			// Declare an if statement to match the username and password, against the
-			// Driver file data.
+			// Manager file data.
 			if (manager.checkUserName(userName)) {
 				correctUserName = true;
 			}
