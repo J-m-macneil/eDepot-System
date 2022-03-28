@@ -28,14 +28,17 @@ public class Sys {
 		boolean loggedOn = false;
 		String userName = null;
 		String passWord;
+		String depotName;
 		while (!loggedOn) {
 			Depot depot = new Depot();
 			System.out.println("\n-- Login --\n");
+			System.out.print("Please enter your depot: ");
+			depotName = input.next();
 			System.out.print("Please enter your username: ");
 			userName = input.next();
 			System.out.print("Please enter your password: ");
 			passWord = input.next();
-			loggedOn = depot.logOn(userName, passWord);
+			loggedOn = depot.logOn(depotName,userName, passWord);
 		}
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.

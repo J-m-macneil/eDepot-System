@@ -13,10 +13,23 @@ public class Depot {
 	final static Scanner input = new Scanner(System.in);
 
 	final static List<Driver> drivers = new ArrayList<Driver>();
-	final static List<WorkSchedule> schedule = new ArrayList<WorkSchedule>();
-
-	// public Depot() {
-	// }
+	final static List<WorkSchedule> schedule = new ArrayList<WorkSchedule>();	 
+	final static List<Depot> depot = new ArrayList<Depot>();
+	
+	public void loadDepot() throws FileNotFoundException {
+		
+		// Declaring a Scanner with 'driver.txt' source, to allow the system to read depot data.
+				Scanner file = new Scanner(new FileReader("src//Depot.txt"));
+				// Loop through the files data.
+				while (file.hasNextLine()) {
+					// Set the depotName to the next String in the file.
+					String depotName = file.nextLine();
+					depot.add(new Depot());
+					// Close the scanner file.
+				}
+				file.close();
+			}
+	
 
 	// Declare a 'loadDriver' method, to allow the user data to be access through
 	// the method.
@@ -43,12 +56,20 @@ public class Depot {
 		} // file.close();
 	}
 
+
 	// Declare a 'logOn' method.
-	public boolean logOn(String userName, String passWord) throws FileNotFoundException {
+	public boolean logOn(String depotName,String userName, String passWord) throws FileNotFoundException {
 		loadDriver();
+		loadDepot();
+		boolean correctDepot = false;
 		boolean correctUsername = false;
 		boolean loggedOn = false;
 		Driver driver = null;
+		//Loop through the Depot file data.
+		for (int i = 0; i < depot.size(); i++) {
+			if (depotName.equals(depotName)){			
+			}
+		}
 		// Loop through the User file data.
 		for (int i = 0; i < drivers.size(); i++) {
 			// Get the User file data.
@@ -67,6 +88,10 @@ public class Depot {
 				return true;
 			}
 		}
+		if (!correctDepot) {
+			// Print a message for the boolean 'coorectUsername' false value.
+			System.out.println("\nYour depot does not have a match on the system.\n");
+		}
 		if (!correctUsername) {
 			// Print a message for the boolean 'coorectUsername' false value.
 			System.out.println("\nYour username does not have a match on the system.\n");
@@ -80,8 +105,8 @@ public class Depot {
 			System.out.println("\nEveryone's on the roads!");
 		}
 		return false;
-
-	}
+		}
+	
 
 	public void loadSchedule() throws FileNotFoundException {
 
