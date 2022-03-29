@@ -33,31 +33,22 @@ public class Sys {
 	public void entryMenu() throws FileNotFoundException {
 		Depot depot = new Depot();
 		while (!loggedOn && !loggedOnAsManager) {
-			if (!loggedOn) {
-				System.out.println("\n-- Login --\n");
-				System.out.print("Please enter your depot: ");
-				depotName = input.next();
-				System.out.print("Please enter your username: ");
-				userName = input.next();
-				System.out.print("Please enter your password: ");
-				passWord = input.next();
-				loggedOn = depot.logOn(depotName, userName, passWord);
-				depotDriverMenu();
-			} else if (!loggedOnAsManager) {
-				System.out.println("\n-- Login --\n");
-				System.out.print("Please enter your depot: ");
-				depotName = input.next();
-				System.out.print("Please enter your username: ");
-				userName = input.next();
-				System.out.print("Please enter your password: ");
-				passWord = input.next();
-				loggedOnAsManager = depot.managerLogOn(depotName, userName, passWord);
-				depotManagerMenu();
-			} else {
-				System.out.println("boo");
-			}
+			System.out.println("\n-- Login --\n");
+			System.out.print("Please enter your depot: ");
+			depotName = input.next();
+			System.out.print("Please enter your username: ");
+			userName = input.next();
+			System.out.print("Please enter your password: ");
+			passWord = input.next();
+			loggedOn = depot.logOn(depotName, userName, passWord);
+			loggedOnAsManager = depot.managerLogOn(depotName, userName, passWord);
 		}
-
+		if (loggedOn) {
+			depotDriverMenu();
+		}
+		if (loggedOnAsManager) {
+			depotManagerMenu();
+		}
 	}
 
 	public void depotDriverMenu() throws FileNotFoundException {
