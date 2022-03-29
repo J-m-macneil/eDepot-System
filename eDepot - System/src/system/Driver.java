@@ -57,7 +57,7 @@ public class Driver {
 
 		try {
 
-			file = new Scanner(new FileReader("src//Drivers.txt"));
+			file = new Scanner(new FileReader("Drivers.txt"));
 			file.useDelimiter("[\n]");
 			
 

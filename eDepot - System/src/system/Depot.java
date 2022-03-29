@@ -11,6 +11,10 @@ import java.util.Scanner;
 
 public class Depot {
 
+	private boolean correctUserName = false;
+	private boolean loggedOn = false;
+	private boolean loggedOnAsManager = false;
+
 	final static Scanner input = new Scanner(System.in);
 
 	final static List<Driver> drivers = new ArrayList<Driver>();
@@ -22,7 +26,7 @@ public class Depot {
 
 		// Declaring a Scanner with 'driver.txt' source, to allow the system to read
 		// depot data.
-		Scanner file = new Scanner(new FileReader("src//Depot.txt"));
+		Scanner file = new Scanner(new FileReader("Depots.txt"));
 		// Loop through the files data.
 		while (file.hasNextLine()) {
 			// Set the depotName to the next String in the file.
@@ -39,7 +43,7 @@ public class Depot {
 		// Declaring a Scanner with 'driver.txt' source, to allow the system to read the
 		// user data.
 		// Scanner file = null;
-		Scanner file = new Scanner(new FileReader("src//Drivers.txt"));
+		Scanner file = new Scanner(new FileReader("Drivers.txt"));
 		// Loop through the files data.
 		while (file.hasNextLine()) {
 			// Set the username to the next String in the file.
@@ -56,7 +60,7 @@ public class Depot {
 		// Declaring a Scanner with 'driver.txt' source, to allow the system to read the
 		// user data.
 		// Scanner file = null;
-		Scanner file = new Scanner(new FileReader("src//Managers.txt"));
+		Scanner file = new Scanner(new FileReader("Managers.txt"));
 		// Loop through the files data.
 		while (file.hasNextLine()) {
 			// Set the username to the next String in the file.
@@ -69,15 +73,10 @@ public class Depot {
 	}
 
 	// Declare a 'logOn' method.
-	public boolean logOn(String depotName,String userName, String passWord) throws FileNotFoundException {
-		loadDriver();
-		loadManager();
+	public boolean logOn(String depotName, String userName, String passWord) throws FileNotFoundException {
 		loadDepot();
-		boolean correctUserName = false;
-		boolean loggedOn = false;
+		loadDriver();
 		Driver driver = null;
-		Manager manager = null;
-
 		// Loop through the Depot file data.
 		for (int i = 0; i < depots.size(); i++) {
 			if (depotName.equals(depotName)) {
@@ -102,24 +101,7 @@ public class Depot {
 				return true;
 			}
 		}
-		// Loop through the Manager file data
-		for (int i = 0; i < managers.size(); i++) {
-			// Get the Manager file data.
-			manager = managers.get(i);
-			// Declare an if statement to match the username and password, against the
-			// Manager file data.
-			if (manager.checkUserName(userName)) {
-				correctUserName = true;
-			}
-			if (manager.verifyLogin(userName, passWord)) {
-				// Print a message for the true value, allowing the user to know when they have
-				// logged on.
-				correctUserName = true;
-				loggedOn = true;
-				System.out.print("\nThankyou " + userName + " you have logged on!\n");
-				return true;
-			}
-		}
+		
 		if (!correctUserName) {
 			// Print a message for the boolean 'coorectUsername' false value.
 			System.out.println("\nYour username does not have a match on the system.\n");
@@ -132,15 +114,61 @@ public class Depot {
 		if (drivers.size() == 0) {
 			System.out.println("\nEveryone's on the roads!");
 		}
+		
 		return false;
 
+	}
+
+	public boolean managerLogOn(String depotName, String userName, String passWord) throws FileNotFoundException {
+		loadDepot();
+		loadManager();
+		Manager manager = null;
+		// Loop through the Depot file data.
+		for (int i = 0; i < depots.size(); i++) {
+			if (depotName.equals(depotName)) {
+			}
+		}
+
+		// Loop through the Manager file data.
+		for (int i = 0; i < managers.size(); i++) {
+			// Get the Driver file data.
+			manager = managers.get(i);
+			// Declare an if statement to match the username and password, against the
+			// Manager file data.
+			if (manager.checkUserName(userName)) {
+				correctUserName = true;
+			}
+			if (manager.verifyLogin(userName, passWord)) {
+				// Print a message for the true value, allowing the user to know when they have
+				// logged on.
+				correctUserName = true;
+				loggedOnAsManager = true;
+				System.out.print("\nThankyou " + userName + " you have logged on!\n");
+				return true;
+			}
+		}
+		
+		if (!correctUserName) {
+			// Print a message for the boolean 'coorectUsername' false value.
+			System.out.println("\nYour username does not have a match on the system.\n");
+		} else if (!loggedOnAsManager) {
+			// Print a message for the boolean 'correctUsername' and 'correctPassword' false
+			// value.
+			loggedOnAsManager = false;
+			System.out.println("\nSorry " + userName + " your username and password do not match!\n");
+		}
+		if (managers.size() == 0) {
+			System.out.println("\nEveryone's on the roads!");
+		}
+		
+		return false;
 	}
 
 	public void loadSchedule() throws FileNotFoundException {
 
 		// Declaring a Scanner with 'driver.txt' source, to allow the system to read the
 		// user data.
-		Scanner file = new Scanner(new FileReader("src//Schedule.txt"));
+		Scanner file = new Scanner(new FileReader("Schedules.txt"));
 		// Loop through the files data.
 		while (file.hasNextLine()) {
 			// Set the username to the next String in the file.
@@ -169,7 +197,7 @@ public class Depot {
 		// while it is being executed.
 		try {
 			// Declare a 'FileWriter' to write the data to the 'schedule.txt'
-			FileWriter writer = new FileWriter("Schedule.txt");
+			FileWriter writer = new FileWriter("Schedules.txt");
 			// Declare a for loop to loop through the rooms array list data.
 			for (int i = 0; i < schedule.size(); i++) {
 				// Declare a writer to write the text back to the schedule array list.

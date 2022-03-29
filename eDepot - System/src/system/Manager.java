@@ -15,25 +15,25 @@ public class Manager extends Driver {
 		Scanner file = null;
 		String tempUserName = "";
 		String tempPassWord = "";
-		boolean loggedOn = false;
+		boolean loggedOnAsManager = false;
 
 		try {
 
-			file = new Scanner(new FileReader("src//Managers.txt"));
+			file = new Scanner(new FileReader("Managers.txt"));
 			file.useDelimiter("[\n]");
 			
 
 			// Loop through the files data.
-			while (file.hasNext() && !loggedOn) {
+			while (file.hasNext() && !loggedOnAsManager) {
 				tempUserName = file.next();
 				tempPassWord = file.next();
 
 				if (tempUserName.trim().equals(userName.trim()) && tempPassWord.trim().equals(passWord.trim())) 
 				{
-					loggedOn = true;
+					loggedOnAsManager = true;
 				}
 				else {
-					loggedOn = false;
+					loggedOnAsManager = false;
 				}
 			}
 			file.close();
@@ -41,7 +41,7 @@ public class Manager extends Driver {
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		return loggedOn;
+		return loggedOnAsManager;
 	}
 	
 	
