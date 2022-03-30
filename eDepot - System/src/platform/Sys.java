@@ -32,10 +32,10 @@ public class Sys {
 
 	public Sys() {
 		deSerialize();
-		
+		/*
 		depots.add(new Depot("Liverpool"));
 		depots.add(new Depot("Manchester"));
-		depots.add(new Depot("Leeds"));
+		depots.add(new Depot("Leeds"));*/
 	}
 
 	public void entryMenu() throws FileNotFoundException {

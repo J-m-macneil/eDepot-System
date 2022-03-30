@@ -22,12 +22,26 @@ public class Depot {
 	final static List<Manager> managers = new ArrayList<Manager>();
 	final static List<WorkSchedule> schedule = new ArrayList<WorkSchedule>();
 	final static List<String> depots = new ArrayList<String>();
+	final static List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	
 	public Depot(String depot) {
 		this.depot = depot;
 	}
 
 	public Depot() {
+		deSerialize();
+		// Adding all drivers to the serialized data
+		drivers.add(new Driver("GlynofLpool", "GH1234"));
+		drivers.add(new Driver("SorrenofMchester", "SH5678"));
+		drivers.add(new Driver("Mark", "MK123"));
+		drivers.add(new Driver("Kirsty", "KY456"));
+		drivers.add(new Driver("Andy", "AY789"));
+		//
+		
+	}
+
+	private void deSerialize() {
+		
 	}
 
 	public void loadDepot() throws FileNotFoundException {
