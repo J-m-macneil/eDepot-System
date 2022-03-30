@@ -1,16 +1,19 @@
 package system;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Depot {
-
+	
+	private final String PATH = "";
 	private boolean correctUserName = false;
 	private boolean loggedOn = false;
 	private boolean loggedOnAsManager = false;
@@ -21,7 +24,7 @@ public class Depot {
 	final static List<Driver> drivers = new ArrayList<Driver>();
 	final static List<Manager> managers = new ArrayList<Manager>();
 	final static List<WorkSchedule> schedule = new ArrayList<WorkSchedule>();
-	final static List<String> depots = new ArrayList<String>();
+	static List<Depot> depots = new ArrayList<Depot>();
 	final static List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	
 	public Depot(String depot) {
@@ -41,6 +44,20 @@ public class Depot {
 	}
 
 	private void deSerialize() {
+<<<<<<< HEAD
+=======
+		ObjectInputStream ois;
+
+		try {
+			ois = new ObjectInputStream(new FileInputStream(PATH + "drivers.ser"));
+
+			depots = (List<Depot>)ois.readObject();
+			ois.close();
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+>>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
 	}
 
 	public void loadDepot() throws FileNotFoundException {
