@@ -1,6 +1,7 @@
 package platform;
 
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 // import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -16,6 +17,10 @@ public class Sys {
 	private String depotName;
 	private String choice = "";
 
+	public Sys() {
+		deSerialize();
+	}
+
 	public Depot getDepot() {
 		return null; // may need changing
 
@@ -26,8 +31,6 @@ public class Sys {
 
 	}
 
-	// Declare the Scanner for keyboard input, to allow the user to input through
-	// the console.
 	private static final Scanner input = new Scanner(System.in);
 
 	public void entryMenu() throws FileNotFoundException {
@@ -48,6 +51,16 @@ public class Sys {
 				depotManagerMenu();
 			}
 		}
+
+		serialize();
+
+	}
+
+	private void deSerialize() {
+
+	}
+
+	private void serialize() {
 
 	}
 
@@ -150,6 +163,7 @@ public class Sys {
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
 		} while (!choice.equals("Q"));
+
 	}
 
 }
