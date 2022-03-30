@@ -27,22 +27,16 @@ public class Sys {
 	private String depotName;
 	private String choice = "";
 	private List<Depot> depots = new ArrayList<Depot>();
+	
+	private static final Scanner input = new Scanner(System.in);
 
 	public Sys() {
 		deSerialize();
+		
+		depots.add(new Depot("Liverpool"));
+		depots.add(new Depot("Manchester"));
+		depots.add(new Depot("Leeds"));
 	}
-
-	public Depot getDepot() {
-		return null; // may need changing
-
-	}
-
-	public Driver getDriver(String username, String password) {
-		return null; // may need changing
-
-	}
-
-	private static final Scanner input = new Scanner(System.in);
 
 	public void entryMenu() throws FileNotFoundException {
 		Depot depot = new Depot();
@@ -97,6 +91,10 @@ public class Sys {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public Depot getDepot() {
+		return null; // may need changing
 	}
 
 	public void depotDriverMenu() throws FileNotFoundException {

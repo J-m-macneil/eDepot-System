@@ -14,6 +14,7 @@ public class Depot {
 	private boolean correctUserName = false;
 	private boolean loggedOn = false;
 	private boolean loggedOnAsManager = false;
+	private String depot;
 
 	final static Scanner input = new Scanner(System.in);
 
@@ -21,6 +22,13 @@ public class Depot {
 	final static List<Manager> managers = new ArrayList<Manager>();
 	final static List<WorkSchedule> schedule = new ArrayList<WorkSchedule>();
 	final static List<String> depots = new ArrayList<String>();
+	
+	public Depot(String depot) {
+		this.depot = depot;
+	}
+
+	public Depot() {
+	}
 
 	public void loadDepot() throws FileNotFoundException {
 
