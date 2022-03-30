@@ -33,7 +33,7 @@ public class Sys {
 	public void entryMenu() throws FileNotFoundException {
 		Depot depot = new Depot();
 		while (!loggedOn && !loggedOnAsManager) {
-			System.out.println("\n-- Login --\n");
+			System.out.println("\n-- LOGIN --\n");
 			System.out.print("Please enter your depot: ");
 			depotName = input.next();
 			System.out.print("Please enter your username: ");
@@ -42,13 +42,13 @@ public class Sys {
 			passWord = input.next();
 			loggedOn = depot.logOn(depotName, userName, passWord);
 			loggedOnAsManager = depot.managerLogOn(depotName, userName, passWord);
+			if (loggedOn) {
+				depotDriverMenu();
+			} else if (loggedOnAsManager) {
+				depotManagerMenu();
+			}
 		}
-		if (loggedOn) {
-			depotDriverMenu();
-		}
-		if (loggedOnAsManager) {
-			depotManagerMenu();
-		}
+
 	}
 
 	public void depotDriverMenu() throws FileNotFoundException {
@@ -76,6 +76,7 @@ public class Sys {
 			}
 			case "Q": {
 				System.out.println("--GOODBYE--");
+				System.exit(0);
 				break;
 			}
 			// Set a default value, for when errors occur in the console application.
@@ -137,6 +138,7 @@ public class Sys {
 			case "Q": {
 				// Print a message to the console when the application is quit.
 				System.out.println("-- GOODBYE --");
+				System.exit(0);
 				break;
 			}
 			// Set a default value, for when errors occur in the console application.

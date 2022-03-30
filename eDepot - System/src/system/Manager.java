@@ -10,6 +10,21 @@ public class Manager extends Driver {
 		super(userName, passWord);
 	}
 	
+	public boolean checkUserName(String userName) {
+		if (super.getUserName().equals(userName)) {
+			return true;
+		}
+		return false;
+
+	}
+	
+	public boolean checkPassWord(String passWord) {
+		if(super.getPassWord().equals(passWord)) {
+			return true;
+		}
+		return false;
+	}
+	
 	public boolean verifyLogin(String userName, String passWord) {
 
 		Scanner file = null;

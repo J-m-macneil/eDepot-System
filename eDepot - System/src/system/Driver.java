@@ -24,11 +24,11 @@ public class Driver {
 		this.userName = userName;
 	}
 
-	public String getPassword() {
+	public String getPassWord() {
 		return passWord;
 	}
 
-	public void setPassword(String passWord) {
+	public void setPassWord(String passWord) {
 		this.passWord = passWord;
 	}
 
@@ -63,8 +63,8 @@ public class Driver {
 
 			// Loop through the files data.
 			while (file.hasNext() && !loggedOn) {
-				tempUserName = file.next();
-				tempPassWord = file.next();
+				tempUserName = file.nextLine();
+				tempPassWord = file.nextLine();
 
 				if (tempUserName.trim().equals(userName.trim()) && tempPassWord.trim().equals(passWord.trim())) 
 				{

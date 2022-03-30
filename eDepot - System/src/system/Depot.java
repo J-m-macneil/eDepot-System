@@ -95,15 +95,16 @@ public class Depot {
 			if (driver.verifyLogin(userName, passWord)) {
 				// Print a message for the true value, allowing the user to know when they have
 				// logged on.
-				correctUserName = true;
 				loggedOn = true;
 				System.out.print("\nThankyou " + userName + " you have logged on!\n");
 				return true;
 			}
+
 		}
-		
+
 		if (!correctUserName) {
 			// Print a message for the boolean 'coorectUsername' false value.
+			correctUserName = false;
 			System.out.println("\nYour username does not have a match on the system.\n");
 		} else if (!loggedOn) {
 			// Print a message for the boolean 'correctUsername' and 'correctPassword' false
@@ -111,11 +112,8 @@ public class Depot {
 			loggedOn = false;
 			System.out.println("\nSorry " + userName + " your username and password do not match!\n");
 		}
-		if (drivers.size() == 0) {
-			System.out.println("\nEveryone's on the roads!");
-		}
+		return loggedOn;
 		
-		return false;
 
 	}
 
@@ -146,10 +144,12 @@ public class Depot {
 				System.out.print("\nThankyou " + userName + " you have logged on!\n");
 				return true;
 			}
+
 		}
-		
+
 		if (!correctUserName) {
 			// Print a message for the boolean 'coorectUsername' false value.
+			// correctUserName = false;
 			System.out.println("\nYour username does not have a match on the system.\n");
 		} else if (!loggedOnAsManager) {
 			// Print a message for the boolean 'correctUsername' and 'correctPassword' false
@@ -157,11 +157,7 @@ public class Depot {
 			loggedOnAsManager = false;
 			System.out.println("\nSorry " + userName + " your username and password do not match!\n");
 		}
-		if (managers.size() == 0) {
-			System.out.println("\nEveryone's on the roads!");
-		}
-		
-		return false;
+		return loggedOnAsManager;
 	}
 
 	public void loadSchedule() throws FileNotFoundException {
