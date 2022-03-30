@@ -44,8 +44,6 @@ public class Depot {
 	}
 
 	private void deSerialize() {
-<<<<<<< HEAD
-=======
 		ObjectInputStream ois;
 
 		try {
@@ -57,7 +55,6 @@ public class Depot {
 		catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
->>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
 	}
 
 	public void loadDepot() throws FileNotFoundException {
