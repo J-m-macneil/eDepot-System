@@ -32,7 +32,7 @@ public class Sys {
 	private static final Scanner input = new Scanner(System.in);
 
 	public Sys() {
-		deSerialize();
+		//deSerialize();
 		
 		depots.add(new Depot("Liverpool"));
 		depots.add(new Depot("Manchester"));
@@ -41,14 +41,8 @@ public class Sys {
 
 	public void entryMenu() throws FileNotFoundException {
 		Depot depot = new Depot();
-		while (!loggedOn && !loggedOnAsManager) {
+		while (!loggedOn || !loggedOnAsManager) {
 			System.out.println("\n-- LOGIN --\n");
-			System.out.print("Please enter your depot: ");
-			depotName = input.next();
-			correctDepot = depot.depotCorrect(depotName);
-			if (!correctDepot) {
-				System.out.println("The depot you have entered has no match on the system.");
-			}
 			System.out.print("Please enter your username: ");
 			userName = input.next();
 			System.out.print("Please enter your password: ");
