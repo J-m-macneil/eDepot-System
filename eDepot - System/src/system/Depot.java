@@ -57,23 +57,23 @@ public class Depot {
 		}
 	}
 
-	public void loadDepot() throws FileNotFoundException {
-
-		// Declaring a Scanner with 'driver.txt' source, to allow the system to read
-		// depot data.
-		Scanner file = new Scanner(new FileReader("Depots.txt"));
-		// Loop through the files data.
-		while (file.hasNextLine()) {
-			// Set the depotName to the next String in the file.
-			String depotName = file.nextLine();
-			depots.add(depotName);
-			// Close the scanner file.
-		}
-	}
+//	public void loadDepot() throws FileNotFoundException {
+//
+//		// Declaring a Scanner with 'driver.txt' source, to allow the system to read
+//		// depot data.
+//		Scanner file = new Scanner(new FileReader("Depots.txt"));
+//		// Loop through the files data.
+//		while (file.hasNextLine()) {
+//			// Set the depotName to the next String in the file.
+//			String depotName = file.nextLine();
+//			depots.add(depotName);
+//			// Close the scanner file.
+//		}
+//	}
 
 	// Declare a 'logOn' method.
 		public boolean logOn(String depotName, String userName, String passWord) throws FileNotFoundException {
-			loadDepot();
+			//loadDepot();
 			Driver driver = null;
 			// Loop through the Depot file data.
 			for (int i = 0; i < depots.size(); i++) {
@@ -101,7 +101,7 @@ public class Depot {
 		}
 
 		public boolean managerLogOn(String depotName, String userName, String passWord) throws FileNotFoundException {
-			loadDepot();
+			//loadDepot();
 			
 			Manager manager = null;
 			// Loop through the Depot file data.
