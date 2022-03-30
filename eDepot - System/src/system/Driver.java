@@ -40,13 +40,7 @@ public class Driver {
 		return false; // needs changing
 	}
 
-	public boolean checkUserName(String userName) {
-		if (this.getUserName().equals(userName)) {
-			return true;
-		}
-		return false;
 
-	}
 
 	public boolean verifyLogin(String userName, String passWord) {
 

@@ -44,10 +44,16 @@ public class Sys {
 			System.out.print("Please enter your password: ");
 			passWord = input.next();
 			loggedOn = depot.logOn(depotName, userName, passWord);
+			
 			loggedOnAsManager = depot.managerLogOn(depotName, userName, passWord);
+			if(!loggedOn && !loggedOnAsManager) {
+				System.out.println("\nYour credentials are incorrect. Try again.\n");	
+			}
 			if (loggedOn) {
+				System.out.print("\nThankyou " + userName + " you have logged on!\n");
 				depotDriverMenu();
 			} else if (loggedOnAsManager) {
+				System.out.print("\nThankyou " + userName + " you have logged on!\n");
 				depotManagerMenu();
 			}
 		}
