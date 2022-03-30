@@ -22,6 +22,7 @@ public class Sys {
 	
 	private boolean loggedOn = false;
 	private boolean loggedOnAsManager = false;
+	private boolean correctDepot = false;
 	private String userName = null;
 	private String passWord;
 	private String depotName;
@@ -44,12 +45,16 @@ public class Sys {
 			System.out.println("\n-- LOGIN --\n");
 			System.out.print("Please enter your depot: ");
 			depotName = input.next();
+			correctDepot = depot.depotCorrect(depotName);
+			if (!correctDepot) {
+				System.out.println("The depot you have entered has no match on the system.");
+			}
 			System.out.print("Please enter your username: ");
 			userName = input.next();
 			System.out.print("Please enter your password: ");
 			passWord = input.next();
-			loggedOn = depot.logOn(depotName, userName, passWord);
-			loggedOnAsManager = depot.managerLogOn(depotName, userName, passWord);
+			loggedOn = depot.logOn(userName, passWord);
+			loggedOnAsManager = depot.managerLogOn(userName, passWord);
 			if(!loggedOn && !loggedOnAsManager) {
 				System.out.println("\nYour credentials are incorrect. Try again.\n");	
 			}

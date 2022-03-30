@@ -12,12 +12,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Depot {
-	
+
 	private final String PATH = "";
 	private boolean correctUserName = false;
 	private boolean loggedOn = false;
 	private boolean loggedOnAsManager = false;
-	private String depot;
+	private String depotName;
+	private boolean correctDepot = false;
 
 	final static Scanner input = new Scanner(System.in);
 
@@ -26,9 +27,9 @@ public class Depot {
 	final static List<WorkSchedule> schedule = new ArrayList<WorkSchedule>();
 	static List<Depot> depots = new ArrayList<Depot>();
 	final static List<Vehicle> vehicles = new ArrayList<Vehicle>();
-	
-	public Depot(String depot) {
-		this.depot = depot;
+
+	public Depot(String depotName) {
+		this.depotName = depotName;
 	}
 
 	public Depot() {
@@ -40,7 +41,7 @@ public class Depot {
 		drivers.add(new Driver("Kirsty", "KY456"));
 		drivers.add(new Driver("Andy", "AY789"));
 		//
-		
+
 	}
 
 	private void deSerialize() {
@@ -49,10 +50,9 @@ public class Depot {
 		try {
 			ois = new ObjectInputStream(new FileInputStream(PATH + "drivers.ser"));
 
-			depots = (List<Depot>)ois.readObject();
+			depots = (List<Depot>) ois.readObject();
 			ois.close();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -71,69 +71,70 @@ public class Depot {
 //		}
 //	}
 
+	public boolean depotCorrect(String depotName) throws FileNotFoundException {
+		// Loop through the Depot file data.
+		for (int i = 0; i < depots.size(); i++) {
+			if (depotName.equals(this.depotName)) {
+				correctDepot = true;
+			} else {
+				correctDepot = false;
+			}
+		}
+		return correctDepot;
+	}
+
 	// Declare a 'logOn' method.
-		public boolean logOn(String depotName, String userName, String passWord) throws FileNotFoundException {
-			//loadDepot();
-			Driver driver = null;
-			// Loop through the Depot file data.
-			for (int i = 0; i < depots.size(); i++) {
-				if (depotName.equals(depotName)) {
-				}
+	public boolean logOn(String userName, String passWord) throws FileNotFoundException {
+		// loadDepot();
+		Driver driver = null;
+
+		// Loop through the Driver file data.
+		for (int i = 0; i < drivers.size(); i++) {
+			// Get the Driver file data.
+			driver = drivers.get(i);
+			// Declare an if statement to match the username and password, against the
+			// Driver file data.
+			if (driver.verifyLogin(userName, passWord)) {
+				// Print a message for the true value, allowing the user to know when they have
+				// logged on.
+				loggedOn = true;
+				return true;
 			}
-
-			// Loop through the Driver file data.
-			for (int i = 0; i < drivers.size(); i++) {
-				// Get the Driver file data.
-				driver = drivers.get(i);
-				// Declare an if statement to match the username and password, against the
-				// Driver file data.
-				if (driver.verifyLogin(userName, passWord)) {
-					// Print a message for the true value, allowing the user to know when they have
-					// logged on.
-					loggedOn = true;
-					return true;
-				}
-
-			}
-
-			return loggedOn;
 
 		}
 
-		public boolean managerLogOn(String depotName, String userName, String passWord) throws FileNotFoundException {
-			//loadDepot();
-			
-			Manager manager = null;
-			// Loop through the Depot file data.
-			for (int i = 0; i < depots.size(); i++) {
-				if (depotName.equals(depotName)) {
-				}
+		return loggedOn;
+
+	}
+
+	public boolean managerLogOn(String userName, String passWord) throws FileNotFoundException {
+		// loadDepot();
+
+		Manager manager = null;
+
+		// Loop through the Manager file data.
+		for (int i = 0; i < managers.size(); i++) {
+			// Get the Driver file data.
+			manager = managers.get(i);
+			// Declare an if statement to match the username and password, against the
+			// Manager file data.
+			if (manager.verifyLogin(userName, passWord)) {
+				// Print a message for the true value, allowing the user to know when they have
+				// logged on.
+				loggedOnAsManager = true;
+				return true;
 			}
 
-			// Loop through the Manager file data.
-			for (int i = 0; i < managers.size(); i++) {
-				// Get the Driver file data.
-				manager = managers.get(i);
-				// Declare an if statement to match the username and password, against the
-				// Manager file data.
-				if (manager.verifyLogin(userName, passWord)) {
-					// Print a message for the true value, allowing the user to know when they have
-					// logged on.
-					loggedOnAsManager = true;
-					return true;
-				}
-
-			}
-
-			if (!loggedOn && !loggedOnAsManager) {
-				// Print a message for the boolean 'correctUsername' and 'correctPassword' false
-				// value.
-				loggedOn = false;
-				loggedOnAsManager = false;
-			}
-			return loggedOnAsManager;
 		}
 
+		if (!loggedOn && !loggedOnAsManager) {
+			// Print a message for the boolean 'correctUsername' and 'correctPassword' false
+			// value.
+			loggedOn = false;
+			loggedOnAsManager = false;
+		}
+		return loggedOnAsManager;
+	}
 
 	public void loadSchedule() throws FileNotFoundException {
 
