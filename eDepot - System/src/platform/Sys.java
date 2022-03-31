@@ -24,12 +24,6 @@ public class Sys {
 	// This path is exclusive to me Liam and is used for testing
 	private final String PATH = "E:\\University\\Work\\Year 2\\Semester 2\\5104 - Object Orientated Systems\\Graded\\Assignments\\Assignment 2\\Serialized data\\";
 	
-	private boolean loggedOn = false;
-	private boolean loggedOnAsManager = false;
-	private boolean correctDepot = false;
-	private String userName = null;
-	private String passWord;
-	private String depotName;
 	private List<Depot> depots = new ArrayList<Depot>();
 	private Depot depot;
 	
@@ -91,7 +85,7 @@ public class Sys {
 		String choice = "";
 		do {
 			// Print a repeating main menu, inside the do while loop.
-			System.out.println("\n--" + userName + "'s MAIN MENU --");
+			System.out.println("\n--'s MAIN MENU --");
 			System.out.println("1 - View Work Schedule");
 			System.out.println("Q - Quit");
 			System.out.print("Pick : ");
@@ -131,7 +125,7 @@ public class Sys {
 		String choice = "";
 		do {
 			// Print a repeating main menu, inside the do while loop.
-			System.out.println("\n--" + userName + "'s MAIN MENU --");
+			System.out.println("\n-- 's MAIN MENU --");
 			System.out.println("1 - View Work Schedule");
 			System.out.println("2 - Create Work Schedule");
 			System.out.println("3 - Re-assign Vehicle");
