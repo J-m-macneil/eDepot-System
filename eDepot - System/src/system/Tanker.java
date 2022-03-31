@@ -3,9 +3,9 @@ package system;
 public class Tanker extends Vehicle {
 
 	private int liquidCapacity;
-	private int liquidType;
+	private String liquidType;
 
-	public Tanker(String make, String model, int weight, String regNo, int liquidCapacity, int liquidType) {
+	public Tanker(String make, String model, int weight, String regNo, int liquidCapacity, String liquidType) {
 		super(make, model, weight, regNo);
 
 		this.liquidCapacity = liquidCapacity;
@@ -13,7 +13,7 @@ public class Tanker extends Vehicle {
 
 	}
 
-	public int getLiquidCapacity() {
+	public <T extends Vehicle> int getLiquidCapacity() {
 		return liquidCapacity;
 	}
 
@@ -21,11 +21,11 @@ public class Tanker extends Vehicle {
 		this.liquidCapacity = liquidCapacity;
 	}
 
-	public int getLiquidType() {
+	public <T extends Vehicle > String getLiquidType() {
 		return liquidType;
 	}
 
-	public void setLiquidType(int liquidType) {
+	public void setLiquidType(String liquidType) {
 		this.liquidType = liquidType;
 	}
 

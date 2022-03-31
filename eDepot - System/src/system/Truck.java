@@ -12,7 +12,6 @@ public class Truck extends Vehicle {
 	}
 
 	public <T extends Vehicle> int getCargoCapacity() {
-		// generic placeholder in method - remove if needed
 		return cargoCapacity;
 	}
 

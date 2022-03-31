@@ -1,7 +1,6 @@
 package platform;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 // Used to serialize data
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -15,7 +14,6 @@ import java.util.List;
 // import java.time.LocalDate;
 import java.util.Scanner;
 import system.Depot;
-import system.Driver;
 import system.Status;
 import system.WorkSchedule;
 
@@ -43,8 +41,8 @@ public class Sys {
 
 		String choice = "";
 		do {
-			System.out.println(" -- Entry Menu -- ");
-			System.out.println("1 - LogOn");
+			System.out.println("\n-- ENTRY MENU --\n");
+			System.out.println("1 - Login");
 			System.out.println("Q - Quit");
 			System.out.print("Pick: ");
 			choice = input.nextLine();
@@ -52,6 +50,9 @@ public class Sys {
 			case "1":
 				logOn();
 				break;
+			case "Q":
+				System.out.println("-- GOODBYE --");
+				System.exit(0);
 			default:
 				System.out.println("Invalid input!");
 				break;
@@ -63,9 +64,10 @@ public class Sys {
 		System.exit(0);
 	}
 
-	public void logOn() {
+	private void logOn() {
 		Depot depot = new Depot();
-		System.out.println("Liverpool\nManchester\nLeeds");
+		// ? System.out.println("Liverpool\nManchester\nLeeds");
+		System.out.println("\n-- LOGIN --\n");
 		System.out.print("Location : ");
 		String location = input.nextLine();
 		System.out.print("Username : ");
@@ -95,14 +97,14 @@ public class Sys {
 	 * }
 	 */
 
-	public void driverMenu() {
+	private void driverMenu() {
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
 		String choice = "";
 		do {
 			// String userName = null;
 			// Print a repeating main menu, inside the do while loop.
-			System.out.println("\n--" + userName + "'s MAIN MENU --");
+			System.out.println("\n-- " + userName + "'s MAIN MENU --\n");
 			System.out.println("1 - View Work Schedule");
 			System.out.println("Q - Quit");
 			System.out.print("Pick : ");
@@ -120,7 +122,7 @@ public class Sys {
 				break;
 			}
 			case "Q": {
-				System.out.println("--GOODBYE--");
+				System.out.println("-- GOODBYE --");
 				System.exit(0);
 				break;
 			}
@@ -136,13 +138,13 @@ public class Sys {
 
 	}
 
-	public void managerMenu() {
+	private void managerMenu() {
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
 		String choice = "";
 		do {
 			// Print a repeating main menu, inside the do while loop.
-			System.out.println("\n--" + userName + "'s MAIN MENU --");
+			System.out.println("\n-- " + userName + "'s MAIN MENU --\n");
 			System.out.println("1 - View Work Schedule");
 			System.out.println("2 - Create Work Schedule");
 			System.out.println("3 - Re-assign Vehicle");
@@ -181,7 +183,7 @@ public class Sys {
 			default: {
 				// Set a default message, to allow the user to know when an incorrect value has
 				// been entered.
-				System.out.println("Im sorry you have entered an incorrect value, please try again:");
+				System.out.println("I'm sorry you have entered an incorrect value, please try again");
 			}
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
@@ -235,7 +237,7 @@ public class Sys {
 	}
 
 	private void reassignVehicle() {
-		System.out.println("--\nRE-ASSIGN VEHICLE MENU--\n");
+		System.out.println("\n-- RE-ASSIGN VEHICLE MENU --\n");
 		System.out.print("");
 	}
 
