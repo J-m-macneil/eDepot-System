@@ -57,20 +57,6 @@ public class Depot {
 		}
 	}
 
-//	public void loadDepot() throws FileNotFoundException {
-//
-//		// Declaring a Scanner with 'driver.txt' source, to allow the system to read
-//		// depot data.
-//		Scanner file = new Scanner(new FileReader("Depots.txt"));
-//		// Loop through the files data.
-//		while (file.hasNextLine()) {
-//			// Set the depotName to the next String in the file.
-//			String depotName = file.nextLine();
-//			depots.add(depotName);
-//			// Close the scanner file.
-//		}
-//	}
-
 	public boolean depotCorrect(String depotName) throws FileNotFoundException {
 		// Loop through the Depot file data.
 		for (int i = 0; i < depots.size(); i++) {
@@ -83,23 +69,13 @@ public class Depot {
 		return correctDepot;
 	}
 
-	// Declare a 'logOn' method.
-	public boolean logOn(String userName, String passWord) throws FileNotFoundException {
-			// Loop through the Driver file data.
-		for (int i = 0; i < drivers.size(); i++) {
-			// Declare an if statement to match the username and password, against the
-			// Driver file data.
-			if ((drivers.get(i)).verifyLogin(userName, passWord)) {
-				// Print a message for the true value, allowing the user to know when they have
-				// logged on.
-				loggedOn = true;
+	public boolean logOn(String username, String password) throws FileNotFoundException {
+		// Moving through all driver details
+		for (int i = 0; i < drivers.size(); i++)
+			if (drivers.get(i).username.equals(username) && drivers.get(i).password.equals(password)) {
 				return true;
 			}
-
-		}
-
-		return loggedOn;
-
+		return false;
 	}
 
 	public boolean managerLogOn(String userName, String passWord) throws FileNotFoundException {

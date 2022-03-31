@@ -6,30 +6,30 @@ import java.util.Scanner;
 
 public class Driver {
 
-	protected String userName;
-	protected String passWord;
+	protected String username;
+	protected String password;
 
-	public Driver(String userName, String passWord) {
+	public Driver(String username, String passWord) {
 
-		this.userName = userName;
-		this.passWord = passWord;
+		this.username = username;
+		this.password = passWord;
 
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 
 	public String getPassWord() {
-		return passWord;
+		return password;
 	}
 
 	public void setPassWord(String passWord) {
-		this.passWord = passWord;
+		this.password = passWord;
 	}
 
 	public void setSchedule() {

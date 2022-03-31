@@ -18,7 +18,7 @@ import system.Driver;
 public class Sys {
 	
 	// This path is exclusive to me Liam and is used for testing
-	private final String PATH = "E:\\University\\Work\\Year 2\\Semester 2\\5104 - Object Orientated Systems\\Graded\\Assignments\\Assignment 2\\Serialized data";
+	private final String PATH = "E:\\University\\Work\\Year 2\\Semester 2\\5104 - Object Orientated Systems\\Graded\\Assignments\\Assignment 2\\Serialized data\\";
 	
 	private boolean loggedOn = false;
 	private boolean loggedOnAsManager = false;
@@ -26,43 +26,50 @@ public class Sys {
 	private String userName = null;
 	private String passWord;
 	private String depotName;
-	private String choice = "";
 	private List<Depot> depots = new ArrayList<Depot>();
 	
 	private static final Scanner input = new Scanner(System.in);
 
 	public Sys() {
-		//deSerialize();
+		deSerialize();
 		
-		depots.add(new Depot("Liverpool"));
-		depots.add(new Depot("Manchester"));
-		depots.add(new Depot("Leeds"));
+		//depots.add(new Depot("Liverpool"));
+		//depots.add(new Depot("Manchester"));
+		//depots.add(new Depot("Leeds"));
 	}
 
 	public void entryMenu() throws FileNotFoundException {
-		Depot depot = new Depot();
-		while (!loggedOn || !loggedOnAsManager) {
-			System.out.println("\n-- LOGIN --\n");
-			System.out.print("Please enter your username: ");
-			userName = input.next();
-			System.out.print("Please enter your password: ");
-			passWord = input.next();
-			loggedOn = depot.logOn(userName, passWord);
-			loggedOnAsManager = depot.managerLogOn(userName, passWord);
-			if(!loggedOn && !loggedOnAsManager) {
-				System.out.println("\nYour credentials are incorrect. Try again.\n");	
+		
+		String choice = "";
+		do {
+			System.out.println(" -- Entry Menu -- ");
+			System.out.println("1 - LogOn");
+			System.out.println("Q - Quit");
+			System.out.print("Pick: ");
+			choice = input.nextLine();
+			switch (choice) {
+			case "1":
+				logOn();
+				break;
 			}
-			if (loggedOn) {
-				System.out.print("\nThankyou " + userName + " you have logged on!\n");
-				depotDriverMenu();
-			} else if (loggedOnAsManager) {
-				System.out.print("\nThankyou " + userName + " you have logged on!\n");
-				depotManagerMenu();
-			}
-		}
-
+		} while (!choice.equals("Q"));
+		
 		serialize();
-
+	}
+	
+	public void logOn() throws FileNotFoundException {
+		Depot depot = new Depot();
+		System.out.print("username : ");
+		String username = input.nextLine();
+		System.out.print("password : ");
+		String password = input.nextLine();
+		if (depot.logOn(username, password)) {
+			System.out.println("Correct!");
+			driverMenu();
+		} else {
+			System.out.println("Invalid login!");
+			entryMenu();
+		}
 	}
 
 	private void deSerialize() {
@@ -96,10 +103,10 @@ public class Sys {
 		return null; // may need changing
 	}
 
-	public void depotDriverMenu() throws FileNotFoundException {
+	public void driverMenu() throws FileNotFoundException {
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
-
+		String choice = "";
 		do {
 			// Print a repeating main menu, inside the do while loop.
 			System.out.println("\n--" + userName + "'s MAIN MENU --");
@@ -136,10 +143,10 @@ public class Sys {
 
 	}
 
-	public void depotManagerMenu() throws FileNotFoundException {
+	public void ManagerMenu() throws FileNotFoundException {
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
-
+		String choice = "";
 		do {
 			// Print a repeating main menu, inside the do while loop.
 			System.out.println("\n--" + userName + "'s MAIN MENU --");
