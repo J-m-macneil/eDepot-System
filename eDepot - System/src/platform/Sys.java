@@ -72,9 +72,9 @@ public class Sys {
 		userName = input.nextLine();
 		System.out.print("Password : ");
 		passWord = input.nextLine();
-		if (depot.logOn(userName, passWord)) {
+		//if (depot.logOn(userName, passWord)) {
 
-			depot = getDepot(location);
+			//depot = getDepot(location);
 			if (depot.logOn(userName, passWord)) {
 				System.out.println("Correct!");
 				driverMenu();
@@ -83,9 +83,9 @@ public class Sys {
 				entryMenu();
 			}
 		}
-	}
+	// }
 
-	public Depot getDepot(String location) {
+/*	public Depot getDepot(String location) {
 		for (Depot d : depots) {
 			if (location.equals(d)) {
 				return d;
@@ -93,7 +93,7 @@ public class Sys {
 		}
 		return depot;
 
-	}
+	} */
 
 	public void driverMenu() {
 		// Declare a do while loop, to repeat through the depot systems main menu.

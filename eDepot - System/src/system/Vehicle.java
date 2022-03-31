@@ -1,11 +1,16 @@
 package system;
 
-public abstract class Vehicle {
+import java.util.LinkedList;
+import java.util.List;
+
+public abstract class Vehicle implements Schedulable {
 
 	protected String make;
 	protected String model;
 	protected int weight;
 	protected String regNo;
+	
+	protected List<WorkSchedule> schedule = new LinkedList<WorkSchedule>();
 	
 	public Vehicle(String make, String model, int weight, String regNo) {
 	
@@ -25,7 +30,8 @@ public abstract class Vehicle {
 		
 	}
 	
-	public void getSchedule() {
+	public List<WorkSchedule> getSchedule() {
+		return schedule;
 		
 	}
 

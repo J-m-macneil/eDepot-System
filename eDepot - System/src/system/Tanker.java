@@ -1,5 +1,7 @@
 package system;
 
+import java.time.LocalDateTime;
+
 public class Tanker extends Vehicle {
 
 	private int liquidCapacity;
@@ -27,6 +29,18 @@ public class Tanker extends Vehicle {
 
 	public void setLiquidType(int liquidType) {
 		this.liquidType = liquidType;
+	}
+
+	@Override
+	public boolean isAvailable(LocalDateTime startDate, LocalDateTime endDate) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void addSchedule(WorkSchedule schedule) {
+		
+		
 	}
 	
 	
