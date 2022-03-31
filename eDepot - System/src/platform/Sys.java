@@ -20,10 +20,10 @@ import system.Status;
 import system.WorkSchedule;
 
 public class Sys {
-	
+
 	// This path is exclusive to me Liam and is used for testing
 	private final String PATH = "E:\\University\\Work\\Year 2\\Semester 2\\5104 - Object Orientated Systems\\Graded\\Assignments\\Assignment 2\\Serialized data\\";
-	
+
 	private List<Depot> depots = new ArrayList<Depot>();
 	private Depot depot = new Depot();
 	
@@ -31,14 +31,14 @@ public class Sys {
 
 	public Sys() {
 		deSerialize();
-		
-		//depots.add(new Depot("Liverpool"));
-		//depots.add(new Depot("Manchester"));
-		//depots.add(new Depot("Leeds"));
+
+		// depots.add(new Depot("Liverpool"));
+		// depots.add(new Depot("Manchester"));
+		// depots.add(new Depot("Leeds"));
 	}
 
-	public void entryMenu() throws FileNotFoundException {
-		
+	public void entryMenu() {
+
 		String choice = "";
 		do {
 			System.out.println(" -- Entry Menu -- ");
@@ -55,14 +55,15 @@ public class Sys {
 				break;
 			}
 		} while (!choice.toUpperCase().equals("Q"));
-		
+
 		serialize();
 		
 		System.exit(0);
 	}
 	
-	private void logOn() throws FileNotFoundException {
-		//Depot depot = new Depot();
+	public void logOn() {
+		Depot depot = new Depot();
+		
 		System.out.println("Liverpool\nManchester\nLeeds");
 		
 		System.out.print("Location");
@@ -83,7 +84,7 @@ public class Sys {
 			entryMenu();
 		}
 	}
-	
+
 	public Depot getDepot(String location) {
 		for (Depot d : depots) {
 			if (location.equals(d)) {
@@ -93,7 +94,7 @@ public class Sys {
 		return null;
 	}
 
-	public void driverMenu() throws FileNotFoundException {
+	public void driverMenu() {
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
 		String choice = "";
@@ -133,7 +134,7 @@ public class Sys {
 
 	}
 
-	public void ManagerMenu() throws FileNotFoundException {
+	public void ManagerMenu() {
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
 		String choice = "";
@@ -159,22 +160,13 @@ public class Sys {
 				break;
 			}
 			case "2": {
-				Depot depot = new Depot();
-				System.out.println("\n-- Create Work Schedule --\n");
-				System.out.print("Please enter your clients name: ");
-				String client = input.next();
-				System.out.print("Please the schedule start date: ");
-				// LocalDate startDate = input.next();
-				System.out.print("Please the schedule end date: ");
-				// LocalDate endDate = input.next();
-				depot.saveToFile(client, null, null);
 				// Set a choice for the method 'createSchedule' to be executed.
-				// createSchedule
+				createSchedule();
 				break;
 			}
 			case "3": {
-				// Set a choice for the method 'createSchedule' to be executed.
-				// re-assignVehile
+				// Set a choice for the method 'reassignVehicle' to be executed.
+				reassignVehicle();
 				break;
 			}
 			case "Q": {
@@ -194,34 +186,34 @@ public class Sys {
 		} while (!choice.equals("Q"));
 
 	}
-	
+
 	private void deSerialize() {
 		ObjectInputStream ois;
 
 		try {
 			ois = new ObjectInputStream(new FileInputStream(PATH + "depots.ser"));
 
-			depots = (List<Depot>)ois.readObject();
+			depots = (List<Depot>) ois.readObject();
 			ois.close();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
 	private void serialize() {
 		ObjectOutputStream oos;
-		
+
 		try {
 			oos = new ObjectOutputStream(new FileOutputStream(PATH + "depots.ser"));
 			oos.writeObject(depots);
-			// We could do with putting this in finally, but we then need a throws about everywhere
+			// We could do with putting this in finally, but we then need a throws about
+			// everywhere
 			oos.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	private void createSchedule() {
 		System.out.println("Clients name: ");
 		String client = input.nextLine();
@@ -233,6 +225,11 @@ public class Sys {
 		LocalDateTime endDate = LocalDateTime.parse(input.nextLine(), DateTimeFormatter.ofPattern("d MMM yy HH:mm"));
 
 		depot.createSchedule(new WorkSchedule(client, startDate, endDate, Status.PENDING));
+	}
+
+	private void reassignVehicle() {
+		// Make case 3 in here
+
 	}
 
 }
