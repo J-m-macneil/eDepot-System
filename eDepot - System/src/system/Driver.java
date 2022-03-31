@@ -38,10 +38,6 @@ public class Driver implements Schedulable {
 		this.password = passWord;
 	}
 
-	public void setSchedule() {
-
-	}
-
 	public boolean isAvailable() {
 		return false; // needs changing
 	}
@@ -100,13 +96,15 @@ public class Driver implements Schedulable {
 
 	@Override
 	public void addSchedule(WorkSchedule schedule) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public List<WorkSchedule> getSchedule() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
+	
+	
 }
