@@ -32,8 +32,8 @@ public class Depot {
 		drivers.add(new Driver("Kirsty", "KY456"));
 		drivers.add(new Driver("Andy", "AY789"));
 		// Adding all vehicles to the serialized data - only need one of each type to test
-		trucks.add(new Truck("Scania", "", 2, "", 4));
-		tankers.add(new Tanker("","",2,"",4, ""));
+		trucks.add(new Truck("Scania", "V8 730S", 21000, "EHS26N", 13000));
+		tankers.add(new Tanker("DAF","FAN 75",26000,"PF19TKZ",18000, "Diesel"));
 	}
 
 	private void deSerialize() {
