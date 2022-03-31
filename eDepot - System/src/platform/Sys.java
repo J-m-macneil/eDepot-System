@@ -25,7 +25,7 @@ public class Sys {
 	private final String PATH = "E:\\University\\Work\\Year 2\\Semester 2\\5104 - Object Orientated Systems\\Graded\\Assignments\\Assignment 2\\Serialized data\\";
 	
 	private List<Depot> depots = new ArrayList<Depot>();
-	private Depot depot;
+	private Depot depot = new Depot();
 	
 	private static final Scanner input = new Scanner(System.in);
 
@@ -58,14 +58,23 @@ public class Sys {
 		
 		serialize();
 		
+		System.exit(0);
 	}
 	
-	public void logOn() throws FileNotFoundException {
-		Depot depot = new Depot();
+	private void logOn() throws FileNotFoundException {
+		//Depot depot = new Depot();
+		System.out.println("Liverpool\nManchester\nLeeds");
+		
+		System.out.print("Location");
+		String location = input.nextLine();
+		
 		System.out.print("username : ");
 		String username = input.nextLine();
+		
 		System.out.print("password : ");
 		String password = input.nextLine();
+		
+		depot = getDepot(location);
 		if (depot.logOn(username, password)) {
 			System.out.println("Correct!");
 			driverMenu();
@@ -75,8 +84,13 @@ public class Sys {
 		}
 	}
 	
-	public Depot getDepot() {
-		return null; // may need changing
+	public Depot getDepot(String location) {
+		for (Depot d : depots) {
+			if (location.equals(d)) {
+				return d;
+			}
+		}
+		return null;
 	}
 
 	public void driverMenu() throws FileNotFoundException {
