@@ -24,17 +24,11 @@ public class Sys {
 	// This path is exclusive to me Liam and is used for testing
 	private final String PATH = "E:\\University\\Work\\Year 2\\Semester 2\\5104 - Object Orientated Systems\\Graded\\Assignments\\Assignment 2\\Serialized data\\";
 
-<<<<<<< HEAD
 	private String userName;
 	private String passWord;
 	private List<Depot> depots = new ArrayList<Depot>();
 	private Depot depot;
 
-=======
-	private List<Depot> depots = new ArrayList<Depot>();
-	private Depot depot = new Depot();
-	
->>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
 	private static final Scanner input = new Scanner(System.in);
 
 	public Sys() {
@@ -65,40 +59,29 @@ public class Sys {
 		} while (!choice.toUpperCase().equals("Q"));
 
 		serialize();
-		
+
 		System.exit(0);
 	}
-	
+
 	public void logOn() {
 		Depot depot = new Depot();
-		
 		System.out.println("Liverpool\nManchester\nLeeds");
-		
-		System.out.print("Location");
+		System.out.print("Location : ");
 		String location = input.nextLine();
-		
-		System.out.print("username : ");
-<<<<<<< HEAD
+		System.out.print("Username : ");
 		userName = input.nextLine();
-=======
-		String username = input.nextLine();
-		
->>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
-		System.out.print("password : ");
-<<<<<<< HEAD
+		System.out.print("Password : ");
 		passWord = input.nextLine();
 		if (depot.logOn(userName, passWord)) {
-=======
-		String password = input.nextLine();
-		
-		depot = getDepot(location);
-		if (depot.logOn(username, password)) {
->>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
-			System.out.println("Correct!");
-			driverMenu();
-		} else {
-			System.out.println("Invalid login!");
-			entryMenu();
+
+			depot = getDepot(location);
+			if (depot.logOn(userName, passWord)) {
+				System.out.println("Correct!");
+				driverMenu();
+			} else {
+				System.out.println("Invalid login!");
+				entryMenu();
+			}
 		}
 	}
 
@@ -108,7 +91,8 @@ public class Sys {
 				return d;
 			}
 		}
-		return null;
+		return depot;
+
 	}
 
 	public void driverMenu() {
