@@ -1,7 +1,5 @@
 package system;
 
-import java.time.LocalDateTime;
-
 public class Truck extends Vehicle {
 
 	private int cargoCapacity;
@@ -20,18 +18,6 @@ public class Truck extends Vehicle {
 
 	public void setCargoCapacity(int cargoCapacity) {
 		this.cargoCapacity = cargoCapacity;
-	}
-
-	@Override
-	public boolean isAvailable(LocalDateTime startDate, LocalDateTime endDate) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void addSchedule(WorkSchedule schedule) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

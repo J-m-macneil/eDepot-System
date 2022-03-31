@@ -1,5 +1,6 @@
 package system;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public abstract class Vehicle implements Schedulable {
 	protected int weight;
 	protected String regNo;
 	
-	protected List<WorkSchedule> schedule = new LinkedList<WorkSchedule>();
+	protected List<WorkSchedule> schedules = new LinkedList<WorkSchedule>();
 	
 	public Vehicle(String make, String model, int weight, String regNo) {
 	
@@ -31,7 +32,7 @@ public abstract class Vehicle implements Schedulable {
 	}
 	
 	public List<WorkSchedule> getSchedule() {
-		return schedule;
+		return schedules;
 		
 	}
 
@@ -65,6 +66,28 @@ public abstract class Vehicle implements Schedulable {
 
 	public void setRegNo(String regNo) {
 		this.regNo = regNo;
+	}
+	
+	@Override
+	public boolean isAvailable(LocalDateTime startDate, LocalDateTime endDate) {
+		for (WorkSchedule s : schedules) {
+			if ((s.getStartDate().isBefore(startDate)) && (s.getEndDate().isAfter(startDate))) {
+				return false;
+			}
+			if ((s.getStartDate().isBefore(endDate)) && (s.getEndDate().isAfter(endDate))) {
+				return false;
+			}
+			if ((s.getStartDate().isAfter(startDate)) && (s.getEndDate().isBefore(endDate))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public void addSchedule(WorkSchedule workSchedule) {
+		schedules.add(workSchedule);
+
 	}
 
 }

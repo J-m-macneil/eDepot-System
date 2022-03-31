@@ -20,10 +20,9 @@ public class Depot {
 
 	final static List<Driver> drivers = new ArrayList<Driver>();
 	final static List<Manager> managers = new ArrayList<Manager>();
-	final static List<WorkSchedule> schedule = Collections.synchronizedList(new ArrayList<WorkSchedule>());
+	final static List<WorkSchedule> schedules = Collections.synchronizedList(new ArrayList<WorkSchedule>());
 	static List<Depot> depots = new ArrayList<Depot>();
 	final static List<Vehicle> vehicles = new ArrayList<Vehicle>();
-	final static List<WorkSchedule> schedules = new ArrayList<WorkSchedule>();
 
 	public Depot() {
 		deSerialize();
