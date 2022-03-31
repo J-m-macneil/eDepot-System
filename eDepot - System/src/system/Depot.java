@@ -15,11 +15,6 @@ import java.util.Scanner;
 public class Depot {
 
 	private final String PATH = "";
-	private boolean correctUserName = false;
-	private boolean loggedOn = false;
-	private boolean loggedOnAsManager = false;
-	private String depotName;
-	private boolean correctDepot = false;
 
 	final static Scanner input = new Scanner(System.in);
 
@@ -29,10 +24,6 @@ public class Depot {
 	static List<Depot> depots = new ArrayList<Depot>();
 	final static List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	final static List<WorkSchedule> schedules = new ArrayList<WorkSchedule>();
-
-	public Depot(String depotName) {
-		this.depotName = depotName;
-	}
 
 	public Depot() {
 		deSerialize();
@@ -59,18 +50,6 @@ public class Depot {
 		}
 	}
 
-	public boolean depotCorrect(String depotName) throws FileNotFoundException {
-		// Loop through the Depot file data.
-		for (int i = 0; i < depots.size(); i++) {
-			if (depotName.equals(this.depotName)) {
-				correctDepot = true;
-			} else {
-				correctDepot = false;
-			}
-		}
-		return correctDepot;
-	}
-
 	public boolean logOn(String username, String password) {
 		// Moving through all driver details
 		for (int i = 0; i < drivers.size(); i++)
@@ -80,87 +59,18 @@ public class Depot {
 		return false;
 	}
 
-	public boolean managerLogOn(String userName, String passWord) throws FileNotFoundException {
-		// loadDepot();
-
-		Manager manager = null;
-
-		// Loop through the Manager file data.
-		for (int i = 0; i < managers.size(); i++) {
-			// Get the Driver file data.
-			manager = managers.get(i);
-			// Declare an if statement to match the username and password, against the
-			// Manager file data.
-			if (manager.verifyLogin(userName, passWord)) {
-				// Print a message for the true value, allowing the user to know when they have
-				// logged on.
-				loggedOnAsManager = true;
-				return true;
-			}
-
-		}
-
-		if (!loggedOn && !loggedOnAsManager) {
-			// Print a message for the boolean 'correctUsername' and 'correctPassword' false
-			// value.
-			loggedOn = false;
-			loggedOnAsManager = false;
-		}
-		return loggedOnAsManager;
-	}
-
-	public void loadSchedule() throws FileNotFoundException {
-
-		// Declaring a Scanner with 'driver.txt' source, to allow the system to read the
-		// user data.
-		Scanner file = new Scanner(new FileReader("Schedules.txt"));
-		// Loop through the files data.
-		while (file.hasNextLine()) {
-			// Set the username to the next String in the file.
-			String client = file.nextLine();
-			// Set the password to the next String in the file.
-			// LocalDate startDate = file.nextLine();
-			// Set the password to the next String in the file.
-			// LocalDate endDate = file.nextLine();
-			// Add the variables to the 'User' array list.
-			//schedule.add(new WorkSchedule(client, null, null));
-			// Close the scanner file.
-		}
-		file.close();
-	}
-
-	public void setUpWorkSchedule() throws FileNotFoundException { // add method body
-		loadSchedule();
-		saveToFile(null, null, null);
-
-	}
-
-	// Declare a saveToFile method, which loops through the schedule arraylist and
-	// maps the data to the Schedule.txt file.
-	public void saveToFile(String client, LocalDate startDate, LocalDate endDate) {
-		// Declare a try statement, to allow the saveToFile data to be tested for errors
-		// while it is being executed.
-		try {
-			// Declare a 'FileWriter' to write the data to the 'schedule.txt'
-			FileWriter writer = new FileWriter("Schedules.txt");
-			// Declare a for loop to loop through the rooms array list data.
-			for (int i = 0; i < schedule.size(); i++) {
-				// Declare a writer to write the text back to the schedule array list.
-				writer.write(schedule.get(i).SaveScheduleToFile() + "\n");
-			}
-			// Close the 'FileWriter' stream.
-			writer.close();
-			// Set a catch statement, to handle any exception of the try statement.
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
 	public void createSchedule(WorkSchedule workSchedule) {
 		schedules.add(workSchedule);
-		
+
 	}
 
+	public List<Driver> getDriver() {
+		return drivers;
+
+	}
+
+	public List<Vehicle> getVehicle() {
+		return vehicles;
+	}
 
 }
