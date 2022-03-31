@@ -142,7 +142,7 @@ public class Sys {
 		String choice = "";
 		do {
 			// Print a repeating main menu, inside the do while loop.
-			System.out.println("\n-- 's MAIN MENU --");
+			System.out.println("\n--" + userName + "'s MAIN MENU --");
 			System.out.println("1 - View Work Schedule");
 			System.out.println("2 - Create Work Schedule");
 			System.out.println("3 - Re-assign Vehicle");
@@ -235,7 +235,7 @@ public class Sys {
 	}
 
 	private void reassignVehicle() {
-		// Make case 3 in here
+		
 
 	}
 
