@@ -24,11 +24,17 @@ public class Sys {
 	// This path is exclusive to me Liam and is used for testing
 	private final String PATH = "E:\\University\\Work\\Year 2\\Semester 2\\5104 - Object Orientated Systems\\Graded\\Assignments\\Assignment 2\\Serialized data\\";
 
+<<<<<<< HEAD
 	private String userName;
 	private String passWord;
 	private List<Depot> depots = new ArrayList<Depot>();
 	private Depot depot;
 
+=======
+	private List<Depot> depots = new ArrayList<Depot>();
+	private Depot depot = new Depot();
+	
+>>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
 	private static final Scanner input = new Scanner(System.in);
 
 	public Sys() {
@@ -39,7 +45,7 @@ public class Sys {
 		// depots.add(new Depot("Leeds"));
 	}
 
-	public void entryMenu() throws FileNotFoundException {
+	public void entryMenu() {
 
 		String choice = "";
 		do {
@@ -59,16 +65,35 @@ public class Sys {
 		} while (!choice.toUpperCase().equals("Q"));
 
 		serialize();
-
+		
+		System.exit(0);
 	}
-
-	public void logOn() throws FileNotFoundException {
+	
+	public void logOn() {
 		Depot depot = new Depot();
+		
+		System.out.println("Liverpool\nManchester\nLeeds");
+		
+		System.out.print("Location");
+		String location = input.nextLine();
+		
 		System.out.print("username : ");
+<<<<<<< HEAD
 		userName = input.nextLine();
+=======
+		String username = input.nextLine();
+		
+>>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
 		System.out.print("password : ");
+<<<<<<< HEAD
 		passWord = input.nextLine();
 		if (depot.logOn(userName, passWord)) {
+=======
+		String password = input.nextLine();
+		
+		depot = getDepot(location);
+		if (depot.logOn(username, password)) {
+>>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
 			System.out.println("Correct!");
 			driverMenu();
 		} else {
@@ -77,11 +102,16 @@ public class Sys {
 		}
 	}
 
-	public Depot getDepot() {
-		return null; // may need changing
+	public Depot getDepot(String location) {
+		for (Depot d : depots) {
+			if (location.equals(d)) {
+				return d;
+			}
+		}
+		return null;
 	}
 
-	public void driverMenu() throws FileNotFoundException {
+	public void driverMenu() {
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
 		String choice = "";
@@ -122,7 +152,7 @@ public class Sys {
 
 	}
 
-	public void ManagerMenu() throws FileNotFoundException {
+	public void ManagerMenu() {
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
 		String choice = "";
