@@ -157,17 +157,17 @@ public class Sys {
 			// executed.
 			switch (choice) {
 			case "1": {
-				// Set a choice for the method 'createSchedule' to be executed.
-				// displaySchedule
+				// Call displaySchedule() method.
+				displaySchedule();
 				break;
 			}
 			case "2": {
-				// Set a choice for the method 'createSchedule' to be executed.
+				// Call createSchedule() method.
 				createSchedule();
 				break;
 			}
 			case "3": {
-				// Set a choice for the method 'reassignVehicle' to be executed.
+				// Call reassignVehicle() method.
 				reassignVehicle();
 				break;
 			}
@@ -188,6 +188,8 @@ public class Sys {
 		} while (!choice.equals("Q"));
 
 	}
+
+	
 
 	private void deSerialize() {
 		ObjectInputStream ois;
@@ -215,7 +217,10 @@ public class Sys {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	private void displaySchedule() {
+		// Make case 1 in here
+		
+	}
 	private void createSchedule() {
 		System.out.println("Clients name: ");
 		String client = input.nextLine();
