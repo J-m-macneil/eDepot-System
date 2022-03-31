@@ -14,11 +14,12 @@ public class StatusCheck implements Runnable {
 	}
 
 	public synchronized void setSeconds(Integer seconds) {
-		delay = seconds * 60;
+		// Milliseconds to seconds conversion
+		delay = seconds * 1000;
 	}
 
 	public Integer getSeconds() {
-		return delay / 60;
+		return delay / 1000;
 	}
 
 	@Override
