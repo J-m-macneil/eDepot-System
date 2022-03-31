@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,7 +25,7 @@ public class Depot {
 
 	final static List<Driver> drivers = new ArrayList<Driver>();
 	final static List<Manager> managers = new ArrayList<Manager>();
-	final static List<WorkSchedule> schedule = new ArrayList<WorkSchedule>();
+	final static List<WorkSchedule> schedule = Collections.synchronizedList(new ArrayList<WorkSchedule>());
 	static List<Depot> depots = new ArrayList<Depot>();
 	final static List<Vehicle> vehicles = new ArrayList<Vehicle>();
 
