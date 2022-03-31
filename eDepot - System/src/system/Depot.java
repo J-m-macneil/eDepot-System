@@ -57,6 +57,14 @@ public class Depot {
 			}
 		return false;
 	}
+	
+	public boolean logOnAsManager(String username, String password) {
+		for (int i = 0; i < managers.size(); i++)
+			if (managers.get(i).username.equals(username) && managers.get(i).password.equals(password)) {
+				return true;
+			}
+		return false;
+	}
 
 	public void createSchedule(WorkSchedule workSchedule) {
 		schedules.add(workSchedule);
