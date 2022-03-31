@@ -28,6 +28,7 @@ public class Depot {
 	final static List<WorkSchedule> schedule = Collections.synchronizedList(new ArrayList<WorkSchedule>());
 	static List<Depot> depots = new ArrayList<Depot>();
 	final static List<Vehicle> vehicles = new ArrayList<Vehicle>();
+	final static List<WorkSchedule> schedules = new ArrayList<WorkSchedule>();
 
 	public Depot(String depotName) {
 		this.depotName = depotName;
@@ -155,5 +156,11 @@ public class Depot {
 			e.printStackTrace();
 		}
 	}
+	
+	public void createSchedule(WorkSchedule workSchedule) {
+		schedules.add(workSchedule);
+		
+	}
+
 
 }

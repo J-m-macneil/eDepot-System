@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.io.FileOutputStream;
 
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ import java.util.List;
 import java.util.Scanner;
 import system.Depot;
 import system.Driver;
+import system.Status;
+import system.WorkSchedule;
 
 public class Sys {
 	
@@ -27,6 +31,7 @@ public class Sys {
 	private String passWord;
 	private String depotName;
 	private List<Depot> depots = new ArrayList<Depot>();
+	private Depot depot;
 	
 	private static final Scanner input = new Scanner(System.in);
 
@@ -207,6 +212,19 @@ public class Sys {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	private void createSchedule() {
+		System.out.println("Clients name: ");
+		String client = input.nextLine();
+
+		System.out.println("Schedules DateTime [i.e 5 Oct 18 09:30] : ");
+		LocalDateTime startDate = LocalDateTime.parse(input.nextLine(), DateTimeFormatter.ofPattern("d MMM yy HH:mm"));
+
+		System.out.println("Schedules DateTime [i.e 5 Oct 18 09:30] : ");
+		LocalDateTime endDate = LocalDateTime.parse(input.nextLine(), DateTimeFormatter.ofPattern("d MMM yy HH:mm"));
+
+		depot.createSchedule(new WorkSchedule(client, startDate, endDate, Status.PENDING));
 	}
 
 }
