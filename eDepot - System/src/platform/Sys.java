@@ -21,7 +21,6 @@ public class Sys {
 
 	// This path is exclusive to me Liam and is used for testing
 	private final String PATH = "E:\\University\\Work\\Year 2\\Semester 2\\5104 - Object Orientated Systems\\Graded\\Assignments\\Assignment 2\\Serialized data\\";
-
 	private String userName;
 	private String passWord;
 	private List<Depot> depots = new ArrayList<Depot>();
@@ -237,6 +236,7 @@ public class Sys {
 	}
 
 	private void reassignVehicle() {
+		String choice = "";
 		System.out.println("\n-- RE-ASSIGN VEHICLE MENU --\n");
 		System.out.print("");
 	}
