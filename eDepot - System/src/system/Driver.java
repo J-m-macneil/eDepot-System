@@ -42,42 +42,6 @@ public class Driver implements Schedulable {
 		return false; // needs changing
 	}
 
-
-
-	public boolean verifyLogin(String userName, String passWord) {
-
-		Scanner file = null;
-		String tempUserName = "";
-		String tempPassWord = "";
-		boolean loggedOn = false;
-
-		try {
-
-			file = new Scanner(new FileReader("Drivers.txt"));
-			file.useDelimiter("[\n]");
-			
-
-			// Loop through the files data.
-			while (file.hasNext() && !loggedOn) {
-				tempUserName = file.nextLine();
-				tempPassWord = file.nextLine();
-
-				if (tempUserName.trim().equals(userName.trim()) && tempPassWord.trim().equals(passWord.trim())) 
-				{
-					loggedOn = true;
-				}
-				else {
-					loggedOn = false;
-				}
-			}
-			file.close();
-		} 
-		catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return loggedOn;
-	}
-
 	@Override
 	public boolean isAvailable(LocalDateTime startDate, LocalDateTime endDate) {
 		for(WorkSchedule s : schedule) {
