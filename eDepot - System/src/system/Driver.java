@@ -38,10 +38,6 @@ public class Driver implements Schedulable {
 		this.password = passWord;
 	}
 
-	public boolean isAvailable() {
-		return false; // needs changing
-	}
-
 	@Override
 	public boolean isAvailable(LocalDateTime startDate, LocalDateTime endDate) {
 		for(WorkSchedule s : schedule) {
@@ -67,7 +63,7 @@ public class Driver implements Schedulable {
 	@Override
 	public List<WorkSchedule> getSchedule() {
 		
-		return null;
+		return schedule;
 	}
 	
 	
