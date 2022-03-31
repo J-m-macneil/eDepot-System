@@ -79,7 +79,7 @@ public class Sys {
 		if (depot.logOn(userName, passWord)) {
 			System.out.println("Correct!");
 			driverMenu();
-		} else if (depot.logOnAsManager(userName, passWord)){
+		} else if (depot.logOnAsManager(userName, passWord)) {
 			System.out.println("Correct!");
 			managerMenu();
 		} else {
@@ -236,9 +236,25 @@ public class Sys {
 	}
 
 	private void reassignVehicle() {
-		String choice = "";
-		System.out.println("\n-- RE-ASSIGN VEHICLE MENU --\n");
-		System.out.print("");
+		while (true) {
+			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --\n");
+			System.out.println("\n-- Please specify what type of Vehicle you are moving --\n");
+			System.out.print("Pick (Either 'Truck' or 'Tanker'): ");
+			String type = input.next();
+			if (type.equals("Truck")) {
+				System.out.print("Enter Truck's make : ");
+				String make = input.next();
+				depot.getVehicleByMake((make));
+				// Not working - check getVehicleByMake() in Depot class
+
+			} else if (type.equals("Tanker")) {
+
+			} else {
+				System.out.println("Invalid vehicle type. Try again");
+				continue; // Manager is not kicked out to main menu if they make a mistake
+			}
+		}
+
 	}
 
 }

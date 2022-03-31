@@ -18,8 +18,9 @@ public class Depot {
 	final static List<Manager> managers = new ArrayList<Manager>();
 	final static List<WorkSchedule> schedules = Collections.synchronizedList(new ArrayList<WorkSchedule>());
 	static List<Depot> depots = new ArrayList<Depot>();
-	
-	// Vehicles broken down into two separate ArrayLists of its children, to enable instantiation 
+
+	// Vehicles broken down into two separate ArrayLists of its children, to enable
+	// instantiation
 	final static List<Truck> trucks = new ArrayList<Truck>();
 	final static List<Tanker> tankers = new ArrayList<Tanker>();
 
@@ -31,9 +32,10 @@ public class Depot {
 		drivers.add(new Driver("Mark", "MK123"));
 		drivers.add(new Driver("Kirsty", "KY456"));
 		drivers.add(new Driver("Andy", "AY789"));
-		// Adding all vehicles to the serialized data - only need one of each type to test
+		// Adding all vehicles to the serialized data - only need one of each type to
+		// test
 		trucks.add(new Truck("Scania", "V8 730S", 21000, "EHS26N", 13000));
-		tankers.add(new Tanker("DAF","FAN 75",26000,"PF19TKZ",18000, "Diesel"));
+		tankers.add(new Tanker("DAF", "FAN 75", 26000, "PF19TKZ", 18000, "Diesel"));
 	}
 
 	private void deSerialize() {
@@ -58,7 +60,7 @@ public class Depot {
 		}
 		return false;
 	}
-	
+
 	public boolean logOnAsManager(String username, String password) {
 		for (int i = 0; i < managers.size(); i++) {
 			if (managers.get(i).username.equals(username) && managers.get(i).password.equals(password)) {
@@ -78,12 +80,19 @@ public class Depot {
 
 	}
 
-	public List<Truck> getTruck() {
-		return trucks;
-	}
-	
-	public List<Tanker> getTanker() {
-		return tankers;
+	public Vehicle getVehicleByMake(String make) {
+		for (Truck truck : trucks) {
+			if (truck.getMake().equals(make)) {
+				return truck;
+			}
+			for (Tanker tanker : tankers) {
+				if (tanker.getMake().equals(make)) {
+					return tanker;
+				}
+			}
+
+		}
+		return null;
 	}
 
 }
