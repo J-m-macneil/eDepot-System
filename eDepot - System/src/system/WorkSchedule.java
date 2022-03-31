@@ -1,6 +1,6 @@
 package system;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class WorkSchedule {
 
@@ -9,15 +9,17 @@ public class WorkSchedule {
 	// ArrayList<WorkSchedule>();
 
 	private String client;
-	private LocalDate startDate;
-	private LocalDate endDate;
+	private LocalDateTime startDate;
+	private LocalDateTime endDate;
+	private Status status;
 
-	public WorkSchedule(String client, LocalDate startDate, LocalDate endDate) {
+	public WorkSchedule(String client, LocalDateTime startDate, LocalDateTime endDate, Status status) {
 
 		// Declare a this.variable to allow the current object to be called.
 		this.client = client;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.status = status;
 	}
 
 	// Declare a 'toStringheader' to print and format a message alongside the variable types when executed.
@@ -33,20 +35,28 @@ public class WorkSchedule {
 		this.client = client;
 	}
 
-	public LocalDate getStartDate() {
+	public LocalDateTime getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDate startDate) {
+	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
 
-	public LocalDate getEndDate() {
+	public LocalDateTime getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(LocalDate endDate) {
+	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
 	}
+	
+	public Status getStatus() {
+		return status;
+	}
 
+	public void setStatus(Status status) {
+		this.status = status;
+		
+	}
 }

@@ -51,10 +51,14 @@ public class Sys {
 			case "1":
 				logOn();
 				break;
+			default:
+				System.out.println("Invalid input!");
+				break;
 			}
-		} while (!choice.equals("Q"));
+		} while (!choice.toUpperCase().equals("Q"));
 		
 		serialize();
+		
 	}
 	
 	public void logOn() throws FileNotFoundException {
@@ -69,33 +73,6 @@ public class Sys {
 		} else {
 			System.out.println("Invalid login!");
 			entryMenu();
-		}
-	}
-
-	private void deSerialize() {
-		ObjectInputStream ois;
-
-		try {
-			ois = new ObjectInputStream(new FileInputStream(PATH + "depots.ser"));
-
-			depots = (List<Depot>)ois.readObject();
-			ois.close();
-		}
-		catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
-	private void serialize() {
-		ObjectOutputStream oos;
-		
-		try {
-			oos = new ObjectOutputStream(new FileOutputStream(PATH + "depots.ser"));
-			oos.writeObject(depots);
-			// We could do with putting this in finally, but we then need a throws about everywhere
-			oos.close();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -203,6 +180,33 @@ public class Sys {
 			// Declare a while loop, to loop through the menu until the program is quit.
 		} while (!choice.equals("Q"));
 
+	}
+	
+	private void deSerialize() {
+		ObjectInputStream ois;
+
+		try {
+			ois = new ObjectInputStream(new FileInputStream(PATH + "depots.ser"));
+
+			depots = (List<Depot>)ois.readObject();
+			ois.close();
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	private void serialize() {
+		ObjectOutputStream oos;
+		
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream(PATH + "depots.ser"));
+			oos.writeObject(depots);
+			// We could do with putting this in finally, but we then need a throws about everywhere
+			oos.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

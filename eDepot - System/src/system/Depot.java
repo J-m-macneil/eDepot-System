@@ -69,7 +69,7 @@ public class Depot {
 		return correctDepot;
 	}
 
-	public boolean logOn(String username, String password) throws FileNotFoundException {
+	public boolean logOn(String username, String password) {
 		// Moving through all driver details
 		for (int i = 0; i < drivers.size(); i++)
 			if (drivers.get(i).username.equals(username) && drivers.get(i).password.equals(password)) {
@@ -121,7 +121,7 @@ public class Depot {
 			// Set the password to the next String in the file.
 			// LocalDate endDate = file.nextLine();
 			// Add the variables to the 'User' array list.
-			schedule.add(new WorkSchedule(client, null, null));
+			//schedule.add(new WorkSchedule(client, null, null));
 			// Close the scanner file.
 		}
 		file.close();
