@@ -24,6 +24,8 @@ public class Sys {
 	// This path is exclusive to me Liam and is used for testing
 	private final String PATH = "E:\\University\\Work\\Year 2\\Semester 2\\5104 - Object Orientated Systems\\Graded\\Assignments\\Assignment 2\\Serialized data\\";
 
+	private String userName;
+	private String passWord;
 	private List<Depot> depots = new ArrayList<Depot>();
 	private Depot depot;
 
@@ -63,10 +65,10 @@ public class Sys {
 	public void logOn() throws FileNotFoundException {
 		Depot depot = new Depot();
 		System.out.print("username : ");
-		String username = input.nextLine();
+		userName = input.nextLine();
 		System.out.print("password : ");
-		String password = input.nextLine();
-		if (depot.logOn(username, password)) {
+		passWord = input.nextLine();
+		if (depot.logOn(userName, passWord)) {
 			System.out.println("Correct!");
 			driverMenu();
 		} else {
@@ -84,8 +86,9 @@ public class Sys {
 		// Set a default value to choice, to allow user input.
 		String choice = "";
 		do {
+			// String userName = null;
 			// Print a repeating main menu, inside the do while loop.
-			System.out.println("\n--'s MAIN MENU --");
+			System.out.println("\n--" + userName + "'s MAIN MENU --");
 			System.out.println("1 - View Work Schedule");
 			System.out.println("Q - Quit");
 			System.out.print("Pick : ");
