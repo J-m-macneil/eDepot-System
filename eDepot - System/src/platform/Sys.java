@@ -261,6 +261,7 @@ public class Sys {
 
 	private void createSchedule() throws Exception {
 		while (true) {
+			//Please keep all input.next() the same
 			System.out.println("\n-- CREATE SCHEDULE --\n");
 
 			System.out.print("Clients name: ");
@@ -273,8 +274,7 @@ public class Sys {
 				startDate = createLocalDateTime("start");
 				endDate = createLocalDateTime("end");
 			} catch (Exception e) {
-				System.err.print("Date/time entry is out of bounds. Try again!");
-				System.out.println();
+				System.err.println("Date/time entry is out of bounds. Try again!");
 				continue;
 			}
 
