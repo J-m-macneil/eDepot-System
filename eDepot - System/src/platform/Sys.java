@@ -25,7 +25,7 @@ public class Sys {
 	// This path is exclusive to me Liam and is used for testing
 	//private final String PATH = "E:\\University\\Work\\Year 2\\Semester 2\\5104 - Object Orientated Systems\\Graded\\Assignments\\Assignment 2\\Serialized data\\";
 	// This path is exclusive to Joe and is used for testing.
-	private final String PATH = "D:\\OOP Coursework\\";
+	//private final String PATH = "D:\\OOP Coursework\\";
 	
 	private List<Depot> depots = new ArrayList<Depot>();
 	private Depot depot;
@@ -36,9 +36,9 @@ public class Sys {
 	public Sys() {
 		deSerialize();
 
-		depots.add(new Depot("Liverpool"));
-		depots.add(new Depot("Manchester"));
-		depots.add(new Depot("Leeds"));
+		//depots.add(new Depot("Liverpool"));
+		//depots.add(new Depot("Manchester"));
+		//depots.add(new Depot("Leeds"));
 	}
 
 	public void entryMenu() throws Exception {
@@ -188,7 +188,7 @@ public class Sys {
 		ObjectInputStream ois;
 
 		try {
-			ois = new ObjectInputStream(new FileInputStream(PATH + "depots.ser"));
+			ois = new ObjectInputStream(new FileInputStream("./depots.ser"));
 
 			depots = (List<Depot>) ois.readObject();
 			ois.close();
@@ -201,7 +201,7 @@ public class Sys {
 		ObjectOutputStream oos;
 
 		try {
-			oos = new ObjectOutputStream(new FileOutputStream(PATH + "depots.ser"));
+			oos = new ObjectOutputStream(new FileOutputStream("./depots.ser"));
 			oos.writeObject(depots);
 			// We could do with putting this in finally, but we then need a throws about
 			// everywhere
