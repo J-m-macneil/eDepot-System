@@ -294,31 +294,42 @@ public class Sys {
 	}
 
 	private void reassignVehicle() {
+		
+		LocalDateTime moveDate;
+		
 		while (true) {
-			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --\n");
-			System.out.println("\n-- Please specify what type of Vehicle you are moving --\n");
-			System.out.print("Pick (Either 'Truck' or 'Tanker'): ");
-			String type = input.nextLine();
-			if (type.equals("Truck")) {
-				System.out.print("Enter Truck's registration number : ");
-				String regNo = input.nextLine();
-				if (depot.getVehicleByRegNo(regNo) != null) {
-					System.out.println("Vehicle Found!");
-					System.out.println(depot.getVehicleByRegNo(regNo) + "exists in system");
+			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
+			System.out.println("\nPlease enter the vehicle registration number: ");
+			Vehicle vehicle = depot.getVehicleByRegNo(input.next());
+			
+				if (vehicle != null) {
+					System.out.println("Vehicle selected." );
 				} else {
-					System.err.println("Invalid input. Try again!");
+					System.err.println("Invalid registration number.\nPlease try again...");
 					continue;
 				}
-
-				// Not working - check getVehicleByMake() in Depot class
-
-			} else if (type.equals("Tanker")) {
-
-			} else {
-				System.err.println("Invalid input. Try again");
-				continue; // Manager is not kicked out to their main menu if they make a mistake
+				
+				try {
+				System.out.println("\nPlease specify a move date: ");
+				moveDate = createLocalDateTime("move");
+				if (moveDate != null) {
+					System.out.println("Move date specified." );
+				}
+				}catch (Exception e) {
+					System.err.println("Date/time entry is out of bounds. Try again!");
+					continue; //Manager is not kicked out to their main menu if they make a mistake
+				}
+				
+				System.out.println("Please specify a depot: \n[Liverpool/Manchester/Leeds]\n");
+				depot = getDepotLocation(input.next());
+				if (depot != null) { 
+					System.out.println("\nDepot location specified." );
+				} else {
+					System.err.println("Invalid location.\nPlease try again...");
+					continue;
+				}
+					
+				}
+		
 			}
 		}
-	}
-
-}

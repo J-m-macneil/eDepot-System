@@ -29,7 +29,7 @@ public class Depot implements Serializable {
 	final static List<Tanker> tankers = new ArrayList<Tanker>();
 
 	public Depot(String depot) {
-		deSerialize();		
+		//deSerialize();		
 		// Adding all mangers to the serialized data.
 		drivers.add(new Manager("GlynofLpool", "GH1234"));
 		drivers.add(new Manager("SorrenofMchester", "SH5678"));
