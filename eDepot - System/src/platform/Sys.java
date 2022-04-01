@@ -56,7 +56,7 @@ public class Sys {
 		} while (!choice.toUpperCase().equals("Q"));
 		System.out.println("--GOODBYE--");
 		System.exit(0);
-		serialize(); //Liam, I put this here after the system is exited because it was displaying
+		serialize(); // Liam, I put this here after the system is exited because it was displaying
 		// data on the console otherwise - Matt
 	}
 
@@ -183,13 +183,15 @@ public class Sys {
 				break;
 			}
 			case "2": {
-				// createSchedule() method executed, for Managers to make schedules for themselves
+				// createSchedule() method executed, for Managers to make schedules for
+				// themselves
 				// or other Drivers.
 				createSchedule();
 				break;
 			}
 			case "3": {
-				// reassignVehicle() method executed, for Managers to move a vehicle to another Depot.
+				// reassignVehicle() method executed, for Managers to move a vehicle to another
+				// Depot.
 				reassignVehicle();
 				break;
 			}
@@ -238,13 +240,14 @@ public class Sys {
 	}
 
 	private void displaySchedule() {
-		// No need to ask the Driver for their name or anything here - they are logged in.
+		// No need to ask the Driver for their name or anything here - they are logged
+		// in.
 		// Just return their data, whoever's doing this. Could be me lol - Matt
 
 	}
 
 	private LocalDateTime createLocalDateTime(String str) {
-		System.out.print("Specify the " + str + " date [i.e. 1986-04-13]:  ");
+		System.out.print("\nSpecify the " + str + " date [i.e. 1986-04-13]:  ");
 		String tempDate = input.next();
 
 		System.out.print("Specify the time [i.e. 12:30]: ");
@@ -262,7 +265,7 @@ public class Sys {
 
 	private void createSchedule() throws Exception {
 		while (true) {
-			System.out.println("\n-- CREATE SCHEDULE --\n");
+			System.out.println("\n-- CREATE SCHEDULE --");
 
 			System.out.print("Clients name: ");
 			String client = input.next();
@@ -273,18 +276,19 @@ public class Sys {
 			try {
 				startDate = createLocalDateTime("start");
 				endDate = createLocalDateTime("end");
-				System.out.print("Drivers name: ");
+				System.out.println("\nDrivers name: ");
 				Driver driver = depot.getDriverByName(input.next());
 
-				System.out.print("Vehicle Registration number: ");
+				System.out.println("\nVehicle Registration number: ");
 				Vehicle vehicle = depot.getVehicleByRegNo(input.next());
-
 				depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
-				System.out.println("\nSchedule has been created.");
-				break; //Manager has created a schedule successfully and can return to their main menu 
+				input.nextLine(); // To ensure Manager's main menu is accepting null input
+				System.out.println("\nSchedule created successfully!");
+				break; // Manager can go back to their main menu after successful creation
+						
 			} catch (Exception e) {
-				System.err.println("Date/time entry is out of bounds. Try again!");
-				continue; //Manager is not kicked out to their main menu if they make a mistake
+				System.err.println("\nDate/time entry is out of bounds. Try again!");
+				continue; // Manager is not kicked out to their main menu if they make a mistake
 			}
 
 		}
@@ -292,42 +296,42 @@ public class Sys {
 	}
 
 	private void reassignVehicle() {
-		
+
 		LocalDateTime moveDate;
-		
+
 		while (true) {
 			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
 			System.out.println("\nPlease enter the vehicle registration number: ");
 			Vehicle vehicle = depot.getVehicleByRegNo(input.next());
-			
-				if (vehicle != null) {
-					System.out.println("Vehicle selected." );
-				} else {
-					System.err.println("Invalid registration number.\nPlease try again...");
-					continue;
-				}
-				
-				try {
+
+			if (vehicle != null) {
+				System.out.println("Vehicle selected.");
+			} else {
+				System.err.println("Invalid registration number.\nPlease try again...");
+				continue;
+			}
+
+			try {
 				System.out.println("\nPlease specify a move date: ");
 				moveDate = createLocalDateTime("move");
 				if (moveDate != null) {
-					System.out.println("Move date specified." );
+					System.out.println("Move date specified.");
 				}
-				}catch (Exception e) {
-					System.err.println("Date/time entry is out of bounds. Try again!");
-					continue; //Manager is not kicked out to their main menu if they make a mistake
-				}
-				
-				System.out.println("Please specify a depot: \n[Liverpool/Manchester/Leeds]\n");
-				depot = getDepotLocation(input.next());
-				if (depot != null) { 
-					System.out.println("\nDepot location specified." );
-				} else {
-					System.err.println("Invalid location.\nPlease try again...");
-					continue;
-				}
-					
-				}
-		
+			} catch (Exception e) {
+				System.err.println("Date/time entry is out of bounds. Try again!");
+				continue; // Manager is not kicked out to their main menu if they make a mistake
 			}
+
+			System.out.println("Please specify a depot: \n[Liverpool/Manchester/Leeds]\n");
+			depot = getDepotLocation(input.next());
+			if (depot != null) {
+				System.out.println("\nDepot location specified.");
+			} else {
+				System.err.println("Invalid location.\nPlease try again...");
+				continue;
+			}
+
 		}
+
+	}
+}
