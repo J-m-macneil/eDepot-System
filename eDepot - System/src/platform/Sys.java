@@ -54,9 +54,10 @@ public class Sys {
 				break;
 			}
 		} while (!choice.toUpperCase().equals("Q"));
-		serialize();
 		System.out.println("--GOODBYE--");
 		System.exit(0);
+		serialize(); //Liam, I put this here after the system is exited because it was displaying
+		// data on the console otherwise - Matt
 	}
 
 	private void logOn() throws Exception {
