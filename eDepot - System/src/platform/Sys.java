@@ -238,6 +238,8 @@ public class Sys {
 	}
 
 	private void displaySchedule() {
+		// No need to ask the Driver for their name or anything here - they are logged in.
+		// Just return their data, whoever's doing this. Could be me lol - Matt
 
 	}
 
