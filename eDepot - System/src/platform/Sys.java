@@ -276,10 +276,10 @@ public class Sys {
 			try {
 				startDate = createLocalDateTime("start");
 				endDate = createLocalDateTime("end");
-				System.out.println("\nDrivers name: ");
+				System.out.print("\nDrivers name: ");
 				Driver driver = depot.getDriverByName(input.next());
 
-				System.out.println("\nVehicle Registration number: ");
+				System.out.print("\nVehicle Registration number: ");
 				Vehicle vehicle = depot.getVehicleByRegNo(input.next());
 				depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
 				input.nextLine(); // To ensure Manager's main menu is accepting null input
