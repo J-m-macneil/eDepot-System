@@ -20,21 +20,20 @@ import system.Status;
 import system.Vehicle;
 import system.WorkSchedule;
 
-
 public class Sys {
-	
+
 	private List<Depot> depots = new ArrayList<Depot>();
 	private Depot depot;
 	private String currentUser;
-	
+
 	private static final Scanner input = new Scanner(System.in);
 
 	public Sys() {
 		deSerialize();
 
-		//depots.add(new Depot("Liverpool"));
-		//depots.add(new Depot("Manchester"));
-		//depots.add(new Depot("Leeds"));
+		// depots.add(new Depot("Liverpool"));
+		// depots.add(new Depot("Manchester"));
+		// depots.add(new Depot("Leeds"));
 	}
 
 	public void entryMenu() throws Exception {
@@ -56,19 +55,19 @@ public class Sys {
 		System.out.println("GoodBye!");
 		System.exit(0);
 	}
-	
-	public void logOn() throws Exception {	
+
+	private void logOn() throws Exception {
 		System.out.println("\nLiverpool\nManchester\nLeeds\n");
-		
+
 		System.out.print("Location: ");
 		String location = input.nextLine();
-		
+
 		System.out.print("Username : ");
 		String username = input.nextLine();
-		
+
 		System.out.print("Password : ");
 		String password = input.nextLine();
-		
+
 		depot = getDepotLocation(location);
 		if (depot.logOn(username, password)) {
 			currentUser = username;
@@ -76,7 +75,7 @@ public class Sys {
 			driverMenu();
 		} else if (depot.logOnAsManager(username, password)) {
 			currentUser = username;
-			System.out.println("Correct! Logged on as manager: "+ currentUser);
+			System.out.println("Correct! Logged on as manager: " + currentUser);
 			managerMenu();
 		} else {
 			System.out.println("Invalid login!");
@@ -84,7 +83,7 @@ public class Sys {
 		}
 	}
 
-	public Depot getDepotLocation(String location) {
+	private Depot getDepotLocation(String location) {
 		for (Depot d : depots) {
 			if (location.equals(d.getLocation())) {
 				return d;
@@ -93,7 +92,7 @@ public class Sys {
 		return null;
 	}
 
-	public void driverMenu() {
+	private void driverMenu() {
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
 		String choice = "";
@@ -131,7 +130,7 @@ public class Sys {
 
 	}
 
-	public void managerMenu() throws Exception {
+	private void managerMenu() throws Exception {
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
 		String choice = "";
@@ -208,29 +207,30 @@ public class Sys {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	private void displaySchedule() {
-		
+
 	}
 
 	private void createSchedule() throws Exception {
 		System.out.println("\n-- CREATE SCHEDULE --\n");
-		
+
 		System.out.print("Clients name: ");
 		String client = input.next();
 
 		System.out.print("Schedules start date [i.e 5 Oct 2018 09:30]: ");
-		LocalDateTime startDate = LocalDateTime.parse(input.nextLine(), DateTimeFormatter.ofPattern("DD MMM YYYY HH:mm"));
+		LocalDateTime startDate = LocalDateTime.parse(input.nextLine(),
+				DateTimeFormatter.ofPattern("DD MMM YYYY HH:mm"));
 
 		System.out.print("Schedules end date [i.e 5 Oct 2018 09:30]: ");
 		LocalDateTime endDate = LocalDateTime.parse(input.nextLine(), DateTimeFormatter.ofPattern("DD MMM YYYY HH:mm"));
 
 		System.out.print("Drivers name: ");
 		Driver driver = depot.getDriverByName(input.nextLine());
-		
+
 		System.out.print("Vehicle Registration number: ");
 		Vehicle vehicle = depot.getVehicleByRegNo(input.nextLine());
-		
+
 		depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
 	}
 
@@ -239,11 +239,18 @@ public class Sys {
 			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --\n");
 			System.out.println("\n-- Please specify what type of Vehicle you are moving --\n");
 			System.out.print("Pick (Either 'Truck' or 'Tanker'): ");
-			String type = input.next();
+			String type = input.nextLine();
 			if (type.equals("Truck")) {
-				System.out.print("Enter Truck's make : ");
-				String regNo = input.next();
-				depot.getVehicleByRegNo((regNo));
+				System.out.print("Enter Truck's registration number : ");
+				String regNo = input.nextLine();
+				if (depot.getVehicleByRegNo(regNo) != null) {
+					System.out.println("Vehicle Found!");
+					System.out.println(depot.getVehicleByRegNo(regNo) + "exists in system");
+				} else {
+					System.err.println("Invalid input. Try again");
+					continue;
+				}
+
 				// Not working - check getVehicleByMake() in Depot class
 
 			} else if (type.equals("Tanker")) {
@@ -254,4 +261,5 @@ public class Sys {
 			}
 		}
 	}
+
 }
