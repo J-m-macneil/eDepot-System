@@ -273,20 +273,22 @@ public class Sys {
 			try {
 				startDate = createLocalDateTime("start");
 				endDate = createLocalDateTime("end");
+				System.out.print("Drivers name: ");
+				Driver driver = depot.getDriverByName(input.next());
+
+				System.out.print("Vehicle Registration number: ");
+				Vehicle vehicle = depot.getVehicleByRegNo(input.next());
+
+				depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
+				// System.out.println("Work Schedule created:\n" + WorkSchedule.toString(client,
+				// startDate, endDate, driver, vehicle));
+				break;
 			} catch (Exception e) {
 				System.err.println("Date/time entry is out of bounds. Try again!");
 				continue;
 			}
 
-			System.out.print("Drivers name: ");
-			Driver driver = depot.getDriverByName(input.next());
-
-			System.out.print("Vehicle Registration number: ");
-			Vehicle vehicle = depot.getVehicleByRegNo(input.next());
-
-			depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
-			// System.out.println("Work Schedule created:\n" + WorkSchedule.toString(client,
-			// startDate, endDate, driver, vehicle));
+			
 		}
 
 	}
