@@ -106,7 +106,6 @@ public class Sys {
 			// Allow the user to specify which option on they would like to select.
 			// Allow the upper case value 'Q' to be entered when exiting the program.
 			choice = input.nextLine();
-
 			// Declare a switch statement, to select one of the menu code blocks to be
 			// executed.
 			switch (choice) {
@@ -211,6 +210,18 @@ public class Sys {
 	private void displaySchedule() {
 
 	}
+	
+	private LocalDateTime createLocalDateTime(String str) {
+		// This will be used for the createSchedule() method to create startDate and endDate
+		System.out.print("Specify the " + str + " date [i.e. 1986-04-13]:  ");
+		String tempDate = input.next();
+		System.out.print("Specify the time [i.e. 12:30]: ");
+		String tempTime = input.next();
+		String tempDateTime = tempDate + " " + tempTime;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime date = LocalDateTime.parse(tempDateTime, formatter);
+		return date;
+	}
 
 	private void createSchedule() throws Exception {
 		System.out.println("\n-- CREATE SCHEDULE --\n");
@@ -218,20 +229,17 @@ public class Sys {
 		System.out.print("Clients name: ");
 		String client = input.next();
 
-		System.out.print("Schedules start date [i.e 5 Oct 2018 09:30]: ");
-		LocalDateTime startDate = LocalDateTime.parse(input.nextLine(),
-				DateTimeFormatter.ofPattern("DD MMM YYYY HH:mm"));
-
-		System.out.print("Schedules end date [i.e 5 Oct 2018 09:30]: ");
-		LocalDateTime endDate = LocalDateTime.parse(input.nextLine(), DateTimeFormatter.ofPattern("DD MMM YYYY HH:mm"));
+		LocalDateTime startDate = createLocalDateTime("start");
+		LocalDateTime endDate = createLocalDateTime("end");
 
 		System.out.print("Drivers name: ");
-		Driver driver = depot.getDriverByName(input.nextLine());
+		Driver driver = depot.getDriverByName(input.next());
 
 		System.out.print("Vehicle Registration number: ");
-		Vehicle vehicle = depot.getVehicleByRegNo(input.nextLine());
+		Vehicle vehicle = depot.getVehicleByRegNo(input.next());
 
 		depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
+		System.out.println("Work Schedule created. Thank you!");
 	}
 
 	private void reassignVehicle() {
