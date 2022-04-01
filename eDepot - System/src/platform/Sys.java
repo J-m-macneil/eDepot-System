@@ -55,7 +55,7 @@ public class Sys {
 			}
 		} while (!choice.toUpperCase().equals("Q"));
 		serialize();
-		System.out.println("GoodBye!");
+		System.out.println("--GOODBYE--");
 		System.exit(0);
 	}
 
@@ -90,7 +90,7 @@ public class Sys {
 				}
 			}
 		}
-		System.out.println("\nIm sorry, the details you have entered are incorrect.\nPlease try again...\n");
+		System.out.println("\nInvalid credentials. Please try again!");
 	}
 
 //		depot = getDepotLocation(location);
@@ -125,7 +125,7 @@ public class Sys {
 			// Print a repeating main menu, inside the do while loop.
 			System.out.println("\n-- " + currentUser + "'s MAIN MENU --");
 			System.out.println("1 - View Work Schedule");
-			System.out.println("2 - Log Off");
+			System.out.println("L - Log Off");
 			System.out.print("Pick : ");
 
 			// Allow the user to specify which option on they would like to select.
@@ -135,11 +135,11 @@ public class Sys {
 			// executed.
 			switch (choice) {
 			case "1": {
-				// Set a choice for the method 'createSchedule' to be executed.
-				// displaySchedule
+				// Drivers can view their schedule that a Manager has created for them.
+				displaySchedule();
 				break;
 			}
-			case "2": {
+			case "L": {
 				System.out.println("\n");
 				entryMenu();
 				break;
@@ -152,7 +152,7 @@ public class Sys {
 			}
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
-		} while (!choice.equals("2"));
+		} while (!choice.toUpperCase().equals("L"));
 
 	}
 
@@ -166,33 +166,35 @@ public class Sys {
 			System.out.println("1 - View Work Schedule");
 			System.out.println("2 - Create Work Schedule");
 			System.out.println("3 - Re-assign Vehicle");
-			System.out.println("4 - Log Off");
+			System.out.println("L - Log Off");
 			System.out.print("Pick : ");
 
 			// Allow the user to specify which option on they would like to select.
 			// Allow the upper case value 'Q' to be entered when exiting the program.
-			choice = input.next().toUpperCase();
+			choice = input.nextLine();
 
 			// Declare a switch statement, to select one of the menu code blocks to be
 			// executed.
 			switch (choice) {
 			case "1": {
-				// Set a choice for the method 'createSchedule' to be executed.
-				// displaySchedule
+				// displaySchedule() method executed, as a Manager is a Driver.
+				displaySchedule();
 				break;
 			}
 			case "2": {
-				// Set a choice for the method 'createSchedule' to be executed.
+				// createSchedule() method executed, for Managers to make schedules for themselves
+				// or other Drivers.
 				createSchedule();
 				break;
 			}
 			case "3": {
-				// Set a choice for the method 'reassignVehicle' to be executed.
+				// reassignVehicle() method executed, for Managers to move a vehicle to another Depot.
 				reassignVehicle();
 				break;
 			}
-			case "4": {
-				// Print a message to the console when the application is quit.
+			case "L": {
+				System.out.println("\n");
+				entryMenu();
 				break;
 			}
 			// Set a default value, for when errors occur in the console application.
@@ -203,7 +205,7 @@ public class Sys {
 			}
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
-		} while (!choice.equals("4"));
+		} while (!choice.toUpperCase().equals("L"));
 
 	}
 
