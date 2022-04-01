@@ -219,19 +219,19 @@ public class Sys {
 		System.out.print("Clients name: ");
 		String client = input.next();
 
-		System.out.print("Schedules start date [i.e 5 Oct 18 09:30]: ");
-		LocalDateTime startDate = LocalDateTime.parse(input.next(), DateTimeFormatter.ofPattern("d MMM yy HH:mm"));
+		System.out.print("Schedules start date [i.e 5 Oct 2018 09:30]: ");
+		LocalDateTime startDate = LocalDateTime.parse(input.nextLine(), DateTimeFormatter.ofPattern("DD MMM YYYY HH:mm"));
 
-		System.out.print("Schedules end date [i.e 5 Oct 18 09:30]: ");
-		LocalDateTime endDate = LocalDateTime.parse(input.next(), DateTimeFormatter.ofPattern("d MMM yy HH:mm"));
+		System.out.print("Schedules end date [i.e 5 Oct 2018 09:30]: ");
+		LocalDateTime endDate = LocalDateTime.parse(input.nextLine(), DateTimeFormatter.ofPattern("DD MMM YYYY HH:mm"));
 
 		System.out.print("Drivers name: ");
-		Driver driver = input.next();
+		Driver driver = depot.getDriverByName(input.nextLine());
 		
 		System.out.print("Vehicle Registration number: ");
-		Vehicle vehicle = input.next();
+		Vehicle vehicle = depot.getVehicleByRegNo(input.nextLine());
 		
-		//depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
+		depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
 	}
 
 	private void reassignVehicle() {
