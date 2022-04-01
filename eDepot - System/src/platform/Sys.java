@@ -149,7 +149,7 @@ public class Sys {
 			default: {
 				// Set a default message, to allow the user to know when an incorrect value has
 				// been entered.
-				System.err.println("Im sorry you have entered an incorrect value, please try again:");
+				System.out.println("Im sorry you have entered an incorrect value, please try again:");
 			}
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
@@ -202,7 +202,7 @@ public class Sys {
 			default: {
 				// Set a default message, to allow the user to know when an incorrect value has
 				// been entered.
-				System.err.println("Im sorry you have entered an incorrect value, please try again:");
+				System.out.println("Im sorry you have entered an incorrect value, please try again:");
 			}
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
@@ -219,7 +219,7 @@ public class Sys {
 			depots = (List<Depot>) ois.readObject();
 			ois.close();
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -291,31 +291,41 @@ public class Sys {
 	}
 
 	private void reassignVehicle() {
+		
+		LocalDateTime moveDate;
+		String location = null;
+		
 		while (true) {
 			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --\n");
-			System.out.println("\n-- Please specify what type of Vehicle you are moving --\n");
-			System.out.print("Pick (Either 'Truck' or 'Tanker'): ");
-			String type = input.nextLine();
-			if (type.equals("Truck")) {
-				System.out.print("Enter Truck's registration number : ");
-				String regNo = input.nextLine();
-				if (depot.getVehicleByRegNo(regNo) != null) {
-					System.out.println("Vehicle Found!");
-					System.out.println(depot.getVehicleByRegNo(regNo) + "exists in system");
+			System.out.println("\n-- Please enter the vehicle registration number:  --\n");
+			Vehicle vehicle = depot.getVehicleByRegNo(input.next());
+			
+				if (vehicle != null) {
+					System.out.println("\nVehicle selected: " + vehicle);
 				} else {
-					System.err.println("Invalid input. Try again!");
+					System.err.println("Invalid registration number.\nPlease try again...");
 					continue;
 				}
-
-				// Not working - check getVehicleByMake() in Depot class
-
-			} else if (type.equals("Tanker")) {
-
-			} else {
-				System.err.println("Invalid input. Try again");
-				continue; // Manager is not kicked out to their main menu if they make a mistake
+				
+				System.out.println("Please specify a move date: ");
+				moveDate = createLocalDateTime("move");
+				if (moveDate != null) {
+					System.out.println("\nMove date specified: " + moveDate);
+				} else {
+					System.err.println("Invalid move date.\nPlease try again...");
+					continue;
+				}
+				
+				System.out.println("Please specify a depot: \n[Liverpool/Manchester/Leeds]\n");
+				depot = getDepotLocation(input.next());
+				if (depot != null) { 
+					System.out.println("\nDepot location specified: " + location);
+				} else {
+					System.err.println("Invalid location.\nPlease try again...");
+					continue;
+				}
+					
+				}
+		
 			}
 		}
-	}
-
-}
