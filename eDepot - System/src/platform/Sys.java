@@ -21,11 +21,6 @@ import system.WorkSchedule;
 
 
 public class Sys {
-
-	// This path is exclusive to me Liam and is used for testing
-	//private final String PATH = "E:\\University\\Work\\Year 2\\Semester 2\\5104 - Object Orientated Systems\\Graded\\Assignments\\Assignment 2\\Serialized data\\";
-	// This path is exclusive to Joe and is used for testing.
-	//private final String PATH = "D:\\OOP Coursework\\";
 	
 	private List<Depot> depots = new ArrayList<Depot>();
 	private Depot depot;
@@ -221,10 +216,10 @@ public class Sys {
 		System.out.print("Clients name: ");
 		String client = input.next();
 
-		System.out.print("Schedules DateTime [i.e 5 Oct 18 09:30]: ");
+		System.out.print("Schedules start date [i.e 5 Oct 18 09:30]: ");
 		LocalDateTime startDate = LocalDateTime.parse(input.next(), DateTimeFormatter.ofPattern("d MMM yy HH:mm"));
 
-		System.out.print("Schedules DateTime [i.e 5 Oct 18 09:30]: ");
+		System.out.print("Schedules end date [i.e 5 Oct 18 09:30]: ");
 		LocalDateTime endDate = LocalDateTime.parse(input.next(), DateTimeFormatter.ofPattern("d MMM yy HH:mm"));
 
 		System.out.print("Drivers name: ");
@@ -233,12 +228,27 @@ public class Sys {
 		System.out.print("Vehicle Registration number: ");
 		String vehicle = input.next();
 		
-		depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
+		//depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
 	}
 
 	private void reassignVehicle() {
-		System.out.println("--\nRE-ASSIGN VEHICLE MENU--\n");
-		System.out.print("");
-	}
+		while (true) {
+			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --\n");
+			System.out.println("\n-- Please specify what type of Vehicle you are moving --\n");
+			System.out.print("Pick (Either 'Truck' or 'Tanker'): ");
+			String type = input.next();
+			if (type.equals("Truck")) {
+				System.out.print("Enter Truck's make : ");
+				String regNo = input.next();
+				depot.getVehicleByRegNo((regNo));
+				// Not working - check getVehicleByMake() in Depot class
 
+			} else if (type.equals("Tanker")) {
+
+			} else {
+				System.err.println("Invalid input. Try again");
+				continue; // Manager is not kicked out to main menu if they make a mistake
+			}
+		}
+	}
 }

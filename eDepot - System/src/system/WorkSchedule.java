@@ -1,9 +1,14 @@
 package system;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class WorkSchedule {
+public class WorkSchedule implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Declare an new array list 'Schedule', to store the 'schedule.txt' data.
 	// private static final ArrayList<WorkSchedule> Schedule = new
 	// ArrayList<WorkSchedule>();
@@ -46,7 +51,7 @@ public class WorkSchedule {
 		setDriver(driver);
 	}
 	
-	public WorkSchedule(String client, LocalDateTime startDate, LocalDateTime endDate, String driver, String vehicle) throws Exception {
+	public WorkSchedule(String client, LocalDateTime startDate, LocalDateTime endDate) throws Exception {
 
 		// Declare a this.variable to allow the current object to be called.
 		this.client = client;
@@ -56,7 +61,8 @@ public class WorkSchedule {
 
 
 	// Declare a 'toStringheader' to print and format a message alongside the variable types when executed.
-	public String scheduleToString() {
+	@Override
+	public String toString() {
 		return "Client Name: " + client + "    " + "Start Date: " + startDate + "    " + "End Date: " + endDate + " " + "Driver" + driver + " " + "Vehicle" +  vehicle;
 	}
 
