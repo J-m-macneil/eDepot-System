@@ -17,6 +17,7 @@ import java.util.Scanner;
 import system.Depot;
 import system.Driver;
 import system.Status;
+import system.Vehicle;
 import system.WorkSchedule;
 
 
@@ -52,6 +53,8 @@ public class Sys {
 			}
 		} while (!choice.toUpperCase().equals("Q"));
 		serialize();
+		System.out.println("GoodBye!");
+		System.exit(0);
 	}
 	
 	public void logOn() throws Exception {	
@@ -103,7 +106,7 @@ public class Sys {
 
 			// Allow the user to specify which option on they would like to select.
 			// Allow the upper case value 'Q' to be entered when exiting the program.
-			choice = input.next().toUpperCase();
+			choice = input.nextLine();
 
 			// Declare a switch statement, to select one of the menu code blocks to be
 			// executed.
@@ -223,10 +226,10 @@ public class Sys {
 		LocalDateTime endDate = LocalDateTime.parse(input.next(), DateTimeFormatter.ofPattern("d MMM yy HH:mm"));
 
 		System.out.print("Drivers name: ");
-		String driver = input.next();
+		Driver driver = input.next();
 		
 		System.out.print("Vehicle Registration number: ");
-		String vehicle = input.next();
+		Vehicle vehicle = input.next();
 		
 		//depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
 	}
