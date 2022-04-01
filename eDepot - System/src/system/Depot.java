@@ -48,6 +48,7 @@ public class Depot implements Serializable {
 		this.location = depot;
 	}
 
+	// Needs to deSerialize all ArrayLists - drivers, vehicles, schedules maybe? - Matt
 	private void deSerialize() {
 		ObjectInputStream ois;
 

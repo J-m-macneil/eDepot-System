@@ -149,7 +149,7 @@ public class Sys {
 			default: {
 				// Set a default message, to allow the user to know when an incorrect value has
 				// been entered.
-				System.out.println("Im sorry you have entered an incorrect value, please try again:");
+				System.err.println("Im sorry you have entered an incorrect value, please try again:");
 			}
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
@@ -202,7 +202,7 @@ public class Sys {
 			default: {
 				// Set a default message, to allow the user to know when an incorrect value has
 				// been entered.
-				System.out.println("Im sorry you have entered an incorrect value, please try again:");
+				System.err.println("Im sorry you have entered an incorrect value, please try again:");
 			}
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
@@ -219,7 +219,7 @@ public class Sys {
 			depots = (List<Depot>) ois.readObject();
 			ois.close();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
 		}
 	}
 
