@@ -280,6 +280,7 @@ public class Sys {
 				Vehicle vehicle = depot.getVehicleByRegNo(input.next());
 
 				depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
+				System.out.println("\nSchedule has been created.");
 				break; //Manager has created a schedule successfully and can return to their main menu 
 			} catch (Exception e) {
 				System.err.println("Date/time entry is out of bounds. Try again!");
