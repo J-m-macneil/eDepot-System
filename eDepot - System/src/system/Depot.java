@@ -18,7 +18,7 @@ public class Depot implements Serializable {
 	private final String PATH = "";
 
 	List<Driver> drivers = new ArrayList<Driver>();
-	final List<Manager> managers = new ArrayList<Manager>();
+	//final List<Manager> managers = new ArrayList<Manager>();
 	final List<WorkSchedule> schedules = Collections.synchronizedList(new ArrayList<WorkSchedule>());
 	final List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	private String location;
@@ -28,21 +28,24 @@ public class Depot implements Serializable {
 	final static List<Truck> trucks = new ArrayList<Truck>();
 	final static List<Tanker> tankers = new ArrayList<Tanker>();
 
-	public Depot(String location) {
-		deSerialize();
-		// Adding all drivers to the serialized data
-		managers.add(new Manager("GlynofLpool", "GH1234"));
-		managers.add(new Manager("SorrenofMchester", "SH5678"));
+	public Depot(String depot) {
+		deSerialize();		
+		// Adding all mangers to the serialized data.
+		drivers.add(new Manager("GlynofLpool", "GH1234"));
+		drivers.add(new Manager("SorrenofMchester", "SH5678"));
+		drivers.add(new Manager("JoeofLeeds", "J1234"));
+		
+		// Adding all drivers to the serialized data.
 		drivers.add(new Driver("Mark", "MK123"));
 		drivers.add(new Driver("Kirsty", "KY456"));
 		drivers.add(new Driver("Andy", "AY789"));
+		
 		// Adding all vehicles to the serialized data - only need one of each type to test.
-		trucks.add(new Truck("Scania", "V8 730S", 21000, "EHS26N", 13000));
-		tankers.add(new Tanker("DAF", "FAN 75", 26000, "PF19TKZ", 18000, "Diesel"));
-
-		this.location = location;
-		//
-
+		vehicles.add(new Truck("1234", "astra", "1", 100, 200));
+		vehicles.add(new Tanker("2345", "ford", "2", 100, 200, "oil"));
+		vehicles.add(new Tanker("3456", "kia", "3", 100, 200, "petrol"));
+		
+		this.location = depot;
 	}
 
 	private void deSerialize() {
@@ -67,13 +70,13 @@ public class Depot implements Serializable {
 		return false;
 	}
 
-	public boolean logOnAsManager(String username, String password) {
-		for (int i = 0; i < managers.size(); i++)
-			if (managers.get(i).username.equals(username) && managers.get(i).password.equals(password)) {
-				return true;
-			}
-		return false;
-	}
+//	public boolean logOnAsManager(String username, String password) {
+//		for (int i = 0; i < managers.size(); i++)
+//			if (managers.get(i).username.equals(username) && managers.get(i).password.equals(password)) {
+//				return true;
+//			}
+//		return false;
+//	}
 
 	public String getLocation() {
 		return location;
@@ -94,16 +97,10 @@ public class Depot implements Serializable {
 	}
 
 	public Vehicle getVehicleByRegNo(String regNo) {
-		for (Truck truck : trucks) {
-			if (truck.getMake().equals(regNo)) {
-				return truck;
+		for (Vehicle v : vehicles) {
+			if (v.getRegNo().equals(regNo)) {
+				return v;
 			}
-			for (Tanker tanker : tankers) {
-				if (tanker.getMake().equals(regNo)) {
-					return tanker;
-				}
-			}
-
 		}
 		return null;
 	}

@@ -67,6 +67,12 @@ public class Driver implements Schedulable, Serializable {
 		
 		return schedule;
 	}
+	public boolean checkPassword(String password) {
+        if(password.equals(this.password)) {
+            return true;
+        }
+        return false;
+    }
 	
 	
 }

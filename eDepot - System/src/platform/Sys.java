@@ -32,7 +32,7 @@ public class Sys {
 	private static final Scanner input = new Scanner(System.in);
 
 	public Sys() {
-		//deSerialize();
+		// deSerialize();
 
 		depots.add(new Depot("Liverpool"));
 		depots.add(new Depot("Manchester"));
@@ -70,11 +70,10 @@ public class Sys {
 
 		System.out.print("Password : ");
 		String password = input.nextLine();
-		
+
 		depot = getDepotLocation(location);
 		if (depot != null) {
-			
-			
+
 			driver = depot.getDriverByName(username);
 			if (driver != null) {
 				if (driver.checkPassword(password)) {
@@ -83,15 +82,14 @@ public class Sys {
 						currentUser = username;
 						System.out.println("\nCorrect! Logged on as manager: " + currentUser);
 						managerMenu();
-					}
-					else if (driver.checkPassword(password)){
+					} else if (driver.checkPassword(password)) {
 						currentUser = username;
 						System.out.println("\nCorrect! Logged on as driver: " + currentUser);
 						driverMenu();
 					}
 				}
-			}	
-		}	
+			}
+		}
 		System.out.println("\nIm sorry, the details you have entered are incorrect.\nPlease try again...\n");
 	}
 
@@ -239,39 +237,58 @@ public class Sys {
 	private void displaySchedule() {
 
 	}
-	
+
 	private LocalDateTime createLocalDateTime(String str) {
-		// This will be used for the createSchedule() method to create startDate and endDate
+		// This will be used for the createSchedule() method to create startDate and
+		// endDate
 		System.out.print("Specify the " + str + " date [i.e. 1986-04-13]:  ");
+		// Please keep these as input.next()
 		String tempDate = input.next();
-		
+
 		System.out.print("Specify the time [i.e. 12:30]: ");
+		// Please keep these as input.next()
 		String tempTime = input.next();
-		
+
+		// LocalDateTime user input needs to be separate hence the addition
 		String tempDateTime = tempDate + " " + tempTime;
+
+		// Parsing user input to the correct String formatting of type LocalDateTime
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime date = LocalDateTime.parse(tempDateTime, formatter);
 		return date;
+
 	}
 
 	private void createSchedule() throws Exception {
-		System.out.println("\n-- CREATE SCHEDULE --\n");
+		while (true) {
+			System.out.println("\n-- CREATE SCHEDULE --\n");
 
-		System.out.print("Clients name: ");
-		String client = input.next();
+			System.out.print("Clients name: ");
+			String client = input.next();
 
-		LocalDateTime startDate = createLocalDateTime("start");
-		LocalDateTime endDate = createLocalDateTime("end");
+			LocalDateTime startDate;
+			LocalDateTime endDate;
 
-		System.out.print("Drivers name: ");
-		Driver driver = depot.getDriverByName(input.next());
+			try {
+				startDate = createLocalDateTime("start");
+				endDate = createLocalDateTime("end");
+			} catch (Exception e) {
+				System.err.print("Date/time entry is out of bounds. Try again!");
+				System.out.println();
+				continue;
+			}
 
-		System.out.print("Vehicle Registration number: ");
-		Vehicle vehicle = depot.getVehicleByRegNo(input.next());
+			System.out.print("Drivers name: ");
+			Driver driver = depot.getDriverByName(input.next());
 
-		depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
-		System.out.println("Work Schedule created:\n" + WorkSchedule.toString(client, startDate, endDate, driver, vehicle));
-		
+			System.out.print("Vehicle Registration number: ");
+			Vehicle vehicle = depot.getVehicleByRegNo(input.next());
+
+			depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
+			// System.out.println("Work Schedule created:\n" + WorkSchedule.toString(client,
+			// startDate, endDate, driver, vehicle));
+		}
+
 	}
 
 	private void reassignVehicle() {
