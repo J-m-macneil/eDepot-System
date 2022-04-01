@@ -10,30 +10,21 @@ public abstract class Vehicle implements Schedulable {
 	protected String model;
 	protected int weight;
 	protected String regNo;
-	
+
 	protected List<WorkSchedule> schedules = new LinkedList<WorkSchedule>();
-	
+
 	public Vehicle(String make, String model, int weight, String regNo) {
-	
-	this.make = make;
-	this.model = model;
-	this.weight = weight;
-	this.regNo = regNo;
-		
+
+		this.make = make;
+		this.model = model;
+		this.weight = weight;
+		this.regNo = regNo;
+
 	}
 
-	public boolean isAvailable() {
-		return false; // needs changing
-		
-	}
-
-	public void setSchedule() {
-		
-	}
-	
 	public List<WorkSchedule> getSchedule() {
 		return schedules;
-		
+
 	}
 
 	public String getMake() {
@@ -67,7 +58,7 @@ public abstract class Vehicle implements Schedulable {
 	public void setRegNo(String regNo) {
 		this.regNo = regNo;
 	}
-	
+
 	@Override
 	public boolean isAvailable(LocalDateTime startDate, LocalDateTime endDate) {
 		for (WorkSchedule s : schedules) {
