@@ -301,7 +301,7 @@ public class Sys {
 					System.out.println("Vehicle Found!");
 					System.out.println(depot.getVehicleByRegNo(regNo) + "exists in system");
 				} else {
-					System.err.println("Invalid input. Try again");
+					System.err.println("Invalid input. Try again!");
 					continue;
 				}
 
