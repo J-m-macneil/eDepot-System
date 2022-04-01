@@ -149,7 +149,7 @@ public class Sys {
 			default: {
 				// Set a default message, to allow the user to know when an incorrect value has
 				// been entered.
-				System.err.println("Im sorry you have entered an incorrect value, please try again:");
+				System.out.println("Im sorry you have entered an incorrect value, please try again:");
 			}
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
@@ -202,7 +202,7 @@ public class Sys {
 			default: {
 				// Set a default message, to allow the user to know when an incorrect value has
 				// been entered.
-				System.err.println("Im sorry you have entered an incorrect value, please try again:");
+				System.out.println("Im sorry you have entered an incorrect value, please try again:");
 			}
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
@@ -219,7 +219,7 @@ public class Sys {
 			depots = (List<Depot>) ois.readObject();
 			ois.close();
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -262,7 +262,7 @@ public class Sys {
 
 	private void createSchedule() throws Exception {
 		while (true) {
-			System.out.println("\n-- CREATE SCHEDULE --\n");
+			System.out.println("\n-- CREATE SCHEDULE --");
 
 			System.out.print("Clients name: ");
 			String client = input.next();
@@ -278,14 +278,17 @@ public class Sys {
 
 				System.out.print("Vehicle Registration number: ");
 				Vehicle vehicle = depot.getVehicleByRegNo(input.next());
-
 				depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
-				break; //Manager has created a schedule successfully and can return to their main menu 
+				input.nextLine(); // To ensure Manager's main menu is accepting null input
+				System.out.println("Schedule created successfully!");
+				
+				
+				break; //Manager can go back to their main menu after successful completion of schedule.
 			} catch (Exception e) {
 				System.err.println("Date/time entry is out of bounds. Try again!");
 				continue; //Manager is not kicked out to their main menu if they make a mistake
 			}
-
+			
 		}
 
 	}
