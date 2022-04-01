@@ -60,7 +60,7 @@ public class Sys {
 	}
 
 	private void logOn() throws Exception {
-		System.out.println("\nLiverpool\nManchester\nLeeds\n");
+		System.out.println("\nPlease select one of the following depot locations:\n\n[Liverpool/Manchester/Leeds]\n");
 
 		System.out.print("Location: ");
 		String location = input.nextLine();
@@ -74,26 +74,25 @@ public class Sys {
 		depot = getDepotLocation(location);
 		if (depot != null) {
 			
+			
 			driver = depot.getDriverByName(username);
 			if (driver != null) {
 				if (driver.checkPassword(password)) {
 					if (Manager.class.isInstance(driver)) {
 						manager = Manager.class.cast(driver);
 						currentUser = username;
-						System.out.println("Correct! Logged on as manager: " + currentUser);
+						System.out.println("\nCorrect! Logged on as manager: " + currentUser);
 						managerMenu();
 					}
 					else if (driver.checkPassword(password)){
 						currentUser = username;
-						System.out.println("Correct! Logged on as driver: " + currentUser);
+						System.out.println("\nCorrect! Logged on as driver: " + currentUser);
 						driverMenu();
-					} else {
-						System.out.println("Invalid login!");
-						entryMenu();
 					}
 				}
 			}	
 		}	
+		System.out.println("\nIm sorry, the details you have entered are incorrect.\nPlease try again...\n");
 	}
 
 //		depot = getDepotLocation(location);
@@ -120,7 +119,7 @@ public class Sys {
 		return null;
 	}
 
-	private void driverMenu() {
+	private void driverMenu() throws Exception {
 		// Declare a do while loop, to repeat through the depot systems main menu.
 		// Set a default value to choice, to allow user input.
 		String choice = "";
@@ -143,6 +142,8 @@ public class Sys {
 				break;
 			}
 			case "2": {
+				System.out.println("\n");
+				entryMenu();
 				break;
 			}
 			// Set a default value, for when errors occur in the console application.
