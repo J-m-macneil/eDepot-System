@@ -61,9 +61,8 @@ public class WorkSchedule implements Serializable{
 
 
 	// Declare a 'toStringheader' to print and format a message alongside the variable types when executed.
-	@Override
-	public String toString() {
-		return "Client Name: " + client + "    " + "Start Date: " + startDate + "    " + "End Date: " + endDate + " " + "Driver" + driver + " " + "Vehicle" +  vehicle;
+	public static String toString(String client, LocalDateTime startDate, LocalDateTime endDate, Driver driver, Vehicle vehicle) {
+		return "Client Name: " + client + "    " + "Start Date: " + startDate + "    " + "End Date: " + endDate + " " + "Driver: " + driver + " " + "Vehicle: " +  vehicle;
 	}
 
 	public LocalDateTime getStartDate() {

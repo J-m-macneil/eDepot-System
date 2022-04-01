@@ -6,19 +6,19 @@ import java.util.List;
 
 public abstract class Vehicle implements Schedulable {
 
+	protected String regNo;
 	protected String make;
 	protected String model;
 	protected int weight;
-	protected String regNo;
 
 	protected List<WorkSchedule> schedules = new LinkedList<WorkSchedule>();
 
-	public Vehicle(String make, String model, int weight, String regNo) {
+	public Vehicle(String regNo, String make, String model, int weight) {
 
+		this.regNo = regNo;
 		this.make = make;
 		this.model = model;
 		this.weight = weight;
-		this.regNo = regNo;
 
 	}
 

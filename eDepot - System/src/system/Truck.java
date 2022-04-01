@@ -4,8 +4,8 @@ public class Truck extends Vehicle {
 
 	private int cargoCapacity;
 
-	public Truck(String make, String model, int weight, String regNo, int cargoCapacity) {
-		super(make, model, weight, regNo);
+	public Truck(String regNo, String make, String model, int weight, int cargoCapacity) {
+		super(regNo, make, model, weight);
 
 		this.cargoCapacity = cargoCapacity;
 

@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Scanner;
 import system.Depot;
 import system.Driver;
+import system.Manager;
 import system.Status;
 import system.Vehicle;
 import system.WorkSchedule;
@@ -24,16 +25,18 @@ public class Sys {
 
 	private List<Depot> depots = new ArrayList<Depot>();
 	private Depot depot;
+	private Driver driver;
+	private Manager manager;
 	private String currentUser;
 
 	private static final Scanner input = new Scanner(System.in);
 
 	public Sys() {
-		deSerialize();
+		//deSerialize();
 
-		// depots.add(new Depot("Liverpool"));
-		// depots.add(new Depot("Manchester"));
-		// depots.add(new Depot("Leeds"));
+		depots.add(new Depot("Liverpool"));
+		depots.add(new Depot("Manchester"));
+		depots.add(new Depot("Leeds"));
 	}
 
 	public void entryMenu() throws Exception {
@@ -67,21 +70,46 @@ public class Sys {
 
 		System.out.print("Password : ");
 		String password = input.nextLine();
-
+		
 		depot = getDepotLocation(location);
-		if (depot.logOn(username, password)) {
-			currentUser = username;
-			System.out.println("Correct! Logged on as user: " + currentUser);
-			driverMenu();
-		} else if (depot.logOnAsManager(username, password)) {
-			currentUser = username;
-			System.out.println("Correct! Logged on as manager: " + currentUser);
-			managerMenu();
-		} else {
-			System.out.println("Invalid login!");
-			entryMenu();
-		}
+		if (depot != null) {
+			
+			driver = depot.getDriverByName(username);
+			if (driver != null) {
+				if (driver.checkPassword(password)) {
+					if (Manager.class.isInstance(driver)) {
+						manager = Manager.class.cast(driver);
+						currentUser = username;
+						System.out.println("Correct! Logged on as manager: " + currentUser);
+						managerMenu();
+					}
+					else if (driver.checkPassword(password)){
+						currentUser = username;
+						System.out.println("Correct! Logged on as driver: " + currentUser);
+						driverMenu();
+					} else {
+						System.out.println("Invalid login!");
+						entryMenu();
+					}
+				}
+			}	
+		}	
 	}
+
+//		depot = getDepotLocation(location);
+//		if (depot.logOn(username, password)) {
+//			currentUser = username;
+//			System.out.println("Correct! Logged on as user: " + currentUser);
+//			driverMenu();
+//		} else if (depot.logOnAsManager(username, password)) {
+//			currentUser = username;
+//			System.out.println("Correct! Logged on as manager: " + currentUser);
+//			managerMenu();
+//		} else {
+//			System.out.println("Invalid login!");
+//			entryMenu();
+//		}
+//	}
 
 	private Depot getDepotLocation(String location) {
 		for (Depot d : depots) {
@@ -215,8 +243,10 @@ public class Sys {
 		// This will be used for the createSchedule() method to create startDate and endDate
 		System.out.print("Specify the " + str + " date [i.e. 1986-04-13]:  ");
 		String tempDate = input.next();
+		
 		System.out.print("Specify the time [i.e. 12:30]: ");
 		String tempTime = input.next();
+		
 		String tempDateTime = tempDate + " " + tempTime;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime date = LocalDateTime.parse(tempDateTime, formatter);
@@ -239,7 +269,8 @@ public class Sys {
 		Vehicle vehicle = depot.getVehicleByRegNo(input.next());
 
 		depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
-		System.out.println("Work Schedule created. Thank you!");
+		System.out.println("Work Schedule created:\n" + WorkSchedule.toString(client, startDate, endDate, driver, vehicle));
+		
 	}
 
 	private void reassignVehicle() {
