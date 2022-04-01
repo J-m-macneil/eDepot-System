@@ -239,17 +239,13 @@ public class Sys {
 	}
 
 	private LocalDateTime createLocalDateTime(String str) {
-		// This will be used for the createSchedule() method to create startDate and
-		// endDate
 		System.out.print("Specify the " + str + " date [i.e. 1986-04-13]:  ");
-		// Please keep these as input.next()
 		String tempDate = input.next();
 
 		System.out.print("Specify the time [i.e. 12:30]: ");
-		// Please keep these as input.next()
 		String tempTime = input.next();
 
-		// LocalDateTime user input needs to be separate hence the addition
+		// LocalDateTime user input needs to be separate hence the concatenation
 		String tempDateTime = tempDate + " " + tempTime;
 
 		// Parsing user input to the correct String formatting of type LocalDateTime
@@ -261,7 +257,6 @@ public class Sys {
 
 	private void createSchedule() throws Exception {
 		while (true) {
-			//Please keep all input.next() the same
 			System.out.println("\n-- CREATE SCHEDULE --\n");
 
 			System.out.print("Clients name: ");
@@ -280,15 +275,12 @@ public class Sys {
 				Vehicle vehicle = depot.getVehicleByRegNo(input.next());
 
 				depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
-				// System.out.println("Work Schedule created:\n" + WorkSchedule.toString(client,
-				// startDate, endDate, driver, vehicle));
-				break;
+				break; //Manager has created a schedule successfully and can return to their main menu 
 			} catch (Exception e) {
 				System.err.println("Date/time entry is out of bounds. Try again!");
-				continue;
+				continue; //Manager is not kicked out to their main menu if they make a mistake
 			}
 
-			
 		}
 
 	}
@@ -316,7 +308,7 @@ public class Sys {
 
 			} else {
 				System.err.println("Invalid input. Try again");
-				continue; // Manager is not kicked out to main menu if they make a mistake
+				continue; // Manager is not kicked out to their main menu if they make a mistake
 			}
 		}
 	}
