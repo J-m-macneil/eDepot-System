@@ -293,33 +293,34 @@ public class Sys {
 	private void reassignVehicle() {
 		
 		LocalDateTime moveDate;
-		String location = null;
 		
 		while (true) {
-			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --\n");
-			System.out.println("\n-- Please enter the vehicle registration number:  --\n");
+			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
+			System.out.println("\nPlease enter the vehicle registration number: ");
 			Vehicle vehicle = depot.getVehicleByRegNo(input.next());
 			
 				if (vehicle != null) {
-					System.out.println("\nVehicle selected: " + vehicle);
+					System.out.println("Vehicle selected." );
 				} else {
 					System.err.println("Invalid registration number.\nPlease try again...");
 					continue;
 				}
 				
-				System.out.println("Please specify a move date: ");
+				try {
+				System.out.println("\nPlease specify a move date: ");
 				moveDate = createLocalDateTime("move");
 				if (moveDate != null) {
-					System.out.println("\nMove date specified: " + moveDate);
-				} else {
-					System.err.println("Invalid move date.\nPlease try again...");
-					continue;
+					System.out.println("Move date specified." );
+				}
+				}catch (Exception e) {
+					System.err.println("Date/time entry is out of bounds. Try again!");
+					continue; //Manager is not kicked out to their main menu if they make a mistake
 				}
 				
 				System.out.println("Please specify a depot: \n[Liverpool/Manchester/Leeds]\n");
 				depot = getDepotLocation(input.next());
 				if (depot != null) { 
-					System.out.println("\nDepot location specified: " + location);
+					System.out.println("\nDepot location specified." );
 				} else {
 					System.err.println("Invalid location.\nPlease try again...");
 					continue;
