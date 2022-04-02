@@ -21,10 +21,14 @@ import system.Status;
 import system.Vehicle;
 import system.WorkSchedule;
 
-public class Sys {
+public class Sys implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<Depot> depots = new ArrayList<Depot>();
-	private Depot depot;
+	private Depot depot = new Depot();;
 	private Driver driver;
 	private Manager manager;
 	private String currentUser;
@@ -32,11 +36,11 @@ public class Sys {
 	private static final Scanner input = new Scanner(System.in);
 
 	public Sys() {
-		// deSerialize();
+		deSerialize();
 
-		depots.add(new Depot("Liverpool"));
-		depots.add(new Depot("Manchester"));
-		depots.add(new Depot("Leeds"));
+		//depots.add(new Depot("Liverpool"));
+		//depots.add(new Depot("Manchester"));
+		//depots.add(new Depot("Leeds"));
 	}
 
 	public void entryMenu() throws Exception {
@@ -55,9 +59,8 @@ public class Sys {
 			}
 		} while (!choice.toUpperCase().equals("Q"));
 		System.out.println("--GOODBYE--");
+		serialize();
 		System.exit(0);
-		serialize(); // Liam, I put this here after the system is exited because it was displaying
-		// data on the console otherwise - Matt
 	}
 
 	private void logOn() throws Exception {
@@ -87,11 +90,13 @@ public class Sys {
 						currentUser = username;
 						System.out.println("\nCorrect! Logged on as driver: " + currentUser);
 						driverMenu();
-					}
+					} else System.out.println("\nInvalid credentials. Please try again!");
+					logOn();
 				}
 			}
 		}
-		System.out.println("\nInvalid credentials. Please try again!");
+		System.out.println("\nInvalid location. Please try again!");
+		logOn();
 	}
 
 //		depot = getDepotLocation(location);

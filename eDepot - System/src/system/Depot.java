@@ -1,8 +1,9 @@
 package system;
 
 import java.io.FileInputStream;
-
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +19,7 @@ public class Depot implements Serializable {
 	private final String PATH = "";
 
 	List<Driver> drivers = new ArrayList<Driver>();
-	//final List<Manager> managers = new ArrayList<Manager>();
+	// final List<Manager> managers = new ArrayList<Manager>();
 	final List<WorkSchedule> schedules = Collections.synchronizedList(new ArrayList<WorkSchedule>());
 	final List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	private String location;
@@ -28,27 +29,35 @@ public class Depot implements Serializable {
 	final static List<Truck> trucks = new ArrayList<Truck>();
 	final static List<Tanker> tankers = new ArrayList<Tanker>();
 
-	public Depot(String depot) {
-		//deSerialize();		
+	public Depot() {
+		//deSerialize();
+		/*
 		// Adding all mangers to the serialized data.
 		drivers.add(new Manager("GlynofLpool", "GH1234"));
 		drivers.add(new Manager("SorrenofMchester", "SH5678"));
 		drivers.add(new Manager("JoeofLeeds", "J1234"));
-		
+
 		// Adding all drivers to the serialized data.
 		drivers.add(new Driver("Mark", "MK123"));
 		drivers.add(new Driver("Kirsty", "KY456"));
 		drivers.add(new Driver("Andy", "AY789"));
-		
-		// Adding all vehicles to the serialized data - only need one of each type to test.
+
+		// Adding all vehicles to the serialized data - only need one of each type to
+		// test.
 		vehicles.add(new Truck("1234", "astra", "1", 100, 200));
 		vehicles.add(new Tanker("2345", "ford", "2", 100, 200, "oil"));
 		vehicles.add(new Tanker("3456", "kia", "3", 100, 200, "petrol"));
-		
+		*/
+		//serialize();
+	}
+
+	public Depot(String depot) {
+
 		this.location = depot;
 	}
 
-	// Needs to deSerialize all ArrayLists - drivers, vehicles, schedules maybe? - Matt
+	// Needs to deSerialize all ArrayLists - drivers, vehicles, schedules maybe? -
+	// Matt
 	private void deSerialize() {
 		ObjectInputStream ois;
 
@@ -57,6 +66,20 @@ public class Depot implements Serializable {
 
 			drivers = (List<Driver>) ois.readObject();
 			ois.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	private void serialize() {
+		ObjectOutputStream oos;
+
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream("./drivers.ser"));
+			oos.writeObject(drivers);
+			// We could do with putting this in finally, but we then need a throws about
+			// everywhere
+			oos.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
