@@ -7,15 +7,13 @@ import java.util.List;
 
 public class Driver implements Schedulable, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	protected String username;
 	protected String password;
-	protected Boolean update = true;
+	protected Boolean update = false;
 	
 	protected List<WorkSchedule> schedule = new LinkedList<WorkSchedule>();
+	Vehicle vehicle;
 
 	public Driver(String username, String passWord) {
 
@@ -73,6 +71,10 @@ public class Driver implements Schedulable, Serializable {
         }
         return false;
     }
+	
+public void addDriver(Driver driver) {
+		
+	}
 	
 	
 }

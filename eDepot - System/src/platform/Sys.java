@@ -20,25 +20,29 @@ import system.Depot;
 import system.Driver;
 import system.Manager;
 import system.Status;
+import system.Tanker;
+import system.Truck;
 import system.Vehicle;
 import system.WorkSchedule;
 
 public class Sys {
-	
+
 	private List<Depot> depots = new ArrayList<Depot>();
 	private Depot depot;
 	private Driver driver;
-	private Manager manager;
+	private Vehicle vehicle;
 	private String currentUser;
+	private String currentLocation;
+	private String newLocation;
 
 	private static final Scanner input = new Scanner(System.in);
 
 	public Sys() {
 		deSerialize();
 
-//		depots.add(new Depot("Liverpool"));
-//		depots.add(new Depot("Manchester"));
-//		depots.add(new Depot("Leeds"));
+		// depots.add(new Depot("Lpool"));
+		// depots.add(new Depot("Mchester"));
+		// depots.add(new Depot("Leeds"));
 	}
 
 	public void entryMenu() throws Exception {
@@ -57,7 +61,7 @@ public class Sys {
 			}
 		} while (!choice.toUpperCase().equals("Q"));
 		System.out.println("--GOODBYE--");
-		serialize();
+		// serialize();
 		System.exit(0);
 	}
 
@@ -73,24 +77,31 @@ public class Sys {
 
 		System.out.print("Password : ");
 		String password = input.nextLine();
-		
+
 		depot = getDepotByLocation(location);
 		if (depot != null) {
-		depot.setLocation(location);
+			depot.setLocation(location);
 			driver = depot.getDriverByName(username);
 			if (driver != null) {
 				if (driver.checkPassword(password)) {
-					if (Manager.class.isInstance(driver)) {
-						manager = Manager.class.cast(driver);
-						currentUser = username;
-						System.out.println("\nCorrect! Logged on as manager: " + currentUser);
-						managerMenu();
-					} else if (driver.checkPassword(password)) {
+					if (!Manager.class.isInstance(driver)) {
 						currentUser = username;
 						System.out.println("\nCorrect! Logged on as driver: " + currentUser);
 						driverMenu();
-					} else System.out.println("\nInvalid credentials. Please try again!");
-					logOn();
+					}
+					if (Manager.class.isInstance(driver)) {
+						if (username.contains(location)) {
+							Manager.class.cast(driver);
+							currentUser = username;
+							System.out.println("\nCorrect! Logged on as manager: " + currentUser);
+							managerMenu();
+						}
+
+					} else {
+						System.out.println("\nInvalid credentials. Please try again!");
+						logOn();
+					}
+
 				}
 			}
 		}
@@ -98,24 +109,9 @@ public class Sys {
 		logOn();
 	}
 
-//		depot = getDepotLocation(location);
-//		if (depot.logOn(username, password)) {
-//			currentUser = username;
-//			System.out.println("Correct! Logged on as user: " + currentUser);
-//			driverMenu();
-//		} else if (depot.logOnAsManager(username, password)) {
-//			currentUser = username;
-//			System.out.println("Correct! Logged on as manager: " + currentUser);
-//			managerMenu();
-//		} else {
-//			System.out.println("Invalid login!");
-//			entryMenu();
-//		}
-//	}
-	
 	private void displayDepots() {
 		System.out.println("-- DEPOTS --");
-		
+
 		for (Depot depot : depots) {
 			System.out.println(depot.getLocation());
 		}
@@ -123,7 +119,7 @@ public class Sys {
 
 	private Depot getDepotByLocation(String location) {
 		for (Depot d : depots) {
-			//Works
+			// Works
 			if (location.equals(d.getLocation())) {
 				return d;
 			}
@@ -150,7 +146,7 @@ public class Sys {
 			switch (choice) {
 			case "1": {
 				// Drivers can view their schedule that a Manager has created for them.
-				displaySchedule();
+				displaySchedule(currentUser);
 				break;
 			}
 			case "L": {
@@ -193,21 +189,18 @@ public class Sys {
 			// executed.
 			switch (choice) {
 			case "1": {
-				// displaySchedule() method executed, as a Manager is a Driver.
-				//addvehicle();
+				// displaySchedule() method executed, as a Manager is a Driver
+				displaySchedule(currentUser);
 				break;
 			}
 			case "2": {
-				// createSchedule() method executed, for Managers to make schedules for
-				// themselves
-				// or other Drivers.
-				//addDriver();
+				// addDriver() method executed, for Managers to add new Drivers to their depot
+				addDriver();
 				break;
 			}
 			case "3": {
-				// reassignVehicle() method executed, for Managers to move a vehicle to another
-				// Depot.
-				reassignVehicle();
+				// addVehicle() method executed, for Managers to add new Vehicles to their depot
+				addVehicle();
 				break;
 			}
 			case "4": {
@@ -240,16 +233,60 @@ public class Sys {
 
 	}
 
-//	private void addvehicle() {
-//		System.out.print("Vehicle Registration number: ");
-//		String regNo = input.nextLine();
-//
-//		
-//
-//		// ToDo : Always Fresh Fish !
-//		vehicle.addVehilce(new Fish(name, regDate, WaterType.FRESH));
-//		
-//	}
+	private void addDriver() {
+		System.out.print("Driver's username: ");
+		String name = input.nextLine();
+
+		System.out.print("Driver's password: ");
+		String password = input.nextLine();
+
+		depot.addDriver(new Driver(name, password));
+
+	}
+
+	private void addVehicle() {
+
+		System.out.print("Vehicle registration number: ");
+		String regNo = input.next().toLowerCase();
+
+		System.out.print("Vehicle make: ");
+		String make = input.next().toLowerCase();
+
+		System.out.print("Vehicle model: ");
+		String model = input.next().toLowerCase();
+
+		System.out.print("Vehicle weight: ");
+		int weight = input.nextInt();
+
+		System.out.println("Truck or Tanker:");
+		String vehicleType = input.next().toLowerCase();
+		if (vehicleType == "truck")
+			if (Truck.class.isInstance(vehicle)) {
+				vehicle = Truck.class.cast(vehicleType);
+				{
+					System.out.print("Vehicle cargo capacity: ");
+					int cargoCapacity = input.nextInt();
+
+					depot.addVehicle(new Truck(regNo, make, model, weight, cargoCapacity));
+
+					if (vehicleType == "tanker") {
+						if (Tanker.class.isInstance(vehicle)) {
+							vehicle = Tanker.class.cast(vehicle);
+							{
+
+								System.out.print("Vehicle weight: ");
+								int liquidCapacity = input.nextInt();
+
+								System.out.print("Vehicle liquid type: ");
+								String liquidType = input.next().toLowerCase();
+
+								depot.addVehicle(new Tanker(regNo, make, model, weight, liquidCapacity, liquidType));
+							}
+						}
+					}
+				}
+			}
+	}
 
 	private void deSerialize() {
 		ObjectInputStream ois;
@@ -278,18 +315,17 @@ public class Sys {
 		}
 	}
 
-	private void displaySchedule() {
+	private void displaySchedule(String driverUsername) throws Exception {
 
-		String client = null;
-		LocalDateTime startDate = null;
-		LocalDateTime endDate = null;
-		Driver driver = null;
-		Vehicle vehicle = null;
-		
-		WorkSchedule schedule = new WorkSchedule(client, startDate, endDate, driver, vehicle);
-		System.out.println(schedule.toStringSchedule());
+		List<WorkSchedule> schedules = depot.getSchedules();
+		for (WorkSchedule s : schedules) {
+			if (s.getDriver().getUserName().equals(driverUsername)) {
+				System.out.println(s.toStringSchedule());
+			}
+		}
+		return;
 	}
-	
+
 	private LocalDateTime createLocalDateTime(String str) {
 		System.out.print("\nSpecify the " + str + " date [i.e. 1986-04-13]:  ");
 		String tempDate = input.next();
@@ -329,7 +365,7 @@ public class Sys {
 				input.nextLine(); // To ensure Manager's main menu is accepting null input
 				System.out.println("\nSchedule created successfully!");
 				break; // Manager can go back to their main menu after successful creation
-						
+
 			} catch (Exception e) {
 				System.err.println("\nDate/time entry is out of bounds. Try again!");
 				continue; // Manager is not kicked out to their main menu if they make a mistake
@@ -340,42 +376,44 @@ public class Sys {
 	}
 
 	private void reassignVehicle() {
-
 		LocalDateTime moveDate;
 
-		while (true) {
-			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
-			System.out.println("\nPlease enter the vehicle registration number: ");
-			Vehicle vehicle = depot.getVehicleByRegNo(input.next());
+		System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
+		System.out.println("\nPlease enter the vehicle registration number: ");
+		Vehicle vehicle = depot.getVehicleByRegNo(input.next());
 
-			if (vehicle != null) {
-				System.out.println("Vehicle selected.");
-			} else {
-				System.err.println("Invalid registration number.\nPlease try again...");
-				continue;
-			}
-
-			try {
-				System.out.println("\nPlease specify a move date: ");
-				moveDate = createLocalDateTime("move");
-				if (moveDate != null) {
-					System.out.println("Move date specified.");
-				}
-			} catch (Exception e) {
-				System.err.println("Date/time entry is out of bounds. Try again!");
-				continue; // Manager is not kicked out to their main menu if they make a mistake
-			}
-
-			System.out.println("Please specify a depot: \n[Liverpool/Manchester/Leeds]\n");
-			depot = getDepotByLocation(input.next());
-			if (depot != null) {
-				System.out.println("\nDepot location specified.");
-			} else {
-				System.err.println("Invalid location.\nPlease try again...");
-				continue;
-			}
-
+		if (vehicle != null) {
+			System.out.println("Vehicle selected.");
+		} else {
+			System.err.println("Invalid registration number.\nPlease try again...");
+			return;
 		}
 
+		try {
+			moveDate = createLocalDateTime("move");
+			if (moveDate != null) {
+				System.out.println("\nMove date specified.");
+			}
+		} catch (Exception e) {
+			System.err.println("Date/time entry is out of bounds. Try again!");
+			return; // Manager is not kicked out to their main menu if they make a mistake
+		}
+
+		System.out.println("\nPlease specify a depot:\n");
+		displayDepots();
+
+		newLocation = input.next();
+		Depot newDepot = getDepotByLocation(newLocation);
+
+		if (depot != null) {
+			if (currentLocation.equals(newLocation)) {
+				System.out.println("Invalid location.\nPlease try again...");
+				return;
+			}
+		} else {
+			System.out.println("\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation());
+			// depot.removeVechicle();
+			// newDept.AddBechile();
+		}
 	}
 }

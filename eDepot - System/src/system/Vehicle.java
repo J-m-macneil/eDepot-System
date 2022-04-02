@@ -1,11 +1,13 @@
 package system;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class Vehicle implements Schedulable {
+public abstract class Vehicle implements Schedulable, Serializable {
 
+	private static final long serialVersionUID = 1L;
 	protected String regNo;
 	protected String make;
 	protected String model;
