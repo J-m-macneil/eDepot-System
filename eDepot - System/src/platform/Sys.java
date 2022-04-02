@@ -80,7 +80,8 @@ public class Sys {
 
 		depot = getDepotByLocation(location);
 		if (depot != null) {
-			depot.setLocation(location);
+			currentLocation = location;
+			depot.setLocation(currentLocation);
 			driver = depot.getDriverByName(username);
 			if (driver != null) {
 				if (driver.checkPassword(password)) {
