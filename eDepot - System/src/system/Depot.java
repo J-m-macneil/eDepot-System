@@ -101,6 +101,10 @@ public class Depot implements Serializable {
 //			}
 //		return false;
 //	}
+	
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
 	public String getLocation() {
 		return location;

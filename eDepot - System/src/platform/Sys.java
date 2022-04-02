@@ -74,8 +74,8 @@ public class Sys implements Serializable{
 
 		System.out.print("Password : ");
 		String password = input.nextLine();
-
-		depot = getDepotLocation(location);
+		
+		depot = getDepotByLocation(location);
 		if (depot != null) {
 
 			driver = depot.getDriverByName(username);
@@ -114,8 +114,9 @@ public class Sys implements Serializable{
 //		}
 //	}
 
-	private Depot getDepotLocation(String location) {
+	private Depot getDepotByLocation(String location) {
 		for (Depot d : depots) {
+			//Works
 			if (location.equals(d.getLocation())) {
 				return d;
 			}
@@ -328,7 +329,7 @@ public class Sys implements Serializable{
 			}
 
 			System.out.println("Please specify a depot: \n[Liverpool/Manchester/Leeds]\n");
-			depot = getDepotLocation(input.next());
+			depot = getDepotByLocation(input.next());
 			if (depot != null) {
 				System.out.println("\nDepot location specified.");
 			} else {
