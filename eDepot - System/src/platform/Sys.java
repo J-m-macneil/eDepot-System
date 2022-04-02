@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.io.FileOutputStream;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 // import java.time.LocalDate;
 import java.util.Scanner;
+
 import system.Depot;
 import system.Driver;
 import system.Manager;
@@ -21,14 +23,10 @@ import system.Status;
 import system.Vehicle;
 import system.WorkSchedule;
 
-public class Sys implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Sys {
+	
 	private List<Depot> depots = new ArrayList<Depot>();
-	private Depot depot = new Depot();;
+	private Depot depot;
 	private Driver driver;
 	private Manager manager;
 	private String currentUser;
@@ -38,9 +36,9 @@ public class Sys implements Serializable{
 	public Sys() {
 		deSerialize();
 
-		//depots.add(new Depot("Liverpool"));
-		//depots.add(new Depot("Manchester"));
-		//depots.add(new Depot("Leeds"));
+//		depots.add(new Depot("Liverpool"));
+//		depots.add(new Depot("Manchester"));
+//		depots.add(new Depot("Leeds"));
 	}
 
 	public void entryMenu() throws Exception {
@@ -64,9 +62,10 @@ public class Sys implements Serializable{
 	}
 
 	private void logOn() throws Exception {
-		System.out.println("\nPlease select one of the following depot locations:\n\n[Liverpool/Manchester/Leeds]\n");
+		System.out.println("\nPlease select one of the following depot locations:\n");
+		displayDepots();
 
-		System.out.print("Location: ");
+		System.out.print("\nLocation: ");
 		String location = input.nextLine();
 
 		System.out.print("Username : ");
@@ -77,7 +76,7 @@ public class Sys implements Serializable{
 		
 		depot = getDepotByLocation(location);
 		if (depot != null) {
-
+		depot.setLocation(location);
 			driver = depot.getDriverByName(username);
 			if (driver != null) {
 				if (driver.checkPassword(password)) {
@@ -113,6 +112,14 @@ public class Sys implements Serializable{
 //			entryMenu();
 //		}
 //	}
+	
+	private void displayDepots() {
+		System.out.println("-- DEPOTS --");
+		
+		for (Depot depot : depots) {
+			System.out.println(depot.getLocation());
+		}
+	}
 
 	private Depot getDepotByLocation(String location) {
 		for (Depot d : depots) {
@@ -171,8 +178,10 @@ public class Sys implements Serializable{
 			// Print a repeating main menu, inside the do while loop.
 			System.out.println("\n-- " + currentUser + "'s MAIN MENU --");
 			System.out.println("1 - View Work Schedule");
-			System.out.println("2 - Create Work Schedule");
-			System.out.println("3 - Re-assign Vehicle");
+			System.out.println("2 - Add Driver");
+			System.out.println("3 - Add Vehicle");
+			System.out.println("4 - Create Work Schedule");
+			System.out.println("5 - Re-assign Vehicle");
 			System.out.println("L - Log Off");
 			System.out.print("Pick : ");
 
@@ -185,17 +194,30 @@ public class Sys implements Serializable{
 			switch (choice) {
 			case "1": {
 				// displaySchedule() method executed, as a Manager is a Driver.
-				displaySchedule();
+				//addvehicle();
 				break;
 			}
 			case "2": {
 				// createSchedule() method executed, for Managers to make schedules for
 				// themselves
 				// or other Drivers.
-				createSchedule();
+				//addDriver();
 				break;
 			}
 			case "3": {
+				// reassignVehicle() method executed, for Managers to move a vehicle to another
+				// Depot.
+				reassignVehicle();
+				break;
+			}
+			case "4": {
+				// createSchedule() method executed, for Managers to make schedules for
+				// themselves
+				// or other Drivers.
+				createSchedule();
+				break;
+			}
+			case "5": {
 				// reassignVehicle() method executed, for Managers to move a vehicle to another
 				// Depot.
 				reassignVehicle();
@@ -217,6 +239,17 @@ public class Sys implements Serializable{
 		} while (!choice.toUpperCase().equals("L"));
 
 	}
+
+//	private void addvehicle() {
+//		System.out.print("Vehicle Registration number: ");
+//		String regNo = input.nextLine();
+//
+//		
+//
+//		// ToDo : Always Fresh Fish !
+//		vehicle.addVehilce(new Fish(name, regDate, WaterType.FRESH));
+//		
+//	}
 
 	private void deSerialize() {
 		ObjectInputStream ois;
@@ -246,12 +279,17 @@ public class Sys implements Serializable{
 	}
 
 	private void displaySchedule() {
-		// No need to ask the Driver for their name or anything here - they are logged
-		// in.
-		// Just return their data, whoever's doing this. Could be me lol - Matt
 
+		String client = null;
+		LocalDateTime startDate = null;
+		LocalDateTime endDate = null;
+		Driver driver = null;
+		Vehicle vehicle = null;
+		
+		WorkSchedule schedule = new WorkSchedule(client, startDate, endDate, driver, vehicle);
+		System.out.println(schedule.toStringSchedule());
 	}
-
+	
 	private LocalDateTime createLocalDateTime(String str) {
 		System.out.print("\nSpecify the " + str + " date [i.e. 1986-04-13]:  ");
 		String tempDate = input.next();
