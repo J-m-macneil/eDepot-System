@@ -62,7 +62,7 @@ public class Depot implements Serializable {
 		ObjectInputStream ois;
 
 		try {
-			ois = new ObjectInputStream(new FileInputStream(PATH + "drivers.ser"));
+			ois = new ObjectInputStream(new FileInputStream("./drivers.ser"));
 
 			drivers = (List<Driver>) ois.readObject();
 			ois.close();
