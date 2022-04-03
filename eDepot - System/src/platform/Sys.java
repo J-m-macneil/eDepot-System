@@ -427,6 +427,7 @@ public class Sys {
 					if (endDate.isBefore(LocalDateTime.now().plusHours(73)) || endDate.isBefore(startDate)) {
 
 						 if (depot.getDrivers().isEmpty()) {
+							 input.nextLine();
 							 System.out.println("Im sorry, there are no current drivers at this depot.");
 							 break;
 						 } 
@@ -435,6 +436,7 @@ public class Sys {
 						Driver driver = depot.getDriverByName(input.next());
 						
 						 if (depot.getVehicles().isEmpty()) {
+							 input.nextLine();
 							 System.out.println("Im sorry, there are no current vehicles at this depot.");
 							 break;
 						 } 
