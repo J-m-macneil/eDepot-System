@@ -29,19 +29,19 @@ public class StatusCheck implements Runnable {
 
 				// This thread will be dormant for the delay specified in setSeconds
 				// May need debugging
-				Thread.sleep(delay);
+				// Thread.sleep(delay);
 
 				synchronized (schedules) {
 					for (WorkSchedule schedules : schedules) {
-						// To check for PENDING status:
-						if (schedules.getStartDate().minusDays(1).isBefore(LocalDateTime.now())) {
-							schedules.setStatus(Status.PENDING);
-							// To check for ACTIVE status:
-						} else if (schedules.getStartDate().equals(LocalDateTime.now())) {
+
+						// To check for ACTIVE status:
+						if (schedules.getStartDate().equals(LocalDateTime.now())) {
 							schedules.setStatus(Status.ACTIVE);
+							System.out.println("The schedule\n" + schedules.toString() + "\n has been set to active");
 							// To check for ARCHIVED status:
 						} else if (schedules.getEndDate().equals(LocalDateTime.now())) {
 							schedules.setStatus(Status.ARCHIVED);
+							 System.out.println("The schedule\n" + schedules.toString() + "\n has been set to archived");
 						}
 					}
 

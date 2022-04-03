@@ -369,7 +369,7 @@ public class Sys {
 		List<WorkSchedule> schedules = depot.getSchedules();
 		for (WorkSchedule s : schedules) {
 			if (s.getDriver().getUserName().equals(driverUsername)) {
-				System.out.println(s.toStringSchedule());
+				System.out.println(s.toString());
 			}
 		}
 		return;
@@ -414,9 +414,12 @@ public class Sys {
 		while (true) {
 			System.out.println("\n-- CREATE SCHEDULE --\n");
 
-			System.out.print("\nClients name: ");
+			System.out.print("Clients name: ");
 			String client = input.next();
 
+			System.out.println("\nEnter the schedules start and end dates.");
+			System.out.println("Make sure the start date is no less than 48 hours in advance.");
+			System.out.println("Make sure the end date does not exceed 72 hours after the start date.");
 			LocalDateTime startDate;
 			LocalDateTime endDate;
 
@@ -424,26 +427,31 @@ public class Sys {
 				startDate = createLocalDateTime("start");
 				endDate = createLocalDateTime("end");
 				// Check valid startDate and endDate
-				if (startDate.equals(LocalDateTime.now()) || startDate.isAfter(LocalDateTime.now().minusHours(49))) {
-					if (endDate.isBefore(LocalDateTime.now().plusHours(73)) || endDate.isBefore(startDate)) {
+				if (startDate.isAfter(LocalDateTime.now().plusHours(48))) {
+					if (endDate.isBefore(startDate.plusHours(72)) || endDate.isBefore(startDate)) {
 
 						if (depot.getDrivers().isEmpty()) {
-							System.out.println("Im sorry, there are no current drivers at this depot.");
+							input.nextLine();
+							System.out.println("\n-- DRIVERS --Im sorry, there are no current drivers at this depot.");
 							break;
 						}
+
 						displayDrivers();
 						System.out.print("\nDrivers name: ");
 						Driver driver = depot.getDriverByName(input.next());
 
 						if (depot.getVehicles().isEmpty()) {
-							System.out.println("Im sorry, there are no current vehicles at this depot.");
+							input.nextLine();
+							System.out.println(
+									"\n-- VEHICLES --\nIm sorry, there are no current vehicles at this depot.");
 							break;
 						}
 						displayVehicles();
 						System.out.print("\nVehicle Registration number: ");
 
 						Vehicle vehicle = depot.getVehicleByRegNo(input.next());
-						depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
+						depot.createSchedule(
+								new WorkSchedule(client, startDate, endDate, driver, vehicle, Status.PENDING));
 						input.nextLine(); // To ensure Manager's main menu is accepting null input
 						System.out.println("\nSchedule created successfully!");
 						break; // Manager can go back to their main menu after successful creation
@@ -513,6 +521,8 @@ public class Sys {
 						break;
 					} else
 						System.err.println("Depot locations the same!");
+					input.nextLine();
+					break;
 				} else {
 					System.out.println("Invalid location.\nPlease try again...");
 					continue;
@@ -522,17 +532,17 @@ public class Sys {
 				System.err.print("Date/time entry is out of bounds. Try again!");
 				continue; // Manager is not kicked out to their main menu if they make a mistake
 			}
+		}
 
-			for (WorkSchedule s : schedules) {
-				depot.startCheck();
-				if (s.getStatus().equals(Status.PENDING)) {
-					if (s.getStatus().equals(Status.ACTIVE)) {
-						System.err.println("Vehicle busy! Try again!");
-						continue;
-					}
+		for (WorkSchedule s : schedules) {
+			depot.startCheck();
+			if (s.getStatus().equals(Status.PENDING)) {
+				if (s.getStatus().equals(Status.ACTIVE)) {
+					System.err.println("Vehicle busy! Try again!");
+					continue;
 				}
 			}
-
 		}
+
 	}
 }
