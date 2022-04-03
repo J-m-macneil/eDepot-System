@@ -13,7 +13,6 @@ public class Depot implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private final String PATH = "";
 
 	List<Driver> drivers = new ArrayList<Driver>();
 	// final List<Manager> managers = new ArrayList<Manager>();
@@ -84,6 +83,14 @@ public class Depot implements Serializable {
 	
 	public List<Vehicle> getVehicles() {
 		return vehicles;
+	}
+	
+	public List<Truck> getTrucks() {
+		return trucks;
+	}
+	
+	public List<Tanker> getTankers() {
+		return tankers;
 	}
 	
 	public List<Driver> getDrivers() {

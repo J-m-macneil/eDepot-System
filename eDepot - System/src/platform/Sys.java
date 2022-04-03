@@ -312,7 +312,10 @@ public class Sys {
 			depot.addVehicle(new Tanker(regNo, make, model, weight, liquidCapacity, liquidType));
 		} else
 			System.err.println("Incorrect Vehicle type!");
+<<<<<<< HEAD
 		input.nextLine();
+=======
+>>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
 	}
 
 	private void deSerialize() {
@@ -471,7 +474,7 @@ public class Sys {
 			if (vehicle != null) {
 				System.out.print("Vehicle selected.");
 			} else {
-				System.err.print("Invalid registration number or no vehciles in depo\nPlease try again...");
+				System.err.print("Invalid registration number or no vehciles in depot\nPlease try again...");
 				continue;
 			}
 
