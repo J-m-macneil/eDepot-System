@@ -61,8 +61,12 @@ public abstract class Vehicle implements Schedulable, Serializable {
 		this.regNo = regNo;
 	}
 	
-	@Override
-	public String toString() {
+	public String toTruckString() {
+		return "Reg No: " + regNo + " | Make: " + make + " | Model: " + model + " | Weight: " + weight;
+	}
+
+	
+	public String toTankerString() {
 		return "Reg No: " + regNo + " | Make: " + make + " | Model: " + model + " | Weight: " + weight;
 	}
 

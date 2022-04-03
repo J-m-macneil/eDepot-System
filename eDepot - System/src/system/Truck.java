@@ -18,5 +18,9 @@ public class Truck extends Vehicle {
 	public void setCargoCapacity(int cargoCapacity) {
 		this.cargoCapacity = cargoCapacity;
 	}
+	@Override
+	public String toString() {
+		return "Reg No: " + regNo + " | Make: " + make + " | Model: " + model + " | Weight: " + weight + " | Cargo Capacity: " + cargoCapacity;
+	}
 
 }

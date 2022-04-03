@@ -354,7 +354,8 @@ public class Sys {
 	private void displayVehicles() {
 		List<Vehicle> vehicles = depot.getVehicles();
 		for (Vehicle v : vehicles)
-			System.out.println(v.toString());
+			if (Truck.class.isInstance(v))
+			System.out.println(v.toTruckString());
 	}
 
 	private LocalDateTime createLocalDateTime(String str) {
