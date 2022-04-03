@@ -41,7 +41,7 @@ public class Sys {
 	public Sys() {
 		deSerialize();
 
-//		// Adding all depots.
+		// Adding all depots.
 //		depots.add(new Depot("Lpool"));
 //		depots.add(new Depot("Mchester"));
 //		depots.add(new Depot("Leeds"));
@@ -108,11 +108,11 @@ public class Sys {
 	}
 
 	private void logOn() throws Exception {
-		
+		/*
 		depot = depots.get(0);
 		depot = depots.get(1);
 		depot = depots.get(2);
-
+		*/
 		
 		System.out.println("\nPlease select one of the following depot locations:\n");
 		displayDepots();
