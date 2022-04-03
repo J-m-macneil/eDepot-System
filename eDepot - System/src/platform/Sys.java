@@ -312,7 +312,7 @@ public class Sys {
 	private void addVehicle() {
 
 		System.out.print("Vehicle registration number: ");
-		displayVehicles();
+		
 		String regNo = input.next().toLowerCase();
 
 		System.out.print("Vehicle make: ");
@@ -390,7 +390,7 @@ public class Sys {
 			if (Truck.class.isInstance(v)) {
 				// Would like to call <TruckObject>.toString but cannot create truck object
 				System.out.println(v.toTruckString());
-			}
+			} else System.out.println(v.toTankerString());
 	}
 
 	private void displayDrivers() {
