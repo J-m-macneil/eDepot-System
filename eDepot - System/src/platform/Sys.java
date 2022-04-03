@@ -422,6 +422,7 @@ public class Sys {
 			try {
 				startDate = createLocalDateTime("start");
 				endDate = createLocalDateTime("end");
+				// Check valid startDate and endDate
 				if (startDate.equals(LocalDateTime.now()) || startDate.isAfter(LocalDateTime.now().minusHours(49))) {
 					if (endDate.isBefore(LocalDateTime.now().plusHours(73)) || endDate.isBefore(startDate)) {
 
