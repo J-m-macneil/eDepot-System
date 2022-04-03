@@ -102,6 +102,7 @@ public class Sys {
 		String location = input.nextLine();
 
 		depot = getDepotByLocation(location);
+		currentLocation = location;
 		if (depot != null) {
 			System.out.print("Username : ");
 			String username = input.nextLine();
@@ -180,7 +181,7 @@ public class Sys {
 			default: {
 				// Set a default message, to allow the user to know when an incorrect value has
 				// been entered.
-				System.out.println("Im sorry you have entered an incorrect value, please try again:");
+				System.err.println("You have entered an incorrect value. Try again!");
 			}
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
@@ -259,7 +260,7 @@ public class Sys {
 			default: {
 				// Set a default message, to allow the user to know when an incorrect value has
 				// been entered.
-				System.out.println("Im sorry you have entered an incorrect value, please try again:");
+				System.err.println("You have entered an incorrect value. Try again!");
 			}
 			}
 
@@ -310,7 +311,8 @@ public class Sys {
 
 			depot.addVehicle(new Tanker(regNo, make, model, weight, liquidCapacity, liquidType));
 		} else
-			System.out.println("Incorrect Vehicle type!");
+			System.err.println("Incorrect Vehicle type!");
+		input.nextLine();
 	}
 
 	private void deSerialize() {
@@ -479,8 +481,12 @@ public class Sys {
 					System.out.print("\nMove date specified.\n");
 				} else {
 					System.out.println("Incorrect Date format!");
-					break;
+					continue;
 				}
+			} catch (Exception e) {
+				System.err.print("Date/time entry is out of bounds. Try again!");
+				continue; // Manager is not kicked out to their main menu if they make a mistake
+			}
 				displayDepots();
 				System.out.print("\nPlease specify a depot: ");
 
@@ -489,22 +495,20 @@ public class Sys {
 
 				if (depot != null) {
 					if ((!currentLocation.equals(newLocation))) {
+						System.out.println("Vehicle transfer in progress...");
 						new Thread(new VehicleDelivery(vehicle, depot, newDepot, 20)).start();
 						input.nextLine();
 						break;
 					} else
 						System.err.println("Depot locations the same!");
 					input.nextLine();
-					break;
+					continue;
 				} else {
-					System.out.println("Invalid location.\nPlease try again...");
+					System.err.println("Invalid location.\nPlease try again...");
 					continue;
 				}
 
-			} catch (Exception e) {
-				System.err.print("Date/time entry is out of bounds. Try again!");
-				continue; // Manager is not kicked out to their main menu if they make a mistake
-			}
+			
 		}
 
 		for (WorkSchedule s : schedules) {
