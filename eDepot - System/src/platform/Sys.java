@@ -352,10 +352,14 @@ public class Sys {
 	}
 	
 	private void displayVehicles() {
+		// Retrieve all vehicles in current depot
 		List<Vehicle> vehicles = depot.getVehicles();
 		for (Vehicle v : vehicles)
-			if (Truck.class.isInstance(v))
-			System.out.println(v.toTruckString());
+			// if the vehicle is a truck, print out specific toString
+			if (Truck.class.isInstance(v)) {
+				// Would like to call <TruckObject>.toString but cannot create truck object
+				System.out.println(v.toTruckString());
+			}
 	}
 
 	private LocalDateTime createLocalDateTime(String str) {

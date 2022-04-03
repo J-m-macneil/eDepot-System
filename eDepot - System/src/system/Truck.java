@@ -8,7 +8,6 @@ public class Truck extends Vehicle {
 		super(regNo, make, model, weight);
 
 		this.cargoCapacity = cargoCapacity;
-
 	}
 
 	public <T extends Vehicle> int getCargoCapacity() {
