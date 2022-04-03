@@ -24,6 +24,7 @@ import system.StatusCheck;
 import system.Tanker;
 import system.Truck;
 import system.Vehicle;
+import system.VehicleDelivery;
 import system.WorkSchedule;
 
 public class Sys {
@@ -513,11 +514,8 @@ public class Sys {
 
 				if (depot != null) {
 					if ((!currentLocation.equals(newLocation))) {
-						newDepot.addVehicle(vehicle);
-						// input.nextLine();
-						System.out.println(
-								"\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation() + "!");
-						depot.removeVehicle(vehicle);
+						new Thread(new VehicleDelivery(vehicle, depot, newDepot, 20)).start();;
+						input.nextLine();
 						break;
 					} else
 						System.err.println("Depot locations the same!");
