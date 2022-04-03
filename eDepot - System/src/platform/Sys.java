@@ -31,7 +31,6 @@ public class Sys {
 	private List<Depot> depots = new ArrayList<Depot>();
 	private Depot depot;
 	private Driver driver;
-	private Vehicle vehicle;
 	private String currentUser;
 	private String currentLocation;
 	private String newLocation;
@@ -211,6 +210,7 @@ public class Sys {
 			System.out.println("3 - Add Vehicle");
 			System.out.println("4 - Create Work Schedule");
 			System.out.println("5 - Re-assign Vehicle");
+			System.out.println("6 - View Depot Vehicles");
 			System.out.println("L - Log Off");
 			System.out.print("Pick : ");
 
@@ -248,6 +248,9 @@ public class Sys {
 				// Depot.
 				reassignVehicle();
 				break;
+			}
+			case "6": {
+				displayVehicles();
 			}
 			case "L": {
 				System.out.println("\n");
@@ -346,6 +349,12 @@ public class Sys {
 			}
 		}
 		return;
+	}
+	
+	private void displayVehicles() {
+		List<Vehicle> vehicles = depot.getVehicles();
+		for (Vehicle v : vehicles)
+			System.out.println(v.toString());
 	}
 
 	private LocalDateTime createLocalDateTime(String str) {

@@ -103,6 +103,10 @@ public class Depot implements Serializable {
 		}
 		return null;
 	}
+	
+	public List<Vehicle> getVehicles() {
+		return vehicles;
+	}
 
 	public void addDriver(Driver driver) {
 		drivers.add(driver);

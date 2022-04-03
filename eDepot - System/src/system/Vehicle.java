@@ -60,6 +60,11 @@ public abstract class Vehicle implements Schedulable, Serializable {
 	public void setRegNo(String regNo) {
 		this.regNo = regNo;
 	}
+	
+	@Override
+	public String toString() {
+		return "Reg No: " + regNo + " | Make: " + make + " | Model: " + model + " | Weight: " + weight;
+	}
 
 	@Override
 	public boolean isAvailable(LocalDateTime startDate, LocalDateTime endDate) {
