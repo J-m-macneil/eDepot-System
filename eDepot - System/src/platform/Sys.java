@@ -42,10 +42,21 @@ public class Sys {
 	public Sys() {
 		deSerialize();
 
-		depots.add(new Depot("Lpool"));
-		depots.add(new Depot("Mchester"));
-		depots.add(new Depot("Leeds"));
-		
+		//Adding all depots.
+//		depots.add(new Depot("Lpool"));
+//		depots.add(new Depot("Mchester"));
+//		depots.add(new Depot("Leeds"));
+//			
+//		Driver glyn = new Manager("GlynofLpool", "GH1234");
+//		depots.get(0).makeDriver(glyn);
+//		
+//		Driver sorren = new Manager("SorrenofMchester", "SH5678");
+//		depots.get(1).makeDriver(sorren);
+//		
+//		Driver joe = new Manager("JoeofLeeds", "J1234");
+//		depots.get(2).makeDriver(joe);
+//		
+		//Adding all drivers.
 		Driver ben = new Driver("Ben", "1234");
 		depots.get(0).makeDriver(ben);
 		
@@ -55,6 +66,27 @@ public class Sys {
 		Driver will = new Driver("Will", "1234");
 		depots.get(2).makeDriver(will);
 		
+//		//Adding all vehicles.
+		Vehicle astra = new Truck("1234", "astra", "1", 100, 200);
+		depots.get(0).makeVehicle(astra);
+		
+		Vehicle kia = new Truck("2345", "kia", "2", 100, 200);
+		depots.get(1).makeVehicle(kia);
+		
+		Vehicle ford = new Tanker("3456", "ford", "2", 100, 200, "oil");
+		depots.get(2).makeVehicle(ford);
+		
+//		vehicles.add
+//		vehicles.add(new Tanker("2345", "ford", "2", 100, 200, "oil"));
+//		vehicles.add(new Tanker("3456", "kia", "3", 100, 200, "petrol")); 
+//		
+//		Driver alex = new Driver("Alex", "1234");
+//		depots.get(1).makeDriver(alex);
+//		
+//		Driver will = new Driver("Will", "1234");
+//		depots.get(2).makeDriver(will);
+		
+
 
 	}
 
@@ -104,7 +136,7 @@ public class Sys {
 						driverMenu();
 					}
 					if (Manager.class.isInstance(driver)) {
-						if (username.contains(location)) {
+//						if (username.contains(location)) {
 							Manager.class.cast(driver);
 							currentUser = username;
 							System.out.println("\nCorrect! Logged on as manager: " + currentUser);
@@ -117,7 +149,7 @@ public class Sys {
 					}
 
 				}
-			}
+			
 		}
 		System.out.println("\nInvalid location. Please try again!");
 		logOn();

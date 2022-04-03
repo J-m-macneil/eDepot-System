@@ -38,8 +38,6 @@ public class Depot implements Serializable {
 //		drivers.add(new Manager("SorrenofMchester", "SH5678"));
 //		drivers.add(new Manager("JoeofLeeds", "J1234"));
 			
-		
-		
 //			Driver ben = new Driver("Ben", "1234");
 //			depots.get(0).makeSchedule(ben);
 //			
@@ -120,6 +118,11 @@ public class Depot implements Serializable {
 	public void makeDriver(Driver driver) {
 		// ToDo : Validate ?
 		drivers.add(driver);
+	}
+	
+	public void makeVehicle(Vehicle vehicle) {
+		// ToDo : Validate ?
+		vehicles.add(vehicle);
 	}
 	
 	public Driver getDriverByName(String name) {
