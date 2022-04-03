@@ -42,18 +42,18 @@ public class Sys {
 	public Sys() {
 		deSerialize();
 
-//		depots.add(new Depot("Lpool"));
-//		depots.add(new Depot("Mchester"));
-//		depots.add(new Depot("Leeds"));
-//		
-//		Driver ben = new Driver("Ben", "1234");
-//		depots.get(0).makeSchedule(ben);
-//		
-//		Driver alex = new Driver("Alex", "1234");
-//		depots.get(1).makeSchedule(alex);
-//		
-//		Driver will = new Driver("Will", "1234");
-//		depots.get(2).makeSchedule(will);
+		depots.add(new Depot("Lpool"));
+		depots.add(new Depot("Mchester"));
+		depots.add(new Depot("Leeds"));
+		
+		Driver ben = new Driver("Ben", "1234");
+		depots.get(0).makeDriver(ben);
+		
+		Driver alex = new Driver("Alex", "1234");
+		depots.get(1).makeDriver(alex);
+		
+		Driver will = new Driver("Will", "1234");
+		depots.get(2).makeDriver(will);
 		
 
 	}

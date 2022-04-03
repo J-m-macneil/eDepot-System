@@ -37,7 +37,17 @@ public class Depot implements Serializable {
 //		drivers.add(new Manager("GlynofLpool", "GH1234"));
 //		drivers.add(new Manager("SorrenofMchester", "SH5678"));
 //		drivers.add(new Manager("JoeofLeeds", "J1234"));
+			
 		
+		
+//			Driver ben = new Driver("Ben", "1234");
+//			depots.get(0).makeSchedule(ben);
+//			
+//			Driver alex = new Driver("Alex", "1234");
+//			depots.get(1).makeSchedule(alex);
+//			
+//			Driver will = new Driver("Will", "1234");
+//			depots.get(2).makeSchedule(will);
 		
 //		// Adding all drivers to the serialized data.
 //		drivers.add(new Driver("Mark", "MK123"));
@@ -107,7 +117,7 @@ public class Depot implements Serializable {
 //			booking.getPet().makeBooking(booking);
 //		}
 	
-	public void makeSchedule(Driver driver) {
+	public void makeDriver(Driver driver) {
 		// ToDo : Validate ?
 		drivers.add(driver);
 	}
