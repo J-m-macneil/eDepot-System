@@ -68,6 +68,7 @@ public class Sys {
 		 * depots.get(2).makeVehicle(ford); Vehicle nissan = new Tanker("6", "nissan",
 		 * "6", 100, 200, "water"); depots.get(2).makeVehicle(nissan);
 		 */
+		
 		// for (Depot d : depots) {
 		// d.startCheck();
 		// }
