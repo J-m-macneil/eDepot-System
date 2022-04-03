@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/** 
+ * System class Depot adds and verifies information for platform classes Entry and Sys
+ * @author Matt Bailey, Joe Macneil, Liam Clarke
+ * @version 1.0
+ */
 
 public class Depot implements Serializable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 
@@ -29,6 +32,16 @@ public class Depot implements Serializable {
 		
 		this.location = depot;
 	}
+	
+	/**
+	 * Validates drivers credentials that wish to login to the eDepot System.
+	 * 
+	 * @param username of reference type String, to compare username
+	 * with stored list of drivers.
+	 * @param password of reference type String, to compare password
+	 * with stored list of drivers.
+	 * @return  Validate the parameters against the object data.
+	 */
 
 	public boolean logOn(String username, String password) {
 		// Moving through all driver details
