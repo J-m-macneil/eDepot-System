@@ -180,7 +180,7 @@ public class Sys {
 			default: {
 				// Set a default message, to allow the user to know when an incorrect value has
 				// been entered.
-				System.out.println("Im sorry you have entered an incorrect value, please try again:");
+				System.err.println("You have entered an incorrect value. Try again!");
 			}
 			}
 			// Declare a while loop, to loop through the menu until the program is quit.
@@ -259,7 +259,7 @@ public class Sys {
 			default: {
 				// Set a default message, to allow the user to know when an incorrect value has
 				// been entered.
-				System.out.println("Im sorry you have entered an incorrect value, please try again:");
+				System.err.println("You have entered an incorrect value. Try again!");
 			}
 			}
 
@@ -310,7 +310,7 @@ public class Sys {
 
 			depot.addVehicle(new Tanker(regNo, make, model, weight, liquidCapacity, liquidType));
 		} else
-			System.out.println("Incorrect Vehicle type!");
+			System.err.println("Incorrect Vehicle type!");
 	}
 
 	private void deSerialize() {
@@ -469,7 +469,7 @@ public class Sys {
 			if (vehicle != null) {
 				System.out.print("Vehicle selected.");
 			} else {
-				System.err.print("Invalid registration number or no vehciles in depo\nPlease try again...");
+				System.err.print("Invalid registration number or no vehciles in depot\nPlease try again...");
 				continue;
 			}
 
@@ -497,7 +497,7 @@ public class Sys {
 					input.nextLine();
 					break;
 				} else {
-					System.out.println("Invalid location.\nPlease try again...");
+					System.err.println("Invalid location.\nPlease try again...");
 					continue;
 				}
 
