@@ -414,7 +414,7 @@ public class Sys {
 	private void createSchedule() throws Exception {
 		while (true) {
 			System.out.println("\n-- CREATE SCHEDULE --\n");
-			displayDrivers();
+			
 			
 			System.out.print("\nClients name: ");
 			String client = input.next();
@@ -425,6 +425,8 @@ public class Sys {
 			try {
 				startDate = createLocalDateTime("start");
 				endDate = createLocalDateTime("end");
+				
+				displayDrivers();
 				System.out.print("\nDrivers name: ");
 				Driver driver = depot.getDriverByName(input.next());
 
