@@ -76,17 +76,7 @@ public class Sys {
 		Vehicle ford = new Tanker("3456", "ford", "2", 100, 200, "oil");
 		depots.get(2).makeVehicle(ford);
 		
-//		vehicles.add
-//		vehicles.add(new Tanker("2345", "ford", "2", 100, 200, "oil"));
-//		vehicles.add(new Tanker("3456", "kia", "3", 100, 200, "petrol")); 
-//		
-//		Driver alex = new Driver("Alex", "1234");
-//		depots.get(1).makeDriver(alex);
-//		
-//		Driver will = new Driver("Will", "1234");
-//		depots.get(2).makeDriver(will);
-		
-
+	
 
 	}
 
