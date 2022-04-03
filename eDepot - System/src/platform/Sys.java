@@ -34,7 +34,7 @@ public class Sys {
 	private Driver driver;
 	private String currentUser;
 	private String currentLocation;
-	//private String newLocation;
+	// private String newLocation;
 
 	private static final Scanner input = new Scanner(System.in);
 
@@ -305,7 +305,7 @@ public class Sys {
 	private void addVehicle() {
 
 		System.out.print("Vehicle registration number: ");
-		
+
 		String regNo = input.next().toLowerCase();
 
 		System.out.print("Vehicle make: ");
@@ -383,7 +383,8 @@ public class Sys {
 			if (Truck.class.isInstance(v)) {
 				// Would like to call <TruckObject>.toString but cannot create truck object
 				System.out.println(v.toTruckString());
-			} else System.out.println(v.toTankerString());
+			} else
+				System.out.println(v.toTankerString());
 	}
 
 	private void displayDrivers() {
@@ -426,21 +427,21 @@ public class Sys {
 				if (startDate.equals(LocalDateTime.now()) || startDate.isAfter(LocalDateTime.now().minusHours(49))) {
 					if (endDate.isBefore(LocalDateTime.now().plusHours(73)) || endDate.isBefore(startDate)) {
 
-						 if (depot.getDrivers().isEmpty()) {
-							 System.out.println("Im sorry, there are no current drivers at this depot.");
-							 break;
-						 } 
+						if (depot.getDrivers().isEmpty()) {
+							System.out.println("Im sorry, there are no current drivers at this depot.");
+							break;
+						}
 						displayDrivers();
 						System.out.print("\nDrivers name: ");
 						Driver driver = depot.getDriverByName(input.next());
-						
-						 if (depot.getVehicles().isEmpty()) {
-							 System.out.println("Im sorry, there are no current vehicles at this depot.");
-							 break;
-						 } 
+
+						if (depot.getVehicles().isEmpty()) {
+							System.out.println("Im sorry, there are no current vehicles at this depot.");
+							break;
+						}
 						displayVehicles();
 						System.out.print("\nVehicle Registration number: ");
-						
+
 						Vehicle vehicle = depot.getVehicleByRegNo(input.next());
 						depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
 						input.nextLine(); // To ensure Manager's main menu is accepting null input
@@ -470,14 +471,14 @@ public class Sys {
 		while (true) {
 
 			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
-			
-			 if (depot.getVehicles().isEmpty()) {
-				 System.out.println("Im sorry, there are no current vehicles at this depot.");
-				 break;
-			 } 
 
-			 displayVehicles(); 
-			 
+			if (depot.getVehicles().isEmpty()) {
+				System.out.println("Im sorry, there are no current vehicles at this depot.");
+				break;
+			}
+
+			displayVehicles();
+
 			System.out.print("\nPlease enter the vehicle registration number: ");
 			Vehicle vehicle = depot.getVehicleByRegNo(input.nextLine());
 
@@ -505,12 +506,13 @@ public class Sys {
 				if (depot != null) {
 					if ((!currentLocation.equals(newLocation))) {
 						newDepot.addVehicle(vehicle);
-						//input.nextLine();
+						// input.nextLine();
 						System.out.println(
 								"\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation() + "!");
 						depot.removeVehicle(vehicle);
 						break;
-					} else System.err.println("Depot locations the same!");
+					} else
+						System.err.println("Depot locations the same!");
 				} else {
 					System.out.println("Invalid location.\nPlease try again...");
 					continue;
