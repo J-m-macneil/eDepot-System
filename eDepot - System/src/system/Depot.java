@@ -37,15 +37,6 @@ public class Depot implements Serializable {
 //		drivers.add(new Manager("GlynofLpool", "GH1234"));
 //		drivers.add(new Manager("SorrenofMchester", "SH5678"));
 //		drivers.add(new Manager("JoeofLeeds", "J1234"));
-			
-//			Driver ben = new Driver("Ben", "1234");
-//			depots.get(0).makeSchedule(ben);
-//			
-//			Driver alex = new Driver("Alex", "1234");
-//			depots.get(1).makeSchedule(alex);
-//			
-//			Driver will = new Driver("Will", "1234");
-//			depots.get(2).makeSchedule(will);
 		
 //		// Adding all drivers to the serialized data.
 //		drivers.add(new Driver("Mark", "MK123"));
@@ -62,19 +53,6 @@ public class Depot implements Serializable {
 		this.location = depot;
 	}
 
-	private void deSerialize() {
-		ObjectInputStream ois;
-
-		try {
-			ois = new ObjectInputStream(new FileInputStream("./depots.ser"));
-
-			drivers = (List<Driver>) ois.readObject();
-			ois.close();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	} 
-
 	public boolean logOn(String username, String password) {
 		// Moving through all driver details
 		for (int i = 0; i < drivers.size(); i++)
@@ -83,14 +61,6 @@ public class Depot implements Serializable {
 			}
 		return false;
 	}
-
-/*	public boolean logOnAsManager(String username, String password) {
-		for (int i = 0; i < managers.size(); i++)
-			if (managers.get(i).username.equals(username) && managers.get(i).password.equals(password)) {
-				return true;
-			}
-		return false;
-	} */
 	
 	public void setLocation(String location) {
 		this.location = location;
@@ -105,15 +75,6 @@ public class Depot implements Serializable {
 		workSchedule.getDriver().addSchedule(workSchedule);
 
 	}
-	
-//	// NOTE : Safety Necessary ?
-//		public synchronized void makeBooking(Booking booking) {
-//			// ToDo : Validate ?
-//			bookings.add(booking);
-//
-//			// ToDo Two-Way Linking ?
-//			booking.getPet().makeBooking(booking);
-//		}
 	
 	public void makeDriver(Driver driver) {
 		// ToDo : Validate ?

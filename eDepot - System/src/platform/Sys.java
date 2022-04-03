@@ -42,7 +42,7 @@ public class Sys {
 	public Sys() {
 		deSerialize();
 
-		//Adding all depots.
+//		//Adding all depots.
 //		depots.add(new Depot("Lpool"));
 //		depots.add(new Depot("Mchester"));
 //		depots.add(new Depot("Leeds"));
@@ -55,29 +55,27 @@ public class Sys {
 //		
 //		Driver joe = new Manager("JoeofLeeds", "J1234");
 //		depots.get(2).makeDriver(joe);
+////		
+//		//Adding all drivers.
+//		Driver ben = new Driver("Ben", "1234");
+//		depots.get(0).makeDriver(ben);
 //		
-		//Adding all drivers.
-		Driver ben = new Driver("Ben", "1234");
-		depots.get(0).makeDriver(ben);
+//		Driver alex = new Driver("Alex", "1234");
+//		depots.get(1).makeDriver(alex);
+//		
+//		Driver will = new Driver("Will", "1234");
+//		depots.get(2).makeDriver(will);
+//		
+////		//Adding all vehicles.
+//		Vehicle astra = new Truck("1234", "astra", "1", 100, 200);
+//		depots.get(0).makeVehicle(astra);
+//		
+//		Vehicle kia = new Truck("2345", "kia", "2", 100, 200);
+//		depots.get(1).makeVehicle(kia);
+//		
+//		Vehicle ford = new Tanker("3456", "ford", "2", 100, 200, "oil");
+//		depots.get(2).makeVehicle(ford);
 		
-		Driver alex = new Driver("Alex", "1234");
-		depots.get(1).makeDriver(alex);
-		
-		Driver will = new Driver("Will", "1234");
-		depots.get(2).makeDriver(will);
-		
-//		//Adding all vehicles.
-		Vehicle astra = new Truck("1234", "astra", "1", 100, 200);
-		depots.get(0).makeVehicle(astra);
-		
-		Vehicle kia = new Truck("2345", "kia", "2", 100, 200);
-		depots.get(1).makeVehicle(kia);
-		
-		Vehicle ford = new Tanker("3456", "ford", "2", 100, 200, "oil");
-		depots.get(2).makeVehicle(ford);
-		
-	
-
 	}
 
 	public void entryMenu() throws Exception {
@@ -278,19 +276,8 @@ public class Sys {
 		String password = input.nextLine();
 
 		depot.addDriver(new Driver(username, password));
-
-		System.out.println("\nAccount created.\nDriver: " + username + "\nPassword: " + password
-				+ "\n\nWhich depot will they be location?\n");
-		displayDepots();
-		String driverLocation = input.nextLine();
-
-		if (depot != null) {
-			depot.setLocation(driverLocation);
-			
-
 		}
 
-	}
 
 	private void addVehicle() {
 
