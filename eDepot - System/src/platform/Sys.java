@@ -413,7 +413,7 @@ public class Sys {
 
 	private void createSchedule() throws Exception {
 		while (true) {
-			System.out.println("\n-- CREATE SCHEDULE --");
+			System.out.println("\n-- CREATE SCHEDULE --\n");
 			displayDrivers();
 			
 			System.out.print("\nClients name: ");
