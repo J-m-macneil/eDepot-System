@@ -514,7 +514,7 @@ public class Sys {
 
 				if (depot != null) {
 					if ((!currentLocation.equals(newLocation))) {
-						new Thread(new VehicleDelivery(vehicle, depot, newDepot, 20)).start();;
+						new Thread(new VehicleDelivery(vehicle, depot, newDepot, 20)).start();
 						input.nextLine();
 						break;
 					} else
