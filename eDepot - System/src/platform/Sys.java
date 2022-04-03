@@ -34,7 +34,7 @@ public class Sys {
 	private Driver driver;
 	private String currentUser;
 	private String currentLocation;
-	private String newLocation;
+	//private String newLocation;
 
 	private static final Scanner input = new Scanner(System.in);
 
@@ -400,11 +400,11 @@ public class Sys {
 	}
 
 	private LocalDateTime createLocalDateTime(String str) {
-		System.out.print("\nSpecify the " + str + " date [i.e. 1986-04-13]:  ");
-		String tempDate = input.next();
+		System.out.print("\nSpecify the " + str + " date [i.e. 1986-04-13]: ");
+		String tempDate = input.nextLine();
 
 		System.out.print("Specify the time [i.e. 12:30]: ");
-		String tempTime = input.next();
+		String tempTime = input.nextLine();
 
 		// LocalDateTime user input needs to be separate hence the concatenation
 		String tempDateTime = tempDate + " " + tempTime;
@@ -465,15 +465,16 @@ public class Sys {
 				 displayVehicles();
 			 } else {
 				 System.out.println("Im sorry, there are no current vehicles at this depot.");
+				 break;
 			 } 
 			 
 			System.out.print("\nPlease enter the vehicle registration number: ");
-			Vehicle vehicle = depot.getVehicleByRegNo(input.next());
+			Vehicle vehicle = depot.getVehicleByRegNo(input.nextLine());
 
 			if (vehicle != null) {
 				System.out.print("Vehicle selected.");
 			} else {
-				System.err.print("Invalid registration number.\nPlease try again...");
+				System.err.print("Invalid registration number or no vehciles in depo\nPlease try again...");
 				continue;
 			}
 
@@ -481,28 +482,28 @@ public class Sys {
 				moveDate = createLocalDateTime("move");
 				if (moveDate != null) {
 					System.out.print("\nMove date specified.\n");
+				} else {
+					System.out.println("Incorrect Date format!");
+					break;
 				}
 				displayDepots();
 				System.out.print("\nPlease specify a depot: ");
 
-				newLocation = input.next();
+				String newLocation = input.next();
 				Depot newDepot = getDepotByLocation(newLocation);
 
 				if (depot != null) {
 					if ((!currentLocation.equals(newLocation))) {
 						newDepot.addVehicle(vehicle);
-						input.nextLine();
+						//input.nextLine();
 						System.out.println(
 								"\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation() + "!");
 						depot.removeVehicle(vehicle);
 						break;
-					}
-
-					else {
-						System.out.println("Invalid location.\nPlease try again...");
-						continue;
-					}
-
+					} else System.err.println("Depot locations the same!");
+				} else {
+					System.out.println("Invalid location.\nPlease try again...");
+					continue;
 				}
 
 			} catch (Exception e) {
