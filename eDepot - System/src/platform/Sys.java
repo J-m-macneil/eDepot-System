@@ -420,7 +420,7 @@ public class Sys {
 						newDepot.addVehicle(vehicle);
 						input.nextLine();
 						System.out.println(
-						"\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation());
+						"\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation() + "!");
 						// depot.removeVehicle();
 						break;
 					}
