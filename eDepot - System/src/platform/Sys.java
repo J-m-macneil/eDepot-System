@@ -37,7 +37,6 @@ public class Sys {
 	private String newLocation;
 
 	private static final Scanner input = new Scanner(System.in);
-	private StatusCheck StatusCheck;
 
 	public Sys() {
 		deSerialize();
@@ -236,26 +235,28 @@ public class Sys {
 
 	}
 
-private void addDriver() {
-		
+	private void addDriver() {
+
 		System.out.print("Driver's username: ");
 		String username = input.nextLine();
 
 		System.out.print("Driver's password: ");
 		String password = input.nextLine();
-		
+
 		depot.addDriver(new Driver(username, password));
 
-		System.out.println("\nAccount created.\nDriver: " + username + "\nPassword: " + password + "\n\nWhich depot will they be location?\n");
+		System.out.println("\nAccount created.\nDriver: " + username + "\nPassword: " + password
+				+ "\n\nWhich depot will they be location?\n");
 		displayDepots();
 		String driverLocation = input.nextLine();
-		
+
 		if (depot != null) {
 			depot.setLocation(driverLocation);
-	
-		}		
-			
+
+		}
+
 	}
+
 	private void addVehicle() {
 
 		System.out.print("Vehicle registration number: ");
@@ -389,51 +390,65 @@ private void addDriver() {
 
 	private void reassignVehicle() {
 		LocalDateTime moveDate;
-		List<WorkSchedule>schedules = depot.getSchedules();
-		StatusCheck check = null;
-		
-		System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
-		System.out.println("\nPlease enter the vehicle registration number: ");
-		Vehicle vehicle = depot.getVehicleByRegNo(input.next());
+		List<WorkSchedule> schedules = depot.getSchedules();
 
-		if (vehicle != null) {
-			System.out.println("Vehicle selected.");
-		} else {
-			System.err.println("Invalid registration number.\nPlease try again...");
-			return;
-		}
+		while (true) {
+			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
+			System.out.print("\nPlease enter the vehicle registration number: ");
+			Vehicle vehicle = depot.getVehicleByRegNo(input.next());
 
-		try {
-			moveDate = createLocalDateTime("move");
-			if (moveDate != null) {
-				System.out.println("\nMove date specified.");
+			if (vehicle != null) {
+				System.out.print("Vehicle selected.");
+			} else {
+				System.err.print("Invalid registration number.\nPlease try again...");
+				continue;
 			}
-		} catch (Exception e) {
-			System.err.println("Date/time entry is out of bounds. Try again!");
-			return; // Manager is not kicked out to their main menu if they make a mistake
-		}
-		
-		for(WorkSchedule s : schedules) {
-			if(check.equals(Status.ACTIVE)) {
-				
+
+			try {
+				moveDate = createLocalDateTime("move");
+				if (moveDate != null) {
+					System.out.print("\nMove date specified.\n");
+				}
+				displayDepots();
+				System.out.print("\nPlease specify a depot: ");
+
+				newLocation = input.next();
+				Depot newDepot = getDepotByLocation(newLocation);
+
+				if (depot != null) {
+					if ((!currentLocation.equals(newLocation))) {
+						newDepot.addVehicle(vehicle);
+						input.nextLine();
+						System.out.println(
+						"\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation());
+						// depot.removeVehicle();
+						break;
+					}
+
+					else {
+						System.out.println("Invalid location.\nPlease try again...");
+						continue;
+					}
+
+				}
+
+			} catch (Exception e) {
+				System.err.print("Date/time entry is out of bounds. Try again!");
+				continue; // Manager is not kicked out to their main menu if they make a mistake
 			}
-		}
 
-		System.out.println("\nPlease specify a depot:\n");
-		displayDepots();
-
-		newLocation = input.next();
-		Depot newDepot = getDepotByLocation(newLocation);
-
-		if (depot != null) {
-			if (currentLocation.equals(newLocation)) {
-				System.out.println("Invalid location.\nPlease try again...");
-				return;
+			for (WorkSchedule s : schedules) {
+				depot.startCheck();
+				if (s.getStatus().equals(Status.PENDING)) {
+					if (s.getStatus().equals(Status.ACTIVE)) {
+						System.err.println("Vehicle busy! Try again!");
+						continue;
+					}
+				}
 			}
-		} else {
-			System.out.println("\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation());
-			// depot.removeVechicle();
-			// newDept.AddBechile();
+
 		}
+
 	}
+
 }

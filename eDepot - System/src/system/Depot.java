@@ -125,4 +125,10 @@ public class Depot implements Serializable {
 	public List<WorkSchedule> getSchedules() {
 		return schedules;
 	}
+	
+	public void startCheck() {
+		// ToDo : Safety ?
+		new Thread(new StatusCheck(schedules, 30)).start();
+	}
+
 }
