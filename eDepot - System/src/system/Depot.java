@@ -1,9 +1,5 @@
 package system;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,25 +27,7 @@ public class Depot implements Serializable {
 	final static List<Tanker> tankers = new ArrayList<Tanker>();
 		
 		public Depot(String depot) {
-		//deSerialize();
 		
-	// Adding all mangers to the serialized data.
-//		drivers.add(new Manager("GlynofLpool", "GH1234"));
-//		drivers.add(new Manager("SorrenofMchester", "SH5678"));
-//		drivers.add(new Manager("JoeofLeeds", "J1234"));
-		
-//		// Adding all drivers to the serialized data.
-//		drivers.add(new Driver("Mark", "MK123"));
-//		drivers.add(new Driver("Kirsty", "KY456"));
-//		drivers.add(new Driver("Andy", "AY789"));
-//
-//		// Adding all vehicles to the serialized data - only need one of each type to
-//		// test.
-//		vehicles.add(new Truck("1234", "astra", "1", 100, 200));
-//		vehicles.add(new Tanker("2345", "ford", "2", 100, 200, "oil"));
-//		vehicles.add(new Tanker("3456", "kia", "3", 100, 200, "petrol")); 
-		
-
 		this.location = depot;
 	}
 
@@ -107,6 +85,10 @@ public class Depot implements Serializable {
 	public List<Vehicle> getVehicles() {
 		return vehicles;
 	}
+	
+	public List<Driver> getDrivers() {
+		return drivers;
+	}
 
 	public void addDriver(Driver driver) {
 		drivers.add(driver);
@@ -115,6 +97,10 @@ public class Depot implements Serializable {
 	public void addVehicle(Vehicle vehicle) {
 		vehicles.add(vehicle);
 	}
+	
+	public void removeVehicle(Vehicle vehicle) {
+		vehicles.remove(vehicle);
+	}
 
 	public List<WorkSchedule> getSchedules() {
 		return schedules;
@@ -122,7 +108,7 @@ public class Depot implements Serializable {
 	
 	public void startCheck() {
 		// ToDo : Safety ?
-		new Thread(new StatusCheck(schedules, 30)).start();
+		new Thread(new StatusCheck(schedules, 10)).start();
 	}
 
 }
