@@ -20,12 +20,13 @@ public class WorkSchedule implements Serializable {
 	private Vehicle vehicle;
 	private Status status = Status.PENDING;
 
-	public WorkSchedule(String client, LocalDateTime startDate, LocalDateTime endDate, Driver driver, Vehicle vehicle) {
+	public WorkSchedule(String client, LocalDateTime startDate, LocalDateTime endDate, Driver driver, Vehicle vehicle, Status status) {
 
 		// Declare a this.variable to allow the current object to be called.
 		this.client = client;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.status = status;
 
 		setVehicle(vehicle);
 		setDriver(driver);
@@ -62,7 +63,8 @@ public class WorkSchedule implements Serializable {
 
 	// Declare a 'toStringheader' to print and format a message alongside the
 	// variable types when executed.
-	public String toStringSchedule() {
+	@Override
+	public String toString() {
 		return "\nClient Name: " + client + "    " + "Start Date: " + startDate + "    " + "End Date: " + endDate + " "
 				+ " Driver: " + driver.username + " " + "Vehicle: " + vehicle.regNo;
 	}
