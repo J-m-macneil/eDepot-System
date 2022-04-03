@@ -108,7 +108,7 @@ public class Depot implements Serializable {
 	
 	public void startCheck() {
 		// ToDo : Safety ?
-		new Thread(new StatusCheck(schedules, 30)).start();
+		new Thread(new StatusCheck(schedules, 10)).start();
 	}
 
 }

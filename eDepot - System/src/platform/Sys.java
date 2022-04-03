@@ -30,6 +30,7 @@ public class Sys {
 
 	private List<Depot> depots = new ArrayList<Depot>();
 	private Depot depot;
+	private Depot newDepot;
 	private Driver driver;
 	private String currentUser;
 	private String currentLocation;
@@ -38,42 +39,52 @@ public class Sys {
 	private static final Scanner input = new Scanner(System.in);
 
 	public Sys() {
-		//deSerialize();
+		deSerialize();
 
-		// Adding all depots.
-		depots.add(new Depot("Lpool"));
-		depots.add(new Depot("Mchester"));
-		depots.add(new Depot("Leeds"));
-			
-		Driver glyn = new Manager("GlynofLpool", "GH1234");
-		depots.get(0).makeDriver(glyn);
-		
-		Driver sorren = new Manager("SorrenofMchester", "SH5678");
-		depots.get(1).makeDriver(sorren);
-		
-		Driver joe = new Manager("JoeofLeeds", "J1234");
-		depots.get(2).makeDriver(joe);
-		
-		//Adding all drivers.
-		Driver ben = new Driver("Ben", "1234");
-		depots.get(0).makeDriver(ben);
-		
-		Driver alex = new Driver("Alex", "1234");
-		depots.get(1).makeDriver(alex);
-		
-		Driver will = new Driver("Will", "1234");
-		depots.get(2).makeDriver(will);
-		
-		//Adding all vehicles.
-		Vehicle astra = new Truck("1234", "astra", "1", 100, 200);
-		depots.get(0).makeVehicle(astra);
-		
-		Vehicle kia = new Truck("2345", "kia", "2", 100, 200);
-		depots.get(1).makeVehicle(kia);
-		
-		Vehicle ford = new Tanker("3456", "ford", "2", 100, 200, "oil");
-		depots.get(2).makeVehicle(ford);
+//		// Adding all depots.
+//		depots.add(new Depot("Lpool"));
+//		depots.add(new Depot("Mchester"));
+//		depots.add(new Depot("Leeds"));
+//
+//		Driver glyn = new Manager("GlynofLpool", "GH1234");
+//		depots.get(0).makeDriver(glyn);
+//
+//		Driver sorren = new Manager("SorrenofMchester", "SH5678");
+//		depots.get(1).makeDriver(sorren);
+//
+//		Driver joe = new Manager("JoeofLeeds", "J1234");
+//		depots.get(2).makeDriver(joe);
+//
+//		// Adding all drivers.
+//		Driver ben = new Driver("Ben", "1234");
+//		depots.get(0).makeDriver(ben);
+//
+//		Driver alex = new Driver("Alex", "1234");
+//		depots.get(1).makeDriver(alex);
+//
+//		Driver will = new Driver("Will", "1234");
+//		depots.get(2).makeDriver(will);
+//
+//		// Adding all vehicles.
+//		Vehicle astra = new Truck("1", "astra", "1", 100, 200);
+//		depots.get(0).makeVehicle(astra);
+//		Vehicle mini = new Truck("2", "astra", "2", 100, 200);
+//		depots.get(0).makeVehicle(mini);
+//
+//		Vehicle kia = new Truck("3", "kia", "3", 100, 200);
+//		depots.get(1).makeVehicle(kia);
+//		Vehicle rangeRover = new Truck("4", "kia", "4", 100, 200);
+//		depots.get(1).makeVehicle(rangeRover);
+//
+//		Vehicle ford = new Tanker("5", "ford", "5", 100, 200, "oil");
+//		depots.get(2).makeVehicle(ford);
+//		Vehicle nissian = new Tanker("6", "nissian", "6", 100, 200, "water");
+//		depots.get(2).makeVehicle(nissian);
 
+		
+		for (Depot d : depots) {
+			d.startCheck();
+		}
 	}
 
 	public void entryMenu() throws Exception {
@@ -97,6 +108,12 @@ public class Sys {
 	}
 
 	private void logOn() throws Exception {
+		
+		depot = depots.get(0);
+		depot = depots.get(1);
+		depot = depots.get(2);
+
+		
 		System.out.println("\nPlease select one of the following depot locations:\n");
 		displayDepots();
 
@@ -203,77 +220,83 @@ public class Sys {
 		// Set a default value to choice, to allow user input.
 		String choice = "";
 		do {
+
+			
+				
+			
 			// Print a repeating main menu, inside the do while loop.
 			System.out.println("\n-- " + currentUser + "'s MAIN MENU --");
-			System.out.println("1 - View Work Schedule");
-			System.out.println("2 - Add Driver");
-			System.out.println("3 - Add Vehicle");
-			System.out.println("4 - Create Work Schedule");
-			System.out.println("5 - Re-assign Vehicle");
-			System.out.println("6 - View Depot Vehicles");
-			System.out.println("7 - View drivers");
-			System.out.println("L - Log Off");
-			System.out.print("Pick : ");
+				
+				System.out.println("1 - View Work Schedule");
+				System.out.println("2 - Add Driver");
+				System.out.println("3 - Add Vehicle");
+				System.out.println("4 - Create Work Schedule");
+				System.out.println("5 - Re-assign Vehicle");
+				System.out.println("6 - View Depot Vehicles");
+				System.out.println("7 - View drivers");
+				System.out.println("L - Log Off");
+				System.out.print("Pick : ");
 
-			// Allow the user to specify which option on they would like to select.
-			// Allow the upper case value 'Q' to be entered when exiting the program.
-			choice = input.nextLine();
+				// Allow the user to specify which option on they would like to select.
+				// Allow the upper case value 'Q' to be entered when exiting the program.
+				choice = input.nextLine();
 
-			// Declare a switch statement, to select one of the menu code blocks to be
-			// executed.
-			switch (choice) {
-			case "1": {
-				// displaySchedule() method executed, as a Manager is a Driver
-				displaySchedule(currentUser);
-				break;
-			}
-			case "2": {
-				// addDriver() method executed, for Managers to add new Drivers to their depot
-				addDriver();
-				break;
-			}
-			case "3": {
-				// addVehicle() method executed, for Managers to add new Vehicles to their depot
-				addVehicle();
-				break;
-			}
-			case "4": {
-				// createSchedule() method executed, for Managers to make schedules for
-				// themselves
-				// or other Drivers.
-				createSchedule();
-				break;
-			}
-			case "5": {
-				// reassignVehicle() method executed, for Managers to move a vehicle to another
-				// Depot.
-				reassignVehicle();
-				break;
-			}
-			case "6": {
-				displayVehicles();
-				break;
-			}
-			case "7": {
-				displayDrivers();
-				break;
-			}
-			case "L": {
-				System.out.println("\n");
-				entryMenu();
-				break;
-			}
-			// Set a default value, for when errors occur in the console application.
-			default: {
-				// Set a default message, to allow the user to know when an incorrect value has
-				// been entered.
-				System.out.println("Im sorry you have entered an incorrect value, please try again:");
-			}
-			}
+				// Declare a switch statement, to select one of the menu code blocks to be
+				// executed.
+				switch (choice) {
+				case "1": {
+					// displaySchedule() method executed, as a Manager is a Driver
+					displaySchedule(currentUser);
+					break;
+				}
+				case "2": {
+					// addDriver() method executed, for Managers to add new Drivers to their depot
+					addDriver();
+					break;
+				}
+				case "3": {
+					// addVehicle() method executed, for Managers to add new Vehicles to their depot
+					addVehicle();
+					break;
+				}
+				case "4": {
+					// createSchedule() method executed, for Managers to make schedules for
+					// themselves
+					// or other Drivers.
+					createSchedule();
+					break;
+				}
+				case "5": {
+					// reassignVehicle() method executed, for Managers to move a vehicle to another
+					// Depot.
+					reassignVehicle();
+					break;
+				}
+				case "6": {
+					displayVehicles();
+					break;
+				}
+				case "7": {
+					displayDrivers();
+					break;
+				}
+				case "L": {
+					System.out.println("\n");
+					entryMenu();
+					break;
+				}
+				// Set a default value, for when errors occur in the console application.
+				default: {
+					// Set a default message, to allow the user to know when an incorrect value has
+					// been entered.
+					System.out.println("Im sorry you have entered an incorrect value, please try again:");
+				}
+				}
+			
 			// Declare a while loop, to loop through the menu until the program is quit.
 		} while (!choice.toUpperCase().equals("L"));
+}
 
-	}
 
 	private void addDriver() {
 
@@ -289,6 +312,7 @@ public class Sys {
 	private void addVehicle() {
 
 		System.out.print("Vehicle registration number: ");
+		displayVehicles();
 		String regNo = input.next().toLowerCase();
 
 		System.out.print("Vehicle make: ");
@@ -306,9 +330,9 @@ public class Sys {
 
 			System.out.print("Vehicle cargo capacity: ");
 			int cargoCapacity = input.nextInt();
-			
+
 			depot.addVehicle(new Truck(regNo, make, model, weight, cargoCapacity));
-		} else if(vehicleType.equals("tanker")) {
+		} else if (vehicleType.equals("tanker")) {
 			System.out.print("Liquid Capacity: ");
 			int liquidCapacity = input.nextInt();
 
@@ -316,7 +340,8 @@ public class Sys {
 			String liquidType = input.next().toLowerCase();
 
 			depot.addVehicle(new Tanker(regNo, make, model, weight, liquidCapacity, liquidType));
-		} else System.out.println("Incorrect Vehicle type!");
+		} else
+			System.out.println("Incorrect Vehicle type!");
 	}
 
 	private void deSerialize() {
@@ -356,13 +381,13 @@ public class Sys {
 		}
 		return;
 	}
-	
+
 	private void displayVehicles() {
 		List<Vehicle> vehicles = depot.getVehicles();
 		for (Vehicle v : vehicles)
 			System.out.println(v.toString());
 	}
-	
+
 	private void displayDrivers() {
 		List<Driver> drivers = depot.getDrivers();
 		for (Driver d : drivers)
@@ -389,8 +414,9 @@ public class Sys {
 	private void createSchedule() throws Exception {
 		while (true) {
 			System.out.println("\n-- CREATE SCHEDULE --");
-
-			System.out.print("Clients name: ");
+			displayDrivers();
+			
+			System.out.print("\nClients name: ");
 			String client = input.next();
 
 			LocalDateTime startDate;
@@ -403,6 +429,7 @@ public class Sys {
 				Driver driver = depot.getDriverByName(input.next());
 
 				System.out.print("\nVehicle Registration number: ");
+				displayVehicles();
 				Vehicle vehicle = depot.getVehicleByRegNo(input.next());
 				depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
 				input.nextLine(); // To ensure Manager's main menu is accepting null input
@@ -418,12 +445,21 @@ public class Sys {
 
 	}
 
-	private void reassignVehicle() {
+	private void reassignVehicle() throws Exception {
+		
 		LocalDateTime moveDate;
 		List<WorkSchedule> schedules = depot.getSchedules();
 
 		while (true) {
+			
 			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
+			
+			 if (depot.getVehicles() != null) {
+				 displayVehicles();
+			 } else {
+				 System.out.println("Im sorry, there are no current vehicles at this depot.");
+			 } 
+			 
 			System.out.print("\nPlease enter the vehicle registration number: ");
 			Vehicle vehicle = depot.getVehicleByRegNo(input.next());
 
@@ -449,7 +485,8 @@ public class Sys {
 					if ((!currentLocation.equals(newLocation))) {
 						newDepot.addVehicle(vehicle);
 						input.nextLine();
-						System.out.println("\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation() + "!");
+						System.out.println(
+								"\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation() + "!");
 						depot.removeVehicle(vehicle);
 						break;
 					}
@@ -477,7 +514,6 @@ public class Sys {
 			}
 
 		}
-
 	}
-
 }
+
