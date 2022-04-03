@@ -81,7 +81,6 @@ public class Sys {
 //		Vehicle nissian = new Tanker("6", "nissian", "6", 100, 200, "water");
 //		depots.get(2).makeVehicle(nissian);
 
-		
 		for (Depot d : depots) {
 			d.startCheck();
 		}
@@ -109,11 +108,9 @@ public class Sys {
 
 	private void logOn() throws Exception {
 		/*
-		depot = depots.get(0);
-		depot = depots.get(1);
-		depot = depots.get(2);
-		*/
-		
+		 * depot = depots.get(0); depot = depots.get(1); depot = depots.get(2);
+		 */
+
 		System.out.println("\nPlease select one of the following depot locations:\n");
 		displayDepots();
 
@@ -221,82 +218,78 @@ public class Sys {
 		String choice = "";
 		do {
 
-			
-				
-			
 			// Print a repeating main menu, inside the do while loop.
 			System.out.println("\n-- " + currentUser + "'s MAIN MENU --");
-				
-				System.out.println("1 - View Work Schedule");
-				System.out.println("2 - Add Driver");
-				System.out.println("3 - Add Vehicle");
-				System.out.println("4 - Create Work Schedule");
-				System.out.println("5 - Re-assign Vehicle");
-				System.out.println("6 - View Depot Vehicles");
-				System.out.println("7 - View drivers");
-				System.out.println("L - Log Off");
-				System.out.print("Pick : ");
 
-				// Allow the user to specify which option on they would like to select.
-				// Allow the upper case value 'Q' to be entered when exiting the program.
-				choice = input.nextLine();
+			System.out.println("1 - View Work Schedule");
+			System.out.println("2 - Add Driver");
+			System.out.println("3 - Add Vehicle");
+			System.out.println("4 - Create Work Schedule");
+			System.out.println("5 - Re-assign Vehicle");
+			System.out.println("6 - View Depot Vehicles");
+			System.out.println("7 - View drivers");
+			System.out.println("L - Log Off");
+			System.out.print("Pick : ");
 
-				// Declare a switch statement, to select one of the menu code blocks to be
-				// executed.
-				switch (choice) {
-				case "1": {
-					// displaySchedule() method executed, as a Manager is a Driver
-					displaySchedule(currentUser);
-					break;
-				}
-				case "2": {
-					// addDriver() method executed, for Managers to add new Drivers to their depot
-					addDriver();
-					break;
-				}
-				case "3": {
-					// addVehicle() method executed, for Managers to add new Vehicles to their depot
-					addVehicle();
-					break;
-				}
-				case "4": {
-					// createSchedule() method executed, for Managers to make schedules for
-					// themselves
-					// or other Drivers.
-					createSchedule();
-					break;
-				}
-				case "5": {
-					// reassignVehicle() method executed, for Managers to move a vehicle to another
-					// Depot.
-					reassignVehicle();
-					break;
-				}
-				case "6": {
-					displayVehicles();
-					break;
-				}
-				case "7": {
-					displayDrivers();
-					break;
-				}
-				case "L": {
-					System.out.println("\n");
-					entryMenu();
-					break;
-				}
-				// Set a default value, for when errors occur in the console application.
-				default: {
-					// Set a default message, to allow the user to know when an incorrect value has
-					// been entered.
-					System.out.println("Im sorry you have entered an incorrect value, please try again:");
-				}
-				}
-			
+			// Allow the user to specify which option on they would like to select.
+			// Allow the upper case value 'Q' to be entered when exiting the program.
+			choice = input.nextLine();
+
+			// Declare a switch statement, to select one of the menu code blocks to be
+			// executed.
+			switch (choice) {
+			case "1": {
+				// displaySchedule() method executed, as a Manager is a Driver
+				displaySchedule(currentUser);
+				break;
+			}
+			case "2": {
+				// addDriver() method executed, for Managers to add new Drivers to their depot
+				addDriver();
+				break;
+			}
+			case "3": {
+				// addVehicle() method executed, for Managers to add new Vehicles to their depot
+				addVehicle();
+				break;
+			}
+			case "4": {
+				// createSchedule() method executed, for Managers to make schedules for
+				// themselves
+				// or other Drivers.
+				createSchedule();
+				break;
+			}
+			case "5": {
+				// reassignVehicle() method executed, for Managers to move a vehicle to another
+				// Depot.
+				reassignVehicle();
+				break;
+			}
+			case "6": {
+				displayVehicles();
+				break;
+			}
+			case "7": {
+				displayDrivers();
+				break;
+			}
+			case "L": {
+				System.out.println("\n");
+				entryMenu();
+				break;
+			}
+			// Set a default value, for when errors occur in the console application.
+			default: {
+				// Set a default message, to allow the user to know when an incorrect value has
+				// been entered.
+				System.out.println("Im sorry you have entered an incorrect value, please try again:");
+			}
+			}
+
 			// Declare a while loop, to loop through the menu until the program is quit.
 		} while (!choice.toUpperCase().equals("L"));
-}
-
+	}
 
 	private void addDriver() {
 
@@ -419,8 +412,7 @@ public class Sys {
 	private void createSchedule() throws Exception {
 		while (true) {
 			System.out.println("\n-- CREATE SCHEDULE --\n");
-			
-			
+
 			System.out.print("\nClients name: ");
 			String client = input.next();
 
@@ -430,18 +422,27 @@ public class Sys {
 			try {
 				startDate = createLocalDateTime("start");
 				endDate = createLocalDateTime("end");
-				
-				displayDrivers();
-				System.out.print("\nDrivers name: ");
-				Driver driver = depot.getDriverByName(input.next());
+				if (startDate.equals(LocalDateTime.now()) || startDate.isAfter(LocalDateTime.now().minusHours(49))) {
+					if (endDate.isBefore(LocalDateTime.now().plusHours(73)) || endDate.isBefore(startDate)) {
 
-				System.out.print("\nVehicle Registration number: ");
-				displayVehicles();
-				Vehicle vehicle = depot.getVehicleByRegNo(input.next());
-				depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
-				input.nextLine(); // To ensure Manager's main menu is accepting null input
-				System.out.println("\nSchedule created successfully!");
-				break; // Manager can go back to their main menu after successful creation
+						displayDrivers();
+						System.out.print("\nDrivers name: ");
+						Driver driver = depot.getDriverByName(input.next());
+						
+						displayVehicles();
+						System.out.print("\nVehicle Registration number: ");
+						
+						Vehicle vehicle = depot.getVehicleByRegNo(input.next());
+						depot.createSchedule(new WorkSchedule(client, startDate, endDate, driver, vehicle));
+						input.nextLine(); // To ensure Manager's main menu is accepting null input
+						System.out.println("\nSchedule created successfully!");
+						break; // Manager can go back to their main menu after successful creation
+
+					}
+
+				} else {
+					System.err.println("\nInvalid start/end dates entered. Try again!");
+				}
 
 			} catch (Exception e) {
 				System.err.println("\nDate/time entry is out of bounds. Try again!");
@@ -453,12 +454,12 @@ public class Sys {
 	}
 
 	private void reassignVehicle() throws Exception {
-		
+
 		LocalDateTime moveDate;
 		List<WorkSchedule> schedules = depot.getSchedules();
 
 		while (true) {
-			
+
 			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
 			
 			 if (depot.getVehicles() != null) {
@@ -467,7 +468,7 @@ public class Sys {
 				 System.out.println("Im sorry, there are no current vehicles at this depot.");
 				 break;
 			 } 
-			 
+
 			System.out.print("\nPlease enter the vehicle registration number: ");
 			Vehicle vehicle = depot.getVehicleByRegNo(input.nextLine());
 
@@ -524,4 +525,3 @@ public class Sys {
 		}
 	}
 }
-
