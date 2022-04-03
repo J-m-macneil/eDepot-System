@@ -430,20 +430,25 @@ public class Sys {
 				if (startDate.isAfter(LocalDateTime.now().plusHours(48))) {
 					if (endDate.isBefore(startDate.plusHours(72)) || endDate.isBefore(startDate)) {
 
-						if (depot.getDrivers().isEmpty()) {
-							input.nextLine();
-							System.out.println("Im sorry, there are no current drivers at this depot.");
-							break;
-						}
+
+
+						 if (depot.getDrivers().isEmpty()) {
+							 input.nextLine();
+							 System.out.println("\n-- DRIVERS --Im sorry, there are no current drivers at this depot.");
+							 break;
+						 } 
+
 						displayDrivers();
 						System.out.print("\nDrivers name: ");
 						Driver driver = depot.getDriverByName(input.next());
 
-						if (depot.getVehicles().isEmpty()) {
-							input.nextLine();
-							System.out.println("Im sorry, there are no current vehicles at this depot.");
-							break;
-						}
+						
+						 if (depot.getVehicles().isEmpty()) {
+							 input.nextLine();
+							 System.out.println("\n-- VEHICLES --\nIm sorry, there are no current vehicles at this depot.");
+							 break;
+						 } 
+
 						displayVehicles();
 						System.out.print("\nVehicle Registration number: ");
 
@@ -517,8 +522,11 @@ public class Sys {
 								"\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation() + "!");
 						depot.removeVehicle(vehicle);
 						break;
-					} else
-						System.err.println("Depot locations the same!");
+
+					} else System.err.println("Depot locations the same!");
+					input.nextLine();
+					break;
+
 				} else {
 					System.out.println("Invalid location.\nPlease try again...");
 					continue;
@@ -528,6 +536,7 @@ public class Sys {
 				System.err.print("Date/time entry is out of bounds. Try again!");
 				continue; // Manager is not kicked out to their main menu if they make a mistake
 			}
+		}
 
 			for (WorkSchedule s : schedules) {
 				depot.startCheck();
@@ -541,4 +550,4 @@ public class Sys {
 
 		}
 	}
-}
+
