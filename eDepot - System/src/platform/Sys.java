@@ -1,26 +1,21 @@
 package platform;
 
+//Used to serialize data
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-// Used to serialize data
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.io.FileOutputStream;
 
 import java.util.ArrayList;
 import java.util.List;
-// import java.time.LocalDate;
 import java.util.Scanner;
-
+// Class imports
 import system.Depot;
 import system.Driver;
 import system.Manager;
 import system.Status;
-import system.StatusCheck;
 import system.Tanker;
 import system.Truck;
 import system.Vehicle;
@@ -31,11 +26,9 @@ public class Sys {
 
 	private List<Depot> depots = new ArrayList<Depot>();
 	private Depot depot;
-	private Depot newDepot;
 	private Driver driver;
 	private String currentUser;
 	private String currentLocation;
-	// private String newLocation;
 
 	private static final Scanner input = new Scanner(System.in);
 
@@ -43,48 +36,41 @@ public class Sys {
 		deSerialize();
 
 		// Adding all depots.
-//		depots.add(new Depot("Lpool"));
-//		depots.add(new Depot("Mchester"));
-//		depots.add(new Depot("Leeds"));
-//
-//		Driver glyn = new Manager("GlynofLpool", "GH1234");
-//		depots.get(0).makeDriver(glyn);
-//
-//		Driver sorren = new Manager("SorrenofMchester", "SH5678");
-//		depots.get(1).makeDriver(sorren);
-//
-//		Driver joe = new Manager("JoeofLeeds", "J1234");
-//		depots.get(2).makeDriver(joe);
-//
-//		// Adding all drivers.
-//		Driver ben = new Driver("Ben", "1234");
-//		depots.get(0).makeDriver(ben);
-//
-//		Driver alex = new Driver("Alex", "1234");
-//		depots.get(1).makeDriver(alex);
-//
-//		Driver will = new Driver("Will", "1234");
-//		depots.get(2).makeDriver(will);
-//
-//		// Adding all vehicles.
-////		Vehicle astra = new Truck("1", "astra", "1", 100, 200);
-////		depots.get(0).makeVehicle(astra);
-////		Vehicle mini = new Truck("2", "astra", "2", 100, 200);
-////		depots.get(0).makeVehicle(mini);
-//
-//		Vehicle kia = new Truck("3", "kia", "3", 100, 200);
-//		depots.get(1).makeVehicle(kia);
-//		Vehicle rangeRover = new Truck("4", "kia", "4", 100, 200);
-//		depots.get(1).makeVehicle(rangeRover);
-//
-//		Vehicle ford = new Tanker("5", "ford", "5", 100, 200, "oil");
-//		depots.get(2).makeVehicle(ford);
-//		Vehicle nissian = new Tanker("6", "nissian", "6", 100, 200, "water");
-//		depots.get(2).makeVehicle(nissian);
-
-		for (Depot d : depots) {
-			d.startCheck();
-		}
+		/*
+		 * depots.add(new Depot("Lpool")); depots.add(new Depot("Mchester"));
+		 * depots.add(new Depot("Leeds"));
+		 * 
+		 * Driver glyn = new Manager("GlynofLpool", "GH1234");
+		 * depots.get(0).makeDriver(glyn);
+		 * 
+		 * Driver sorren = new Manager("SorrenofMchester", "SH5678");
+		 * depots.get(1).makeDriver(sorren);
+		 * 
+		 * Driver joe = new Manager("JoeofLeeds", "J1234");
+		 * depots.get(2).makeDriver(joe);
+		 * 
+		 * // Adding all drivers. Driver ben = new Driver("Ben", "1234");
+		 * depots.get(0).makeDriver(ben);
+		 * 
+		 * Driver alex = new Driver("Alex", "1234"); depots.get(1).makeDriver(alex);
+		 * 
+		 * Driver will = new Driver("Will", "1234"); depots.get(2).makeDriver(will);
+		 * 
+		 * // Adding all vehicles. Vehicle astra = new Truck("1", "astra", "1", 100,
+		 * 200); depots.get(0).makeVehicle(astra); Vehicle mini = new Truck("2",
+		 * "astra", "2", 100, 200); depots.get(0).makeVehicle(mini);
+		 * 
+		 * Vehicle kia = new Truck("3", "kia", "3", 100, 200);
+		 * depots.get(1).makeVehicle(kia); Vehicle rangeRover = new Truck("4", "kia",
+		 * "4", 100, 200); depots.get(1).makeVehicle(rangeRover);
+		 * 
+		 * Vehicle ford = new Tanker("5", "ford", "5", 100, 200, "oil");
+		 * depots.get(2).makeVehicle(ford); Vehicle nissan = new Tanker("6", "nissan",
+		 * "6", 100, 200, "water"); depots.get(2).makeVehicle(nissan);
+		 */
+		// for (Depot d : depots) {
+		// d.startCheck();
+		// }
 	}
 
 	public void entryMenu() throws Exception {
@@ -108,9 +94,6 @@ public class Sys {
 	}
 
 	private void logOn() throws Exception {
-		/*
-		 * depot = depots.get(0); depot = depots.get(1); depot = depots.get(2);
-		 */
 
 		System.out.println("\nPlease select one of the following depot locations:\n");
 		displayDepots();
@@ -118,42 +101,34 @@ public class Sys {
 		System.out.print("\nLocation: ");
 		String location = input.nextLine();
 
-		System.out.print("Username : ");
-		String username = input.nextLine();
-
-		System.out.print("Password : ");
-		String password = input.nextLine();
-
 		depot = getDepotByLocation(location);
 		if (depot != null) {
-			currentLocation = location;
-			depot.setLocation(currentLocation);
-			driver = depot.getDriverByName(username);
-			if (driver != null) {
-				if (driver.checkPassword(password)) {
-					if (!Manager.class.isInstance(driver)) {
-						currentUser = username;
-						System.out.println("\nCorrect! Logged on as driver: " + currentUser);
-						driverMenu();
-					}
-					if (Manager.class.isInstance(driver)) {
-//						if (username.contains(location)) {
-						Manager.class.cast(driver);
-						currentUser = username;
-						System.out.println("\nCorrect! Logged on as manager: " + currentUser);
-						managerMenu();
-					}
+			System.out.print("Username : ");
+			String username = input.nextLine();
 
+			System.out.print("Password : ");
+			String password = input.nextLine();
+			driver = depot.getDriverByName(username);
+			if (driver != null && driver.checkPassword(password)) {
+				if (!Manager.class.isInstance(driver)) {
+					currentUser = username;
+					System.out.println("\nCorrect! Logged on as driver: " + currentUser);
+					driverMenu();
 				} else {
-					System.out.println("\nInvalid credentials. Please try again!");
-					logOn();
+					Manager.class.cast(driver);
+					currentUser = username;
+					System.out.println("\nCorrect! Logged on as manager: " + currentUser);
+					managerMenu();
 				}
 
+			} else {
+				System.err.println("\nInvalid credentials. Please try again!");
+				logOn();
 			}
-
+		} else {
+			System.err.println("\nInvalid location. Please try again!");
+			logOn();
 		}
-		System.out.println("\nInvalid location. Please try again!");
-		logOn();
 	}
 
 	private void displayDepots() {
