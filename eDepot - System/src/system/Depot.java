@@ -115,17 +115,14 @@ public class Depot implements Serializable {
 	}
 
 	public void addDriver(Driver driver) {
-		// ToDo : Validate ?
 		drivers.add(driver);
 	}
 
 	public void addVehicle(Vehicle vehicle) {
-		// TODO Auto-generated method stub
 		vehicles.add(vehicle);
 	}
 
 	public List<WorkSchedule> getSchedules() {
-		// TODO Auto-generated method stub
-		return null;
+		return schedules;
 	}
 }

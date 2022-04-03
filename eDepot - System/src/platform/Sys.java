@@ -20,6 +20,7 @@ import system.Depot;
 import system.Driver;
 import system.Manager;
 import system.Status;
+import system.StatusCheck;
 import system.Tanker;
 import system.Truck;
 import system.Vehicle;
@@ -36,6 +37,7 @@ public class Sys {
 	private String newLocation;
 
 	private static final Scanner input = new Scanner(System.in);
+	private StatusCheck StatusCheck;
 
 	public Sys() {
 		deSerialize();
@@ -234,17 +236,26 @@ public class Sys {
 
 	}
 
-	private void addDriver() {
+private void addDriver() {
+		
 		System.out.print("Driver's username: ");
-		String name = input.nextLine();
+		String username = input.nextLine();
 
 		System.out.print("Driver's password: ");
 		String password = input.nextLine();
+		
+		depot.addDriver(new Driver(username, password));
 
-		depot.addDriver(new Driver(name, password));
-
+		System.out.println("\nAccount created.\nDriver: " + username + "\nPassword: " + password + "\n\nWhich depot will they be location?\n");
+		displayDepots();
+		String driverLocation = input.nextLine();
+		
+		if (depot != null) {
+			depot.setLocation(driverLocation);
+	
+		}		
+			
 	}
-
 	private void addVehicle() {
 
 		System.out.print("Vehicle registration number: ");
@@ -378,7 +389,9 @@ public class Sys {
 
 	private void reassignVehicle() {
 		LocalDateTime moveDate;
-
+		List<WorkSchedule>schedules = depot.getSchedules();
+		StatusCheck check = null;
+		
 		System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
 		System.out.println("\nPlease enter the vehicle registration number: ");
 		Vehicle vehicle = depot.getVehicleByRegNo(input.next());
@@ -398,6 +411,12 @@ public class Sys {
 		} catch (Exception e) {
 			System.err.println("Date/time entry is out of bounds. Try again!");
 			return; // Manager is not kicked out to their main menu if they make a mistake
+		}
+		
+		for(WorkSchedule s : schedules) {
+			if(check.equals(Status.ACTIVE)) {
+				
+			}
 		}
 
 		System.out.println("\nPlease specify a depot:\n");
