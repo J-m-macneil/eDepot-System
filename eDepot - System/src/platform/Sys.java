@@ -66,10 +66,10 @@ public class Sys {
 //		depots.get(2).makeDriver(will);
 //
 //		// Adding all vehicles.
-//		Vehicle astra = new Truck("1", "astra", "1", 100, 200);
-//		depots.get(0).makeVehicle(astra);
-//		Vehicle mini = new Truck("2", "astra", "2", 100, 200);
-//		depots.get(0).makeVehicle(mini);
+////		Vehicle astra = new Truck("1", "astra", "1", 100, 200);
+////		depots.get(0).makeVehicle(astra);
+////		Vehicle mini = new Truck("2", "astra", "2", 100, 200);
+////		depots.get(0).makeVehicle(mini);
 //
 //		Vehicle kia = new Truck("3", "kia", "3", 100, 200);
 //		depots.get(1).makeVehicle(kia);
@@ -394,10 +394,10 @@ public class Sys {
 
 	private LocalDateTime createLocalDateTime(String str) {
 		System.out.print("\nSpecify the " + str + " date [i.e. 1986-04-13]: ");
-		String tempDate = input.nextLine();
+		String tempDate = input.next();
 
 		System.out.print("Specify the time [i.e. 12:30]: ");
-		String tempTime = input.nextLine();
+		String tempTime = input.next();
 
 		// LocalDateTime user input needs to be separate hence the concatenation
 		String tempDateTime = tempDate + " " + tempTime;
@@ -426,10 +426,18 @@ public class Sys {
 				if (startDate.equals(LocalDateTime.now()) || startDate.isAfter(LocalDateTime.now().minusHours(49))) {
 					if (endDate.isBefore(LocalDateTime.now().plusHours(73)) || endDate.isBefore(startDate)) {
 
+						 if (depot.getDrivers().isEmpty()) {
+							 System.out.println("Im sorry, there are no current drivers at this depot.");
+							 break;
+						 } 
 						displayDrivers();
 						System.out.print("\nDrivers name: ");
 						Driver driver = depot.getDriverByName(input.next());
 						
+						 if (depot.getVehicles().isEmpty()) {
+							 System.out.println("Im sorry, there are no current vehicles at this depot.");
+							 break;
+						 } 
 						displayVehicles();
 						System.out.print("\nVehicle Registration number: ");
 						
@@ -463,13 +471,13 @@ public class Sys {
 
 			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
 			
-			 if (depot.getVehicles() != null) {
-				 displayVehicles();
-			 } else {
+			 if (depot.getVehicles().isEmpty()) {
 				 System.out.println("Im sorry, there are no current vehicles at this depot.");
 				 break;
 			 } 
 
+			 displayVehicles(); 
+			 
 			System.out.print("\nPlease enter the vehicle registration number: ");
 			Vehicle vehicle = depot.getVehicleByRegNo(input.nextLine());
 
