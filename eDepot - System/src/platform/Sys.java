@@ -16,7 +16,6 @@ import java.util.List;
 // import java.time.LocalDate;
 import java.util.Scanner;
 
-
 import system.Depot;
 import system.Driver;
 import system.Manager;
@@ -42,7 +41,7 @@ public class Sys {
 	public Sys() {
 		deSerialize();
 
-//		//Adding all depots.
+		// Adding all depots.
 //		depots.add(new Depot("Lpool"));
 //		depots.add(new Depot("Mchester"));
 //		depots.add(new Depot("Leeds"));
@@ -55,7 +54,7 @@ public class Sys {
 //		
 //		Driver joe = new Manager("JoeofLeeds", "J1234");
 //		depots.get(2).makeDriver(joe);
-////		
+//		
 //		//Adding all drivers.
 //		Driver ben = new Driver("Ben", "1234");
 //		depots.get(0).makeDriver(ben);
@@ -66,7 +65,7 @@ public class Sys {
 //		Driver will = new Driver("Will", "1234");
 //		depots.get(2).makeDriver(will);
 //		
-////		//Adding all vehicles.
+//		//Adding all vehicles.
 //		Vehicle astra = new Truck("1234", "astra", "1", 100, 200);
 //		depots.get(0).makeVehicle(astra);
 //		
@@ -75,7 +74,7 @@ public class Sys {
 //		
 //		Vehicle ford = new Tanker("3456", "ford", "2", 100, 200, "oil");
 //		depots.get(2).makeVehicle(ford);
-		
+
 	}
 
 	public void entryMenu() throws Exception {
@@ -125,19 +124,19 @@ public class Sys {
 					}
 					if (Manager.class.isInstance(driver)) {
 //						if (username.contains(location)) {
-							Manager.class.cast(driver);
-							currentUser = username;
-							System.out.println("\nCorrect! Logged on as manager: " + currentUser);
-							managerMenu();
-						}
-
-					} else {
-						System.out.println("\nInvalid credentials. Please try again!");
-						logOn();
+						Manager.class.cast(driver);
+						currentUser = username;
+						System.out.println("\nCorrect! Logged on as manager: " + currentUser);
+						managerMenu();
 					}
 
+				} else {
+					System.out.println("\nInvalid credentials. Please try again!");
+					logOn();
 				}
-			
+
+			}
+
 		}
 		System.out.println("\nInvalid location. Please try again!");
 		logOn();
@@ -276,8 +275,7 @@ public class Sys {
 		String password = input.nextLine();
 
 		depot.addDriver(new Driver(username, password));
-		}
-
+	}
 
 	private void addVehicle() {
 
@@ -290,37 +288,26 @@ public class Sys {
 		System.out.print("Vehicle model: ");
 		String model = input.next().toLowerCase();
 
-		System.out.print("Vehicle weight: ");
+		System.out.print("Vehicle weight (kg): ");
 		int weight = input.nextInt();
 
 		System.out.println("Truck or Tanker:");
 		String vehicleType = input.next().toLowerCase();
-		if (vehicleType == "truck")
-			if (Truck.class.isInstance(vehicle)) {
-				vehicle = Truck.class.cast(vehicleType);
-				{
-					System.out.print("Vehicle cargo capacity: ");
-					int cargoCapacity = input.nextInt();
+		if (vehicleType.equals("truck")) {
 
-					depot.addVehicle(new Truck(regNo, make, model, weight, cargoCapacity));
+			System.out.print("Vehicle cargo capacity: ");
+			int cargoCapacity = input.nextInt();
+			
+			depot.addVehicle(new Truck(regNo, make, model, weight, cargoCapacity));
+		} else if(vehicleType.equals("tanker")) {
+			System.out.print("Liquid Capacity: ");
+			int liquidCapacity = input.nextInt();
 
-					if (vehicleType == "tanker") {
-						if (Tanker.class.isInstance(vehicle)) {
-							vehicle = Tanker.class.cast(vehicle);
-							{
+			System.out.print("Vehicle liquid type: ");
+			String liquidType = input.next().toLowerCase();
 
-								System.out.print("Vehicle weight: ");
-								int liquidCapacity = input.nextInt();
-
-								System.out.print("Vehicle liquid type: ");
-								String liquidType = input.next().toLowerCase();
-
-								depot.addVehicle(new Tanker(regNo, make, model, weight, liquidCapacity, liquidType));
-							}
-						}
-					}
-				}
-			}
+			depot.addVehicle(new Tanker(regNo, make, model, weight, liquidCapacity, liquidType));
+		} else System.out.println("Incorrect Vehicle type!");
 	}
 
 	private void deSerialize() {
@@ -442,7 +429,7 @@ public class Sys {
 						newDepot.addVehicle(vehicle);
 						input.nextLine();
 						System.out.println(
-						"\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation() + "!");
+								"\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation() + "!");
 						// depot.removeVehicle();
 						break;
 					}
