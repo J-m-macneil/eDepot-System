@@ -428,7 +428,7 @@ public class Sys {
 
 						 if (depot.getDrivers().isEmpty()) {
 							 input.nextLine();
-							 System.out.println("Im sorry, there are no current drivers at this depot.");
+							 System.out.println("\n-- DRIVERS --Im sorry, there are no current drivers at this depot.");
 							 break;
 						 } 
 						displayDrivers();
@@ -437,7 +437,7 @@ public class Sys {
 						
 						 if (depot.getVehicles().isEmpty()) {
 							 input.nextLine();
-							 System.out.println("Im sorry, there are no current vehicles at this depot.");
+							 System.out.println("\n-- VEHICLES --\nIm sorry, there are no current vehicles at this depot.");
 							 break;
 						 } 
 						displayVehicles();
@@ -513,6 +513,8 @@ public class Sys {
 						depot.removeVehicle(vehicle);
 						break;
 					} else System.err.println("Depot locations the same!");
+					input.nextLine();
+					break;
 				} else {
 					System.out.println("Invalid location.\nPlease try again...");
 					continue;
@@ -522,6 +524,7 @@ public class Sys {
 				System.err.print("Date/time entry is out of bounds. Try again!");
 				continue; // Manager is not kicked out to their main menu if they make a mistake
 			}
+		}
 
 			for (WorkSchedule s : schedules) {
 				depot.startCheck();
@@ -535,4 +538,4 @@ public class Sys {
 
 		}
 	}
-}
+
