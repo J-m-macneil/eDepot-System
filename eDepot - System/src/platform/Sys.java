@@ -16,6 +16,7 @@ import java.util.List;
 // import java.time.LocalDate;
 import java.util.Scanner;
 
+
 import system.Depot;
 import system.Driver;
 import system.Manager;
@@ -41,9 +42,20 @@ public class Sys {
 	public Sys() {
 		deSerialize();
 
-		// depots.add(new Depot("Lpool"));
-		// depots.add(new Depot("Mchester"));
-		// depots.add(new Depot("Leeds"));
+//		depots.add(new Depot("Lpool"));
+//		depots.add(new Depot("Mchester"));
+//		depots.add(new Depot("Leeds"));
+//		
+//		Driver ben = new Driver("Ben", "1234");
+//		depots.get(0).makeSchedule(ben);
+//		
+//		Driver alex = new Driver("Alex", "1234");
+//		depots.get(1).makeSchedule(alex);
+//		
+//		Driver will = new Driver("Will", "1234");
+//		depots.get(2).makeSchedule(will);
+		
+
 	}
 
 	public void entryMenu() throws Exception {
@@ -62,7 +74,7 @@ public class Sys {
 			}
 		} while (!choice.toUpperCase().equals("Q"));
 		System.out.println("--GOODBYE--");
-		// serialize();
+		serialize();
 		System.exit(0);
 	}
 
@@ -252,6 +264,7 @@ public class Sys {
 
 		if (depot != null) {
 			depot.setLocation(driverLocation);
+			
 
 		}
 

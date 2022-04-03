@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 public class Depot implements Serializable {
 
 	/**
@@ -30,24 +31,24 @@ public class Depot implements Serializable {
 	final static List<Tanker> tankers = new ArrayList<Tanker>();
 		
 		public Depot(String depot) {
-		deSerialize();
+		//deSerialize();
 		
-/*	// Adding all mangers to the serialized data.
-		drivers.add(new Manager("GlynofLpool", "GH1234"));
-		drivers.add(new Manager("SorrenofMchester", "SH5678"));
-		drivers.add(new Manager("JoeofLeeds", "J1234"));
+	// Adding all mangers to the serialized data.
+//		drivers.add(new Manager("GlynofLpool", "GH1234"));
+//		drivers.add(new Manager("SorrenofMchester", "SH5678"));
+//		drivers.add(new Manager("JoeofLeeds", "J1234"));
 		
 		
-		// Adding all drivers to the serialized data.
-		drivers.add(new Driver("Mark", "MK123"));
-		drivers.add(new Driver("Kirsty", "KY456"));
-		drivers.add(new Driver("Andy", "AY789"));
-
-		// Adding all vehicles to the serialized data - only need one of each type to
-		// test.
-		vehicles.add(new Truck("1234", "astra", "1", 100, 200));
-		vehicles.add(new Tanker("2345", "ford", "2", 100, 200, "oil"));
-		vehicles.add(new Tanker("3456", "kia", "3", 100, 200, "petrol")); */
+//		// Adding all drivers to the serialized data.
+//		drivers.add(new Driver("Mark", "MK123"));
+//		drivers.add(new Driver("Kirsty", "KY456"));
+//		drivers.add(new Driver("Andy", "AY789"));
+//
+//		// Adding all vehicles to the serialized data - only need one of each type to
+//		// test.
+//		vehicles.add(new Truck("1234", "astra", "1", 100, 200));
+//		vehicles.add(new Tanker("2345", "ford", "2", 100, 200, "oil"));
+//		vehicles.add(new Tanker("3456", "kia", "3", 100, 200, "petrol")); 
 		
 
 		this.location = depot;
@@ -91,11 +92,26 @@ public class Depot implements Serializable {
 		return location;
 	}
 
-	public void createSchedule(WorkSchedule workSchedule) {
+	public synchronized void createSchedule(WorkSchedule workSchedule) {
 		schedules.add(workSchedule);
+		workSchedule.getDriver().addSchedule(workSchedule);
 
 	}
-
+	
+//	// NOTE : Safety Necessary ?
+//		public synchronized void makeBooking(Booking booking) {
+//			// ToDo : Validate ?
+//			bookings.add(booking);
+//
+//			// ToDo Two-Way Linking ?
+//			booking.getPet().makeBooking(booking);
+//		}
+	
+	public void makeSchedule(Driver driver) {
+		// ToDo : Validate ?
+		drivers.add(driver);
+	}
+	
 	public Driver getDriverByName(String name) {
 		for (Driver d : drivers) {
 			if (d.getUserName().equals(name)) {
