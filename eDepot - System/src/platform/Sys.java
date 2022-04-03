@@ -38,41 +38,41 @@ public class Sys {
 	private static final Scanner input = new Scanner(System.in);
 
 	public Sys() {
-		deSerialize();
+		//deSerialize();
 
 		// Adding all depots.
-//		depots.add(new Depot("Lpool"));
-//		depots.add(new Depot("Mchester"));
-//		depots.add(new Depot("Leeds"));
-//			
-//		Driver glyn = new Manager("GlynofLpool", "GH1234");
-//		depots.get(0).makeDriver(glyn);
-//		
-//		Driver sorren = new Manager("SorrenofMchester", "SH5678");
-//		depots.get(1).makeDriver(sorren);
-//		
-//		Driver joe = new Manager("JoeofLeeds", "J1234");
-//		depots.get(2).makeDriver(joe);
-//		
-//		//Adding all drivers.
-//		Driver ben = new Driver("Ben", "1234");
-//		depots.get(0).makeDriver(ben);
-//		
-//		Driver alex = new Driver("Alex", "1234");
-//		depots.get(1).makeDriver(alex);
-//		
-//		Driver will = new Driver("Will", "1234");
-//		depots.get(2).makeDriver(will);
-//		
-//		//Adding all vehicles.
-//		Vehicle astra = new Truck("1234", "astra", "1", 100, 200);
-//		depots.get(0).makeVehicle(astra);
-//		
-//		Vehicle kia = new Truck("2345", "kia", "2", 100, 200);
-//		depots.get(1).makeVehicle(kia);
-//		
-//		Vehicle ford = new Tanker("3456", "ford", "2", 100, 200, "oil");
-//		depots.get(2).makeVehicle(ford);
+		depots.add(new Depot("Lpool"));
+		depots.add(new Depot("Mchester"));
+		depots.add(new Depot("Leeds"));
+			
+		Driver glyn = new Manager("GlynofLpool", "GH1234");
+		depots.get(0).makeDriver(glyn);
+		
+		Driver sorren = new Manager("SorrenofMchester", "SH5678");
+		depots.get(1).makeDriver(sorren);
+		
+		Driver joe = new Manager("JoeofLeeds", "J1234");
+		depots.get(2).makeDriver(joe);
+		
+		//Adding all drivers.
+		Driver ben = new Driver("Ben", "1234");
+		depots.get(0).makeDriver(ben);
+		
+		Driver alex = new Driver("Alex", "1234");
+		depots.get(1).makeDriver(alex);
+		
+		Driver will = new Driver("Will", "1234");
+		depots.get(2).makeDriver(will);
+		
+		//Adding all vehicles.
+		Vehicle astra = new Truck("1234", "astra", "1", 100, 200);
+		depots.get(0).makeVehicle(astra);
+		
+		Vehicle kia = new Truck("2345", "kia", "2", 100, 200);
+		depots.get(1).makeVehicle(kia);
+		
+		Vehicle ford = new Tanker("3456", "ford", "2", 100, 200, "oil");
+		depots.get(2).makeVehicle(ford);
 
 	}
 
@@ -211,6 +211,7 @@ public class Sys {
 			System.out.println("4 - Create Work Schedule");
 			System.out.println("5 - Re-assign Vehicle");
 			System.out.println("6 - View Depot Vehicles");
+			System.out.println("7 - View drivers");
 			System.out.println("L - Log Off");
 			System.out.print("Pick : ");
 
@@ -251,6 +252,11 @@ public class Sys {
 			}
 			case "6": {
 				displayVehicles();
+				break;
+			}
+			case "7": {
+				displayDrivers();
+				break;
 			}
 			case "L": {
 				System.out.println("\n");
@@ -356,6 +362,12 @@ public class Sys {
 		for (Vehicle v : vehicles)
 			System.out.println(v.toString());
 	}
+	
+	private void displayDrivers() {
+		List<Driver> drivers = depot.getDrivers();
+		for (Driver d : drivers)
+			System.out.println(d.toString());
+	}
 
 	private LocalDateTime createLocalDateTime(String str) {
 		System.out.print("\nSpecify the " + str + " date [i.e. 1986-04-13]:  ");
@@ -437,9 +449,8 @@ public class Sys {
 					if ((!currentLocation.equals(newLocation))) {
 						newDepot.addVehicle(vehicle);
 						input.nextLine();
-						System.out.println(
-								"\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation() + "!");
-						// depot.removeVehicle();
+						System.out.println("\nVechice moved from " + depot.getLocation() + " to " + newDepot.getLocation() + "!");
+						depot.removeVehicle(vehicle);
 						break;
 					}
 
