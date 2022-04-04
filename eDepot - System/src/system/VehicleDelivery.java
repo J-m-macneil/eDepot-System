@@ -1,20 +1,16 @@
 package system;
 
-import java.time.LocalDateTime;
-
 public class VehicleDelivery implements Runnable{
 	
 	private Vehicle vehicle;
 	private Depot oldDepot;
 	private Depot newDepot;
-	private LocalDateTime moveDate;
 	private Integer delay;
 	
-	public VehicleDelivery(Vehicle vehicle, Depot oldDepot, Depot newDepot, LocalDateTime moveDate, Integer seconds) {
+	public VehicleDelivery(Vehicle vehicle, Depot oldDepot, Depot newDepot, Integer seconds) {
 		this.vehicle = vehicle;
 		this.oldDepot = oldDepot;
 		this.newDepot = newDepot;
-		this.moveDate = moveDate;
 		setSeconds(seconds);
 	}
 	
@@ -33,7 +29,6 @@ public class VehicleDelivery implements Runnable{
 				newDepot.addVehicle(vehicle);
 				// input.nextLine();
 				System.out.println("\nVechice moved from " + oldDepot.getLocation() + " to " + newDepot.getLocation() + "!");
-				System.out.println("\nVehicle moved on " + moveDate);
 				oldDepot.removeVehicle(vehicle);
 			}
 			

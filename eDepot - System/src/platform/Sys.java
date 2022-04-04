@@ -461,7 +461,7 @@ public class Sys {
 			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
 
 			if (depot.getVehicles().isEmpty()) {
-				System.out.println("Im sorry, there are no current vehicles at this depot.");
+				System.out.println("There are currently no vehicles in depot to move");
 				break;
 			}
 
@@ -473,7 +473,7 @@ public class Sys {
 			if (vehicle != null) {
 				System.out.print("Vehicle selected.");
 			} else {
-				System.err.print("Invalid registration number or no vehciles in depot\nPlease try again...");
+				System.err.print("Invalid registration number or no vehciles in depot. Try again!");
 				input.nextLine();
 				continue;
 			}
@@ -502,24 +502,25 @@ public class Sys {
 			String newLocation = input.next();
 			Depot newDepot = getDepotByLocation(newLocation);
 
+			if (newDepot == null) {
+				System.err.println("Invalid location!");
+				input.nextLine();
+				continue;
+			}
 			if (depot != null) {
 				if (!currentLocation.equals(newLocation)) {
 					// if ((moveDate.equals(LocalDateTime.now())))
-						System.out.println("Vehicle transfer in progress...");
-					new Thread(new VehicleDelivery(vehicle, depot, newDepot, moveDate, 20)).start();
+					System.out.println("Vehicle transfer in progress...");
+					new Thread(new VehicleDelivery(vehicle, depot, newDepot, 20)).start();
 					input.nextLine();
 					break;
-				} else if (currentLocation.equals(newLocation)) {
-					System.err.println("Depot locations are the same!");
-					input.nextLine();
-					continue;
 				} else {
-					System.err.println("Invalid location.\nPlease try again...");
+					System.err.println("Can't move vehicle inside same depot. Try again!");
+					input.nextLine();
 					continue;
 				}
 
 			}
-
 			for (WorkSchedule s : schedules) {
 				depot.startCheck();
 				if (s.getStatus().equals(Status.PENDING)) {
@@ -527,9 +528,9 @@ public class Sys {
 						System.err.println("Vehicle busy! Try again!");
 						continue;
 					}
+
 				}
 			}
-
 		}
 	}
 }
