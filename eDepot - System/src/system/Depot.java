@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/** 
+ * System class Depot adds and verifies information for platform classes Entry and Sys
+ * @author Matt Bailey, Joe Macneil, Liam Clarke
+ * @version 1.0
+ */
 
 public class Depot implements Serializable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 
@@ -29,9 +32,19 @@ public class Depot implements Serializable {
 		
 		this.location = depot;
 	}
+	
+	/**
+	 * Validates drivers credentials that wish to login to the eDepot System.
+	 * 
+	 * @param username of reference type String, to compare username
+	 * with stored list of drivers.
+	 * @param password of reference type String, to compare password
+	 * with stored list of drivers.
+	 * @return  Validate the parameters against the object data.
+	 */
 
 	public boolean logOn(String username, String password) {
-		// Moving through all driver details
+		// For loop ensures any driver at a given index in the stored data can have their credentials verified
 		for (int i = 0; i < drivers.size(); i++)
 			if (drivers.get(i).username.equals(username) && drivers.get(i).password.equals(password)) {
 				return true;
@@ -62,6 +75,14 @@ public class Depot implements Serializable {
 		// ToDo : Validate ?
 		vehicles.add(vehicle);
 	}
+	
+	/**
+	 * Enhanced for loop used to traverse collection of drivers to return their name
+	 * for use in platform application classes Entry and Sys when a value is entered on the
+	 * console and compared to a local variable there.
+	 * @param name of reference type String, acts as a placeholder.
+	 * @return  the local variable being entered in platform class Sys or null.
+	 */
 	
 	public Driver getDriverByName(String name) {
 		for (Driver d : drivers) {

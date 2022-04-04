@@ -31,6 +31,7 @@ public class VehicleDelivery implements Runnable{
 				System.out.println("\nVechice moved from " + oldDepot.getLocation() + " to " + newDepot.getLocation() + "!");
 				oldDepot.removeVehicle(vehicle);
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

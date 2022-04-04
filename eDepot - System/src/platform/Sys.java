@@ -80,6 +80,7 @@ public class Sys {
 		 * depots.get(2).makeVehicle(ford); Vehicle nissan = new Tanker("6", "nissan",
 		 * "6", 100, 200, "water"); depots.get(2).makeVehicle(nissan);
 		 */
+
 		// for (Depot d : depots) {
 		// d.startCheck();
 		// }
@@ -356,6 +357,11 @@ public class Sys {
 		} else
 			System.err.println("Incorrect Vehicle type!");
 		input.nextLine();
+<<<<<<< HEAD
+=======
+
+	}
+>>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
 
 	}
 	
@@ -538,31 +544,38 @@ public class Sys {
 			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
 
 			if (depot.getVehicles().isEmpty()) {
-				System.out.println("Im sorry, there are no current vehicles at this depot.");
+				System.out.println("There are currently no vehicles in depot to move");
 				break;
 			}
 
 			displayVehicles();
 
 			System.out.print("\nPlease enter the vehicle registration number: ");
-			Vehicle vehicle = depot.getVehicleByRegNo(input.nextLine());
+			Vehicle vehicle = depot.getVehicleByRegNo(input.next());
 
 			if (vehicle != null) {
 				System.out.print("Vehicle selected.");
 			} else {
-				System.err.print("Invalid registration number or no vehciles in depot\nPlease try again...");
+				System.err.print("Invalid registration number or no vehciles in depot. Try again!");
+				input.nextLine();
 				continue;
 			}
 
 			try {
 				moveDate = createLocalDateTime("move");
-				if (moveDate != null) {
-					System.out.print("\nMove date specified.\n");
+				// Check that the Manager is not trying to bypass or enter a past date
+				if ((!moveDate.isBefore(LocalDateTime.now()))) {
+					if (moveDate != null) {
+						System.out.print("\nMove date specified.\n");
+					}
+
 				} else {
-					System.out.println("Incorrect Date format!");
+					System.err.println("No date entered or date is in the past!");
 					continue;
 				}
-			} catch (Exception e) {
+			}
+
+			catch (Exception e) {
 				System.err.print("Date/time entry is out of bounds. Try again!");
 				continue; // Manager is not kicked out to their main menu if they make a mistake
 			}
@@ -572,12 +585,24 @@ public class Sys {
 			String newLocation = input.next();
 			Depot newDepot = getDepotByLocation(newLocation);
 
+<<<<<<< HEAD
 			if (depot != null) {
 				if ((!currentLocation.equals(newLocation))) {
+=======
+			if (newDepot == null) {
+				System.err.println("Invalid location!");
+				input.nextLine();
+				continue;
+			}
+			if (depot != null) {
+				if (!currentLocation.equals(newLocation)) {
+					// if ((moveDate.equals(LocalDateTime.now())))
+>>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
 					System.out.println("Vehicle transfer in progress...");
 					new Thread(new VehicleDelivery(vehicle, depot, newDepot, 20)).start();
 					input.nextLine();
 					break;
+<<<<<<< HEAD
 				} else
 					System.err.println("Depot locations the same!");
 				input.nextLine();
@@ -586,18 +611,29 @@ public class Sys {
 				System.err.println("Invalid location.\nPlease try again...");
 				continue;
 			}
-
-		}
-
-		for (WorkSchedule s : schedules) {
-			depot.startCheck();
-			if (s.getStatus().equals(Status.PENDING)) {
-				if (s.getStatus().equals(Status.ACTIVE)) {
-					System.err.println("Vehicle busy! Try again!");
+=======
+				} else {
+					System.err.println("Can't move vehicle inside same depot. Try again!");
+					input.nextLine();
 					continue;
+				}
+>>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
+
+<<<<<<< HEAD
+		}
+=======
+			}
+			for (WorkSchedule s : schedules) {
+				depot.startCheck();
+				if (s.getStatus().equals(Status.PENDING)) {
+					if (s.getStatus().equals(Status.ACTIVE)) {
+						System.err.println("Vehicle busy! Try again!");
+						continue;
+					}
+>>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
+
 				}
 			}
 		}
-
 	}
 }
