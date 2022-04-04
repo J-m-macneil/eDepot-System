@@ -44,7 +44,7 @@ public class Depot implements Serializable {
 	 */
 
 	public boolean logOn(String username, String password) {
-		// Moving through all driver details
+		// For loop ensures any driver at a given index in the stored data can have their credentials verified
 		for (int i = 0; i < drivers.size(); i++)
 			if (drivers.get(i).username.equals(username) && drivers.get(i).password.equals(password)) {
 				return true;
@@ -75,6 +75,14 @@ public class Depot implements Serializable {
 		// ToDo : Validate ?
 		vehicles.add(vehicle);
 	}
+	
+	/**
+	 * Enhanced for loop used to traverse collection of drivers to return their name
+	 * for use in platform application classes Entry and Sys when a value is entered on the
+	 * console and compared to a local variable there.
+	 * @param name of reference type String, acts as a placeholder.
+	 * @return  the local variable being entered in platform class Sys or null.
+	 */
 	
 	public Driver getDriverByName(String name) {
 		for (Driver d : drivers) {
