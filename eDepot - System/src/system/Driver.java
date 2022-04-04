@@ -119,5 +119,9 @@ public class Driver implements Schedulable, Serializable {
 		}
 		return false;
 	}
+	
+	public void addDriver(Driver driver) {
+		
+	}
 
 }
