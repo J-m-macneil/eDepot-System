@@ -73,75 +73,94 @@ public class WorkSchedule implements Serializable {
 				+ " Driver: " + driver.username + " " + "Vehicle: " + vehicle.regNo;
 	}
 
-	// Declares a Driver 'getDriver', to allow the driver class and private variable
-	// to be accessed by a java class.
+	/**
+	 *  Declares a Driver 'getDriver', to allow the driver class and private variable to be accessed by a java class.
+	 */
 	public Driver getDriver() {
 		return driver;
 	}
 
-	// Declares a 'getClient', to allow the private variable to be accessed by a
-	// java class.
+	/**
+	 *  Declares a 'getClient', to allow the private variable to be accessed by a java class.
+	 */
 	public String getClient() {
 		return client;
 	}
 
-	// Declares a 'getStartDate', to allow the private variable to be accessed by a
-	// java class.
+	/**
+	 * Declares a 'getStartDate', to allow the private variable to be accessed by a java class.
+	 */
 	public LocalDateTime getStartDate() {
 		return startDate;
 	}
 
-	// Declare a 'setStartDate', to allow the private variable to be accessed and
-	// update the value in a java class.
+	/**
+	 * Declare a 'setStartDate', to allow the private variable to be accessed and update the value in a java class.
+	 * @param startDate
+	 */
 	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
 
-	// Declares a 'getEndDate', to allow the private variable to be accessed by a
-	// java class.
+	/**
+	 *  Declares a 'getEndDate', to allow the private variable to be accessed by a java class.
+	 * @return
+	 */
 	public LocalDateTime getEndDate() {
 		return endDate;
 	}
 
-	// Declare a 'setEndDate', to allow the private variable to be accessed and
-	// update the value in a java class.
+	/**
+	 *  Declare a 'setEndDate', to allow the private variable to be accessed and update the value in a java class.
+	 * @param endDate
+	 */
 	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
 	}
 
-	// Declares a 'getStatus', to allow the private variable to be accessed by a
-	// java class.
+	/**
+	 *  Declares a 'getStatus', to allow the private variable to be accessed by a java class.
+	 * @return
+	 */
 	public Status getStatus() {
 		return status;
 	}
 
-	// Declare a 'setStatus', to allow the private variable to be accessed and
-	// update the value in a java class.
+	/**
+	 *  Declare a 'setStatus', to allow the private variable to be accessed and update the value in a java class.
+	 * @param status
+	 */
 	public void setStatus(Status status) {
 		this.status = status;
 
 	}
 
-	// Declare a 'activate', to allow the private variable to be accessed and update
-	// the value in a java class.
+	/**
+	 *  Declare a 'activate', to allow the private variable to be accessed and update the value in a java class.
+	 */
 	public void activate() {
 		this.status = Status.ACTIVE;
 	}
 
-	// Declare a 'archive', to allow the private variable to be accessed and update
-	// the value in a java class.
+	/**
+	 *  Declare a 'archive', to allow the private variable to be accessed and update the value in a java class.
+	 */
 	public void archive() {
 		this.status = Status.ARCHIVED;
 	}
 
-	// Declare a 'setVehicle', to allow the private variable to be accessed and
-	// update the value in a java class.
+	/**
+	 *  Declare a 'setVehicle', to allow the private variable to be accessed and update the value in a java class.
+	 * @param vehicle
+	 */
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
 
-	// Declare a 'setDriver', to allow the private variable to be accessed and
-	// update the value in a java class.
+	/**
+	 *  Declare a 'setDriver', to allow the private variable to be accessed and update the value in a java class.
+	 * @param driver
+	 */
 	public void setDriver(Driver driver) {
 		this.driver = driver;
 	}
