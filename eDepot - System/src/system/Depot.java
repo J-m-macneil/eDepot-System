@@ -130,11 +130,11 @@ public class Depot implements Serializable {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Enhanced for loop used to traverse collection of vehicles to return their name
-	 * for use in platform application classes Entry and Sys when a value is entered
-	 * on the console and compared to a local variable there.
+	 * Enhanced for loop used to traverse collection of vehicles to return their
+	 * name for use in platform application classes Entry and Sys when a value is
+	 * entered on the console and compared to a local variable there.
 	 * 
 	 * @param regNo of type String, acts as a placeholder.
 	 * @return the local variable being entered in platform class Sys or null.
@@ -148,10 +148,11 @@ public class Depot implements Serializable {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Declare a ArrayList of type vehicle,'getVehicles', to allow the private variable to be accessed by a
-	 * java class.
+	 * Declare a ArrayList of type vehicle,'getVehicles', to allow the private
+	 * variable to be accessed by a java class.
+	 * 
 	 * @return list of all vehicles.
 	 */
 
@@ -160,37 +161,42 @@ public class Depot implements Serializable {
 	}
 
 	/**
-	 * Declare a ArrayList of type Vehicle,'getTrucks', to allow the private variable to be accessed by a
-	 * java class.
+	 * Declare a ArrayList of type Vehicle,'getTrucks', to allow the private
+	 * variable to be accessed by a java class.
+	 * 
 	 * @return list of all trucks.
 	 */
-	
+
 	public List<Truck> getTrucks() {
 		return trucks;
 	}
-	
+
 	/**
-	 * Declare a ArrayList of type Vehicle,'getTankers', to allow the private variable to be accessed by a
-	 * java class.
+	 * Declare a ArrayList of type Vehicle,'getTankers', to allow the private
+	 * variable to be accessed by a java class.
+	 * 
 	 * @return list of all tankers.
 	 */
 
 	public List<Tanker> getTankers() {
 		return tankers;
 	}
-	
+
 	/**
-	 * Declare a ArrayList of type Driver,'getDrivers', to allow the private variable to be accessed by a
-	 * java class.
+	 * Declare a ArrayList of type Driver,'getDrivers', to allow the private
+	 * variable to be accessed by a java class.
+	 * 
 	 * @return list of all drivers.
 	 */
 
 	public List<Driver> getDrivers() {
 		return drivers;
 	}
-	
+
 	/**
-	 * Method allows platform class Sys to add new drivers to the ArrayList of type Driver.
+	 * Method allows platform class Sys to add new drivers to the ArrayList of type
+	 * Driver.
+	 * 
 	 * @param driver of type Driver.
 	 */
 
@@ -198,20 +204,44 @@ public class Depot implements Serializable {
 		drivers.add(driver);
 	}
 
+	/**
+	 * Method allows platform class Sys to add new vehicles to the ArrayList of type
+	 * Vehicle.
+	 * 
+	 * @param vehicle of type Vehicle.
+	 */
+
 	public void addVehicle(Vehicle vehicle) {
 		vehicles.add(vehicle);
 	}
+
+	/**
+	 * Method allows platform class Sys to remove existing vehicles from the
+	 * ArrayList of type Vehicle.
+	 * 
+	 * @param vehicle of type Vehicle.
+	 */
 
 	public void removeVehicle(Vehicle vehicle) {
 		vehicles.remove(vehicle);
 	}
 
+	/**
+	 * Declare a ArrayList of type WorkSchedule,'getSchedules', to allow the private
+	 * variable to be accessed by a java class.
+	 * 
+	 * @return list of all schedules.
+	 */
+
 	public List<WorkSchedule> getSchedules() {
 		return schedules;
 	}
 
+	/**
+	 * Multi-threading method to start the system class StatusCheck thread.
+	 */
+
 	public void startCheck() {
-		// ToDo : Safety ?
 		new Thread(new StatusCheck(schedules, 10)).start();
 	}
 
