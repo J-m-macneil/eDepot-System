@@ -48,8 +48,8 @@ public class Sys {
 		deSerialize();
 
 		// Adding all depots.
-		/*
-		  depots.add(new Depot("Lpool")); 
+		
+	/*	  depots.add(new Depot("Lpool")); 
 		  depots.add(new Depot("Mchester"));
 		  depots.add(new Depot("Leeds"));
 		  
@@ -79,8 +79,8 @@ public class Sys {
 		  
 		  Vehicle ford = new Tanker("5", "ford", "5", 100, 200, "oil");
 		  depots.get(2).makeVehicle(ford); Vehicle nissan = new Tanker("6", "nissan", "6", 100, 200, "water"); depots.get(2).makeVehicle(nissan);
-		 */
-
+		 
+*/
 		// for (Depot d : depots) {
 		// d.startCheck();
 		// }
