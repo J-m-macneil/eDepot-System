@@ -22,6 +22,14 @@ import system.Vehicle;
 import system.VehicleDelivery;
 import system.WorkSchedule;
 
+/**
+ * System class that acts as the outer shell and communicator with all other
+ * classes. All I/O is used within this class
+ *
+ * @author Matt Bailey, Joe Macneil, Liam Clarke
+ * 
+ * @version 1.0
+ */
 public class Sys {
 
 	private List<Depot> depots = new ArrayList<Depot>();
@@ -32,6 +40,10 @@ public class Sys {
 
 	private static final Scanner input = new Scanner(System.in);
 
+	/**
+	 * Sole constructor. Will deserialze objects and load any relevant array lists
+	 * that is required for the console application to operate
+	 */
 	public Sys() {
 		deSerialize();
 
@@ -73,9 +85,16 @@ public class Sys {
 		// }
 	}
 
+	/**
+	 * Initial I/O of repeating menu and is required for the user to choose to log
+	 * on. Outer box/case of whole program and will serilaize data upon exit
+	 * 
+	 * @throws Exception
+	 */
 	public void entryMenu() throws Exception {
 
 		String choice = "";
+		// Repeating main menu till logOn successful
 		do {
 			System.out.println(" -- Entry Menu -- ");
 			System.out.println("1 - LogOn");
@@ -89,10 +108,19 @@ public class Sys {
 			}
 		} while (!choice.toUpperCase().equals("Q"));
 		System.out.println("--GOODBYE--");
+		// Code will eventually return here and serialize all updated objects to drivers.ser
 		serialize();
 		System.exit(0);
 	}
 
+	/**
+	 * Logs on the user and catches any I/O errors. Employs relevant I/O error
+	 * catching and informs the user data has been entered incorrectly. Once logged
+	 * on, will direct the user to menu depending on whether they are a manager or
+	 * not.
+	 * 
+	 * @throws Exception
+	 */
 	private void logOn() throws Exception {
 
 		System.out.println("\nPlease select one of the following depot locations:\n");
@@ -100,7 +128,7 @@ public class Sys {
 
 		System.out.print("\nLocation: ");
 		String location = input.nextLine();
-
+		// Confirms the entered location exists and selects depot as current
 		depot = getDepotByLocation(location);
 		currentLocation = location;
 		if (depot != null) {
@@ -109,12 +137,16 @@ public class Sys {
 
 			System.out.print("Password : ");
 			String password = input.nextLine();
+			// Retrieves driver object details by handing over the username
 			driver = depot.getDriverByName(username);
+			// Checks the driver exists and the password entered matches the one stored in object data
 			if (driver != null && driver.checkPassword(password)) {
+				// If the driver isn't a manager print the driver menu
 				if (!Manager.class.isInstance(driver)) {
 					currentUser = username;
 					System.out.println("\nCorrect! Logged on as driver: " + currentUser);
 					driverMenu();
+				// If the driver is a manager then print the manager menu
 				} else {
 					Manager.class.cast(driver);
 					currentUser = username;
@@ -132,17 +164,30 @@ public class Sys {
 		}
 	}
 
+	/**
+	 * Will print out the location of all instances of type Depot that is in the
+	 * array depots. Data cannot be added to the array list within program, data
+	 * will have to be hard coded then serilaized.
+	 * 
+	 * @return Location of all depots
+	 */
 	private void displayDepots() {
 		System.out.println("-- DEPOTS --");
-
+		// Loops through all depots and prints their location
 		for (Depot depot : depots) {
 			System.out.println(depot.getLocation());
 		}
 	}
 
+	/**
+	 * Will return the Depot object of type Depot from the location.
+	 * 
+	 * @param location
+	 * @return Depot
+	 */
 	private Depot getDepotByLocation(String location) {
 		for (Depot d : depots) {
-			// Works
+			// Matches the depot with the location entered
 			if (location.equals(d.getLocation())) {
 				return d;
 			}
@@ -150,22 +195,25 @@ public class Sys {
 		return null;
 	}
 
+	/**
+	 * Repeating menu that should only be accessed by users of type Driver. Allows
+	 * the user to view work schedule using displaySchedule() and log off directing
+	 * to logOn().
+	 * 
+	 * @throws Exception
+	 */
 	private void driverMenu() throws Exception {
-		// Declare a do while loop, to repeat through the depot systems main menu.
-		// Set a default value to choice, to allow user input.
+		// Repeating main menu
 		String choice = "";
 		do {
-			// Print a repeating main menu, inside the do while loop.
+			// currentUser should already be declared in logOn()
 			System.out.println("\n-- " + currentUser + "'s MAIN MENU --");
 			System.out.println("1 - View Work Schedule");
 			System.out.println("L - Log Off");
 			System.out.print("Pick : ");
 
-			// Allow the user to specify which option on they would like to select.
-			// Allow the upper case value 'Q' to be entered when exiting the program.
 			choice = input.nextLine();
-			// Declare a switch statement, to select one of the menu code blocks to be
-			// executed.
+
 			switch (choice) {
 			case "1": {
 				// Drivers can view their schedule that a Manager has created for them.
@@ -173,29 +221,28 @@ public class Sys {
 				break;
 			}
 			case "L": {
-				System.out.println("\n");
+				// Returns to the logOn() menu
 				entryMenu();
 				break;
 			}
-			// Set a default value, for when errors occur in the console application.
-			default: {
-				// Set a default message, to allow the user to know when an incorrect value has
-				// been entered.
+			default:
 				System.err.println("You have entered an incorrect value. Try again!");
 			}
-			}
-			// Declare a while loop, to loop through the menu until the program is quit.
 		} while (!choice.toUpperCase().equals("L"));
-
 	}
 
+	/**
+	 * Repeating menu thats only accessible by managers(drivers of type Manager)
+	 * Gateway to plenty of methods to manipulate drivers, vehicles and schedules
+	 * via the menu.
+	 * 
+	 * @throws Exception
+	 */
 	private void managerMenu() throws Exception {
-		// Declare a do while loop, to repeat through the depot systems main menu.
-		// Set a default value to choice, to allow user input.
+
 		String choice = "";
 		do {
-
-			// Print a repeating main menu, inside the do while loop.
+			// Repeating main menu, currentUser is declared in logOn()
 			System.out.println("\n-- " + currentUser + "'s MAIN MENU --");
 
 			System.out.println("1 - View Work Schedule");
@@ -208,38 +255,31 @@ public class Sys {
 			System.out.println("L - Log Off");
 			System.out.print("Pick : ");
 
-			// Allow the user to specify which option on they would like to select.
-			// Allow the upper case value 'Q' to be entered when exiting the program.
 			choice = input.nextLine();
 
-			// Declare a switch statement, to select one of the menu code blocks to be
-			// executed.
 			switch (choice) {
 			case "1": {
-				// displaySchedule() method executed, as a Manager is a Driver
+				// Displays schedules exclusive to the currentUser using the parameter
 				displaySchedule(currentUser);
 				break;
 			}
 			case "2": {
-				// addDriver() method executed, for Managers to add new Drivers to their depot
+				// Adds a driver to the drivers array list and in that depot, and later serialized
 				addDriver();
 				break;
 			}
 			case "3": {
-				// addVehicle() method executed, for Managers to add new Vehicles to their depot
+				// Adds a vehicle to the vehicles array list and in that depot, and later serialized
 				addVehicle();
 				break;
 			}
 			case "4": {
-				// createSchedule() method executed, for Managers to make schedules for
-				// themselves
-				// or other Drivers.
+				// Creates a schedule for drivers or self, using vehicles in that depot
 				createSchedule();
 				break;
 			}
 			case "5": {
-				// reassignVehicle() method executed, for Managers to move a vehicle to another
-				// Depot.
+				// Moves a vehicle from one depot to another at a specific time. MultiThread included
 				reassignVehicle();
 				break;
 			}
@@ -256,18 +296,16 @@ public class Sys {
 				entryMenu();
 				break;
 			}
-			// Set a default value, for when errors occur in the console application.
-			default: {
-				// Set a default message, to allow the user to know when an incorrect value has
-				// been entered.
+			default: 
 				System.err.println("You have entered an incorrect value. Try again!");
 			}
-			}
-
-			// Declare a while loop, to loop through the menu until the program is quit.
 		} while (!choice.toUpperCase().equals("L"));
 	}
-
+	
+	/**
+	 * Adds a driver to the array list drivers for the current depot.
+	 * Will ask for a username and password
+	 */
 	private void addDriver() {
 
 		System.out.print("Driver's username: ");
@@ -275,10 +313,14 @@ public class Sys {
 
 		System.out.print("Driver's password: ");
 		String password = input.nextLine();
-
+		// Any drivers added are exclusive to the current depot object
 		depot.addDriver(new Driver(username, password));
 	}
-
+	
+	/**
+	 * Adds a vehicle of type Truck or Tanker to current depot. Includes relevant
+	 * I/O to gather necessary data
+	 */
 	private void addVehicle() {
 
 		System.out.print("Vehicle registration number: ");
@@ -296,11 +338,12 @@ public class Sys {
 
 		System.out.println("Truck or Tanker:");
 		String vehicleType = input.next().toLowerCase();
+		// Checks if the vehicle entered in of type truck/tanker and adds adds relevant data
 		if (vehicleType.equals("truck")) {
 
 			System.out.print("Vehicle cargo capacity: ");
 			int cargoCapacity = input.nextInt();
-
+			// Adds a vehicle in current depot of type Truck
 			depot.addVehicle(new Truck(regNo, make, model, weight, cargoCapacity));
 		} else if (vehicleType.equals("tanker")) {
 			System.out.print("Liquid Capacity: ");
@@ -308,52 +351,73 @@ public class Sys {
 
 			System.out.print("Vehicle liquid type: ");
 			String liquidType = input.next().toLowerCase();
-
+			// Adds a vehicle in current depot of type Tanker
 			depot.addVehicle(new Tanker(regNo, make, model, weight, liquidCapacity, liquidType));
 		} else
 			System.err.println("Incorrect Vehicle type!");
 		input.nextLine();
 
 	}
-
+	
+	/**
+	 * Reads the serialized file(.ser) in the working directory and generates 
+	 * all objects necessary for the program to operate
+	 */
 	private void deSerialize() {
 		ObjectInputStream ois;
 
 		try {
 			ois = new ObjectInputStream(new FileInputStream("./depots.ser"));
-
+			// Load all data from the serialized file into objects
 			depots = (List<Depot>) ois.readObject();
 			ois.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * Serializes the depots array list holding all depots that are of type Depot.
+	 * The depots hold arrays of drivers, vehicles and schedules. The method will only
+	 * read from the file in the working directory called .depots.ser
+	 */
 	private void serialize() {
 		ObjectOutputStream oos;
 
 		try {
 			oos = new ObjectOutputStream(new FileOutputStream("./depots.ser"));
+			// Writes the array list depots of type Depot into a serilaized file
 			oos.writeObject(depots);
-			// We could do with putting this in finally, but we then need a throws about
-			// everywhere
+			
 			oos.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * Displays all the current schedules for the current driver in the current depot.
+	 * 
+	 * @param driverUsername
+	 * @throws Exception
+	 */
 	private void displaySchedule(String driverUsername) throws Exception {
-
+		// New local list is equal to all schedules in the current depot
 		List<WorkSchedule> schedules = depot.getSchedules();
 		for (WorkSchedule s : schedules) {
+			// Loops through the schedules and prints any schedules that match with the driver username
 			if (s.getDriver().getUserName().equals(driverUsername)) {
 				System.out.println(s.toString());
 			}
 		}
+		// Useless code?
 		return;
 	}
-
+	
+	/**
+	 * Displays all vehicles in the current depot, will list separate text if the vehicle
+	 * is of type Truck or Tanker to cover extra variables 
+	 */
 	private void displayVehicles() {
 		// Retrieve all vehicles in current depot
 		List<Vehicle> vehicles = depot.getVehicles();
@@ -366,13 +430,27 @@ public class Sys {
 				System.out.println(v.toTankerString());
 	}
 
+	/**
+	 * Displays all the drivers in the current object depot
+	 * 
+	 * @return driver.toString() displays all drivers in a format
+	 */
 	private void displayDrivers() {
+		// Stores all the drivers from the current depot in a local list
 		List<Driver> drivers = depot.getDrivers();
 		for (Driver d : drivers)
 			System.out.println(d.toString());
 	}
-
+	
+	/**
+	 * Creates and returns a formatted date and time, should be called whenever 
+	 * dates used in conjunction with LocalDateTime import
+	 * 
+	 * @param str text to specify why you are moving "move" or "remove"
+	 * @return date Returns a parsed and formatted date
+	 */
 	private LocalDateTime createLocalDateTime(String str) {
+		// str should specify why you are creating the date, to "move" or "remove"
 		System.out.print("\nSpecify the " + str + " date [i.e. 1986-04-13]: ");
 		String tempDate = input.next();
 
@@ -488,28 +566,27 @@ public class Sys {
 				System.err.print("Date/time entry is out of bounds. Try again!");
 				continue; // Manager is not kicked out to their main menu if they make a mistake
 			}
-				displayDepots();
-				System.out.print("\nPlease specify a depot: ");
+			displayDepots();
+			System.out.print("\nPlease specify a depot: ");
 
-				String newLocation = input.next();
-				Depot newDepot = getDepotByLocation(newLocation);
+			String newLocation = input.next();
+			Depot newDepot = getDepotByLocation(newLocation);
 
-				if (depot != null) {
-					if ((!currentLocation.equals(newLocation))) {
-						System.out.println("Vehicle transfer in progress...");
-						new Thread(new VehicleDelivery(vehicle, depot, newDepot, 20)).start();
-						input.nextLine();
-						break;
-					} else
-						System.err.println("Depot locations the same!");
+			if (depot != null) {
+				if ((!currentLocation.equals(newLocation))) {
+					System.out.println("Vehicle transfer in progress...");
+					new Thread(new VehicleDelivery(vehicle, depot, newDepot, 20)).start();
 					input.nextLine();
-					continue;
-				} else {
-					System.err.println("Invalid location.\nPlease try again...");
-					continue;
-				}
+					break;
+				} else
+					System.err.println("Depot locations the same!");
+				input.nextLine();
+				continue;
+			} else {
+				System.err.println("Invalid location.\nPlease try again...");
+				continue;
+			}
 
-			
 		}
 
 		for (WorkSchedule s : schedules) {
