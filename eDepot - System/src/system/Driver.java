@@ -102,7 +102,7 @@ public class Driver implements Schedulable, Serializable {
 	}
 
 	/**
-	 * Declares a 'getSchedule' of class 'Driver', to allow the protected variable
+	 * Declared a  'getSchedule' of class 'Driver', to allow the protected variable
 	 * to be accessed by a java class.
 	 */
 	@Override
@@ -120,6 +120,10 @@ public class Driver implements Schedulable, Serializable {
 		return false;
 	}
 	
+	/** 
+	 *  Declared a 'addDriver' method, which is called when adding a new driver with a username and password to the depot system. 
+	 * @param driver
+	 */
 	public void addDriver(Driver driver) {
 		
 	}
