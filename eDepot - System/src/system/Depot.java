@@ -67,9 +67,23 @@ public class Depot implements Serializable {
 		this.location = location;
 	}
 
+	/**
+	 * Declare a 'getLocation', to allow the private variable to be accessed by a
+	 * java class.
+	 * 
+	 * @return gets existing depot location.
+	 */
+
 	public String getLocation() {
 		return location;
 	}
+
+	/**
+	 * Creates a work schedule and adds to the array of work schedules. Gets the
+	 * current user/driver and adds the schedule to their account
+	 * 
+	 * @param workSchedule a variable of type WorkSchedule
+	 */
 
 	public synchronized void createSchedule(WorkSchedule workSchedule) {
 		schedules.add(workSchedule);
@@ -77,11 +91,23 @@ public class Depot implements Serializable {
 
 	}
 
+	/**
+	 * Adds a driver to the array of drivers for the current depot. Requires a
+	 * variable of type Driver as argument
+	 * 
+	 * @param driver of type Driver
+	 */
 	public void makeDriver(Driver driver) {
 		// ToDo : Validate ?
 		drivers.add(driver);
 	}
 
+	/**
+	 * Adds a vehicle to the array of vehicles for the current depot. Requires a
+	 * variable of type Vehicle as argument
+	 * 
+	 * @param vehicle of type Vehicle
+	 */
 	public void makeVehicle(Vehicle vehicle) {
 		// ToDo : Validate ?
 		vehicles.add(vehicle);
@@ -104,6 +130,15 @@ public class Depot implements Serializable {
 		}
 		return null;
 	}
+	
+	/**
+	 * Enhanced for loop used to traverse collection of vehicles to return their name
+	 * for use in platform application classes Entry and Sys when a value is entered
+	 * on the console and compared to a local variable there.
+	 * 
+	 * @param regNo of type String, acts as a placeholder.
+	 * @return the local variable being entered in platform class Sys or null.
+	 */
 
 	public Vehicle getVehicleByRegNo(String regNo) {
 		for (Vehicle v : vehicles) {
@@ -113,14 +148,32 @@ public class Depot implements Serializable {
 		}
 		return null;
 	}
+	
+	/**
+	 * Declare a List of type vehicle,'getVehicles', to allow the private variable to be accessed by a
+	 * java class.
+	 * @return list of all vehicles.
+	 */
 
 	public List<Vehicle> getVehicles() {
 		return vehicles;
 	}
 
+	/**
+	 * Declare a List of type vehicle,'getTrucks', to allow the private variable to be accessed by a
+	 * java class.
+	 * @return list of all trucks.
+	 */
+	
 	public List<Truck> getTrucks() {
 		return trucks;
 	}
+	
+	/**
+	 * Declare a List of type vehicle,'getTankers', to allow the private variable to be accessed by a
+	 * java class.
+	 * @return list of all tankers.
+	 */
 
 	public List<Tanker> getTankers() {
 		return tankers;
