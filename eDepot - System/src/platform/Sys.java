@@ -330,45 +330,71 @@ public class Sys {
 	 */
 	private void addVehicle() {
 
-		System.out.print("Vehicle registration number: ");
-		
-		displayVehicles();
+		while (true) {
 
-		String regNo = input.next().toLowerCase();
-		if (!depot.getVehicleByRegNo(regNo).equals(null)) {
-			System.err.println("Invalid. Vehicle registration number is already on the system.");
-		} 
-		
-		System.out.print("Vehicle make: ");
-		String make = input.next().toLowerCase();
+			System.out.print("Vehicle registration number: ");
 
-		System.out.print("Vehicle model: ");
-		String model = input.next().toLowerCase();
+			String regNo = input.next().toLowerCase();
+			if ((depot.getVehicleByRegNo(regNo)) != null) {
+				System.err.println("Invalid. Vehicle registration number is already on the system.");
+				continue;
+			}
+			System.out.print("Vehicle make: ");
+			String make = input.next().toLowerCase();
 
-		System.out.print("Vehicle weight (kg): ");
-		int weight = input.nextInt();
+			System.out.print("Vehicle model: ");
+			String model = input.next().toLowerCase();
+			int weight = 0;
+			try {
+				System.out.print("Vehicle weight (kg): ");
+				weight = input.nextInt();
+			} catch (Exception e) {
+				System.err.println("Invalid entry.");
+				input.nextLine();
+				continue;
+			}
 
-		System.out.println("Truck or Tanker:");
-		String vehicleType = input.next().toLowerCase();
-		// Checks if the vehicle entered in of type truck/tanker and adds adds relevant
-		// data
-		if (vehicleType.equals("truck")) {
-
-			System.out.print("Vehicle cargo capacity: ");
-			int cargoCapacity = input.nextInt();
-			// Adds a vehicle in current depot of type Truck
-			depot.addVehicle(new Truck(regNo, make, model, weight, cargoCapacity));
-		} else if (vehicleType.equals("tanker")) {
-			System.out.print("Liquid Capacity: ");
-			int liquidCapacity = input.nextInt();
-
-			System.out.print("Vehicle liquid type: ");
-			String liquidType = input.next().toLowerCase();
-			// Adds a vehicle in current depot of type Tanker
-			depot.addVehicle(new Tanker(regNo, make, model, weight, liquidCapacity, liquidType));
-		} else
-			System.err.println("Incorrect Vehicle type!");
-		input.nextLine();
+			System.out.println("Truck or Tanker:");
+			String vehicleType = input.next().toLowerCase();
+			// Checks if the vehicle entered in of type truck/tanker and adds adds relevant
+			// data
+			if (vehicleType.equals("truck")) {
+				int cargoCapacity = 0;
+				try {
+					System.out.print("Vehicle cargo capacity: ");
+					cargoCapacity = input.nextInt();
+				} catch (Exception e) {
+					System.err.println("Invalid entry.");
+					input.nextLine();
+					continue;
+				}
+				// Adds a vehicle in current depot of type Truck
+				depot.addVehicle(new Truck(regNo, make, model, weight, cargoCapacity));
+				input.nextLine();
+				break;
+			} else if (vehicleType.equals("tanker")) {
+				int liquidCapacity = 0;
+				try {
+					System.out.print("Liquid Capacity: ");
+					liquidCapacity = input.nextInt();
+				} catch (Exception e) {
+					System.err.println("Invalid entry.");
+					input.nextLine();
+					continue;
+				}
+				
+				System.out.print("Vehicle liquid type: ");
+				String liquidType = input.next().toLowerCase();
+				// Adds a vehicle in current depot of type Tanker
+				depot.addVehicle(new Tanker(regNo, make, model, weight, liquidCapacity, liquidType));
+				input.nextLine();
+				break;
+			} else {
+				System.err.println("Incorrect Vehicle type!");
+				input.nextLine();
+				continue;
+			}
+		}
 	}
 
 	/**
