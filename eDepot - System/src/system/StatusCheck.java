@@ -1,26 +1,51 @@
 package system;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
+
+/**
+ * System class StatusCheck checks if the WorkSchedule class has a particular
+ * status by running a background thread.
+ * @author Matt Bailey, Joe Macneil, Liam Clarke
+ * @version 1.0
+ */
 
 public class StatusCheck implements Runnable {
 
 	private List<WorkSchedule> schedules;
 	private Integer delay;
+	
 
 	public StatusCheck(List<WorkSchedule> schedules, Integer seconds) {
+		// Declare a this.variable to allow the current object to be called.
 		this.schedules = schedules;
 		setSeconds(seconds);
 	}
+	
+	/**
+	 * Delcare a 'setSeconds' method to allow the private variable to be accessed and update the value
+	 * by a java class.
+	 * @param seconds of type Integer.
+	 */
 
 	public synchronized void setSeconds(Integer seconds) {
-		// Milliseconds to seconds conversion
 		delay = seconds * 1000;
 	}
+	
+	/**
+	 * Delcare a 'getSeconds' method to allow the private variable to be accessed 
+	 * by a java class.
+	 * @param seconds of type Integer.
+	 */
 
 	public Integer getSeconds() {
 		return delay / 1000;
 	}
+	
+	/**
+	 * Method run() will run the background thread called by the StartCheck() method in Depot.
+	 */
 
 	@Override
 	public void run() {
