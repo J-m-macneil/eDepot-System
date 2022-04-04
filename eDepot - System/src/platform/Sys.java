@@ -49,36 +49,36 @@ public class Sys {
 
 		// Adding all depots.
 		/*
-		 * depots.add(new Depot("Lpool")); depots.add(new Depot("Mchester"));
-		 * depots.add(new Depot("Leeds"));
-		 * 
-		 * Driver glyn = new Manager("GlynofLpool", "GH1234");
-		 * depots.get(0).makeDriver(glyn);
-		 * 
-		 * Driver sorren = new Manager("SorrenofMchester", "SH5678");
-		 * depots.get(1).makeDriver(sorren);
-		 * 
-		 * Driver joe = new Manager("JoeofLeeds", "J1234");
-		 * depots.get(2).makeDriver(joe);
-		 * 
-		 * // Adding all drivers. Driver ben = new Driver("Ben", "1234");
-		 * depots.get(0).makeDriver(ben);
-		 * 
-		 * Driver alex = new Driver("Alex", "1234"); depots.get(1).makeDriver(alex);
-		 * 
-		 * Driver will = new Driver("Will", "1234"); depots.get(2).makeDriver(will);
-		 * 
-		 * // Adding all vehicles. Vehicle astra = new Truck("1", "astra", "1", 100,
-		 * 200); depots.get(0).makeVehicle(astra); Vehicle mini = new Truck("2",
-		 * "astra", "2", 100, 200); depots.get(0).makeVehicle(mini);
-		 * 
-		 * Vehicle kia = new Truck("3", "kia", "3", 100, 200);
-		 * depots.get(1).makeVehicle(kia); Vehicle rangeRover = new Truck("4", "kia",
-		 * "4", 100, 200); depots.get(1).makeVehicle(rangeRover);
-		 * 
-		 * Vehicle ford = new Tanker("5", "ford", "5", 100, 200, "oil");
-		 * depots.get(2).makeVehicle(ford); Vehicle nissan = new Tanker("6", "nissan",
-		 * "6", 100, 200, "water"); depots.get(2).makeVehicle(nissan);
+		  depots.add(new Depot("Lpool")); 
+		  depots.add(new Depot("Mchester"));
+		  depots.add(new Depot("Leeds"));
+		  
+		  Driver glyn = new Manager("GlynofLpool", "GH1234");
+		  depots.get(0).makeDriver(glyn);
+		  
+		  Driver sorren = new Manager("SorrenofMchester", "SH5678");
+		  depots.get(1).makeDriver(sorren);
+		  
+		  Driver joe = new Manager("JoeofLeeds", "J1234");
+		  depots.get(2).makeDriver(joe);
+		  
+		  // Adding all drivers. 
+		  Driver ben = new Driver("Ben", "1234");
+		  depots.get(0).makeDriver(ben);
+		  
+		  Driver alex = new Driver("Alex", "1234"); depots.get(1).makeDriver(alex);
+		  
+		  Driver will = new Driver("Will", "1234"); depots.get(2).makeDriver(will);
+		  
+		  // Adding all vehicles. 
+		  Vehicle astra = new Truck("1", "astra", "1", 100, 200); depots.get(0).makeVehicle(astra); Vehicle mini = new Truck("2",
+		  "astra", "2", 100, 200); depots.get(0).makeVehicle(mini);
+		  
+		  Vehicle kia = new Truck("3", "kia", "3", 100, 200);
+		  depots.get(1).makeVehicle(kia); Vehicle rangeRover = new Truck("4", "kia", "4", 100, 200); depots.get(1).makeVehicle(rangeRover);
+		  
+		  Vehicle ford = new Tanker("5", "ford", "5", 100, 200, "oil");
+		  depots.get(2).makeVehicle(ford); Vehicle nissan = new Tanker("6", "nissan", "6", 100, 200, "water"); depots.get(2).makeVehicle(nissan);
 		 */
 
 		// for (Depot d : depots) {
@@ -431,11 +431,14 @@ public class Sys {
 		List<Vehicle> vehicles = depot.getVehicles();
 		for (Vehicle v : vehicles)
 			// if the vehicle is a truck, print out specific toString
+			System.out.println(v.toString());
+		/*
 			if (Truck.class.isInstance(v)) {
 				// Would like to call <TruckObject>.toString but cannot create truck object
 				System.out.println(v.toTruckString());
 			} else
 				System.out.println(v.toTankerString());
+				*/
 	}
 
 	/**

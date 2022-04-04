@@ -32,11 +32,9 @@ public class Depot implements Serializable {
 
 	// Constructor creates a new depot
 
-	/*
-	 * public Depot(String depot) {
-	 * 
-	 * this.location = depot; }
-	 */
+	public Depot(String depot) {
+		this.location = depot;
+	}
 
 	/**
 	 * Validates drivers credentials that wish to login to the eDepot System.

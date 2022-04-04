@@ -34,5 +34,13 @@ public class Tanker extends Vehicle {
 	public void setLiquidType(String liquidType) {
 		this.liquidType = liquidType;
 	}
+	
+	// Declare a 'toStringheader' to print and format a message alongside the variable types when executed.
+		@Override
+		public String toString() {
+			return "Reg No: " + regNo + " | Make: " + make + " | Model: " + model + " | Weight: " + weight + " | " + "Liquid Capacity: "  + liquidCapacity + "Liquid Type: " + liquidType;
+		}
+	
+
 
 }
