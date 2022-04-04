@@ -44,7 +44,7 @@ public class StatusCheck implements Runnable {
 	}
 	
 	/**
-	 * Method run() will run the background thread called by the StartCheck() method in Depot.
+	 * Method run() will run the background thread called by the startCheck() method in Depot.
 	 */
 
 	@Override
