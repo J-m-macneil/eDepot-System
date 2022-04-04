@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * System interface schedulable allows system classes to formally implement it
+ * System interface Schedulable allows system classes to formally implement it
  * and is a mechanism to achieve abstraction. There are three abstract methods,
  * with just headers in the Java interface, not the method body.
  * 
