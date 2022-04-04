@@ -7,15 +7,18 @@ import java.util.List;
 
 public abstract class Vehicle implements Schedulable, Serializable {
 
-	//Declared private variables that can be accessed outside the class, if public getter methods are present in the class.
+	// Declared private variables that can be accessed outside the class, if public
+	// getter methods are present in the class.
 	private static final long serialVersionUID = 1L;
-	//Declared protected variables that can be accessed and used by the classes that inherit from 'Vehicle'. 
+	// Declared protected variables that can be accessed and used by the classes
+	// that inherit from 'Vehicle'.
 	protected String regNo;
 	protected String make;
 	protected String model;
 	protected int weight;
 
-	// Declare an new array list of the class'Work Schedule', to store the all schedule data.
+	// Declare an new array list of the class 'Work Schedule', to store the all
+	// schedule data.
 	protected List<WorkSchedule> schedules = new LinkedList<WorkSchedule>();
 
 	public Vehicle(String regNo, String make, String model, int weight) {
@@ -28,61 +31,118 @@ public abstract class Vehicle implements Schedulable, Serializable {
 
 	}
 
-	//Declares a 'getSchedule' of class 'Vehicle', to allow the protected variable to be accessed by a java class.
+	/**
+	 * Declares a 'getSchedule' of class 'Vehicle', to allow the protected variable
+	 * to be accessed by a java class.
+	 */
 	public List<WorkSchedule> getSchedule() {
 		return schedules;
 
 	}
 
-	//Declares a 'getMake', to allow the protected variable to be accessed by a java class.
+	/**
+	 * Declares a 'getMake', to allow the protected variable to be accessed by a
+	 * java class.
+	 * 
+	 * @return Gets vehicle make.
+	 */
 	public String getMake() {
 		return make;
 	}
 
-	//Declare a 'setMake', to allow the protected variable to be accessed and update the value in a java class. 
+	/**
+	 * Declare a 'setMake', to allow the protected variable to be accessed and
+	 * update the value in a java class.
+	 * 
+	 * @param make Sets vehicle make.
+	 */
 	public void setMake(String make) {
 		this.make = make;
 	}
 
-	//Declares a 'getModel', to allow the private variable to be accessed by a java class.
+	/**
+	 * Declares a 'getModel', to allow the private variable to be accessed by a java
+	 * class.
+	 * 
+	 * @return Gets vehicle model
+	 */
 	public String getModel() {
 		return model;
 	}
 
-	//Declare a 'setModel', to allow the protected variable to be accessed and update the value in a java class. 
+	/**
+	 * Declare a 'setModel', to allow the protected variable to be accessed and
+	 * update the value in a java class.
+	 * 
+	 * @param model Sets vehicle model.
+	 */
 	public void setModel(String model) {
 		this.model = model;
 	}
 
-	//Declares a 'getWeight', to allow the protected variable to be accessed by a java class.
+	/**
+	 * Declares a 'getWeight', to allow the protected variable to be accessed by a
+	 * java class.
+	 * 
+	 * @return Gets vehicle weight.
+	 */
 	public int getWeight() {
 		return weight;
 	}
 
-	//Declare a 'setWeight', to allow the protected variable to be accessed and update the value in a java class. 
+	/**
+	 * Declare a 'setWeight', to allow the protected variable to be accessed and
+	 * update the value in a java class.
+	 * 
+	 * @param weight Sets vehicle weight.
+	 */
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
 
-	//Declares a 'getRegNo', to allow the protected variable to be accessed by a java class.
+	/**
+	 * Declares a 'getRegNo', to allow the protected variable to be accessed by a
+	 * java class.
+	 * 
+	 * @return regNo Gets vehicle registration number.
+	 */
 	public String getRegNo() {
 		return regNo;
 	}
 
-	//Declare a 'setRegNo', to allow the protected variable to be accessed and update the value in a java class. 
+	/**
+	 * Declare a 'setRegNo', to allow the protected variable to be accessed and
+	 * update the value in a java class.
+	 * 
+	 * @param regNo Sets registration number.
+	 */
 	public void setRegNo(String regNo) {
 		this.regNo = regNo;
 	}
-	
-	// Declare a 'toStringheader' to print and format a message alongside the variable types when executed.
+
+	/**
+	 * Declare a 'toStringheader' to print and format a message alongside the
+	 * variable types when executed.
+	 */
 	public String toTruckString() {
 		return "Reg No: " + regNo + " | Make: " + make + " | Model: " + model + " | Weight: " + weight;
 	}
 
-	// Declare a 'toStringheader' to print and format a message alongside the variable types when executed.
+	/**
+	 * Declare a 'toStringheader' to print and format a message alongside the
+	 * variable types when executed.
+	 */
 	public String toTankerString() {
 		return "Reg No: " + regNo + " | Make: " + make + " | Model: " + model + " | Weight: " + weight;
 	}
+
+	/**
+	 * Declared a 'isAvailable' method, to allow data to be checked whether the
+	 * current object, such as Vehicle or Driver is in a current PENDING or ACTIVE
+	 * schedule due to its parameters 'startDate' and 'endDate'. However, this
+	 * method is not used in our program at this current point, but could be
+	 * implemented in the future.
+	 */
 
 	@Override
 	public boolean isAvailable(LocalDateTime startDate, LocalDateTime endDate) {
@@ -101,6 +161,9 @@ public abstract class Vehicle implements Schedulable, Serializable {
 	}
 
 	
+	/**
+	 * Declared a 'addSchedule' method, to allow the parameter 'workSchedule' to be added to the schedules array list.
+	 */
 	@Override
 	public void addSchedule(WorkSchedule workSchedule) {
 		schedules.add(workSchedule);
