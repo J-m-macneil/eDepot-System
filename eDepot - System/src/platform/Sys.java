@@ -475,7 +475,15 @@ public class Sys {
 
 	}
 
+	/**
+	 * Creates a schedule between a driver and vehicle in a specific depot and
+	 * stores it in that depot. This method will handle all I/O errors and allows
+	 * the user to go back to their main menu
+	 * 
+	 * @throws Exception
+	 */
 	private void createSchedule() throws Exception {
+		// Will loop until a condition breaks the loop
 		while (true) {
 			System.out.println("\n-- CREATE SCHEDULE --\n");
 
@@ -488,13 +496,17 @@ public class Sys {
 			LocalDateTime startDate;
 			LocalDateTime endDate;
 
+			// Any date handling has to be in try catch for error handling
 			try {
+				// Creates the start and end date with a method call
 				startDate = createLocalDateTime("start");
 				endDate = createLocalDateTime("end");
-				// Check valid startDate and endDate
+				// Checks the start date has at least 48 hours notice
 				if (startDate.isAfter(LocalDateTime.now().plusHours(48))) {
-					if (endDate.isBefore(startDate.plusHours(72)) || endDate.isBefore(startDate)) {
-
+					// Checks the end date has maximum 72 hours duration AND end date is after start
+					// date
+					if (endDate.isBefore(startDate.plusHours(72)) && endDate.isAfter(startDate)) {
+						// If the depot has no drivers in array throw error
 						if (depot.getDrivers().isEmpty()) {
 							input.nextLine();
 							System.out.println("\n-- DRIVERS --Im sorry, there are no current drivers at this depot.");
@@ -504,7 +516,7 @@ public class Sys {
 						displayDrivers();
 						System.out.print("\nDrivers name: ");
 						Driver driver = depot.getDriverByName(input.next());
-
+						// If the depot has no vehicles in array throw error
 						if (depot.getVehicles().isEmpty()) {
 							input.nextLine();
 							System.out.println(
@@ -515,6 +527,7 @@ public class Sys {
 						System.out.print("\nVehicle Registration number: ");
 
 						Vehicle vehicle = depot.getVehicleByRegNo(input.next());
+						// Creates a schedule in that depot thats initially pending
 						depot.createSchedule(
 								new WorkSchedule(client, startDate, endDate, driver, vehicle, Status.PENDING));
 						input.nextLine(); // To ensure Manager's main menu is accepting null input
@@ -536,15 +549,24 @@ public class Sys {
 
 	}
 
+	/**
+	 * Will re-assign a vehicle from one depot to another, only reachable from
+	 * drivers that are managers. handles all incorrect I/O and repeats giving the
+	 * user opportunity's to correct input. Creates a new thread that will move the
+	 * vehicle to another depot and sleeps for a hard coded amount of time
+	 * 
+	 * @throws Exception
+	 */
 	private void reassignVehicle() throws Exception {
 
 		LocalDateTime moveDate;
+		// Stores all schedules in current depot in a new list
 		List<WorkSchedule> schedules = depot.getSchedules();
-
+		// Will loop until a condition breaks the loop
 		while (true) {
 
 			System.out.println("\n-- RE-ASSIGN VEHICLE MENU --");
-
+			// If there are no vehicles in the depot throw an error
 			if (depot.getVehicles().isEmpty()) {
 				System.out.println("There are currently no vehicles in depot to move");
 				break;
@@ -554,15 +576,16 @@ public class Sys {
 
 			System.out.print("\nPlease enter the vehicle registration number: ");
 			Vehicle vehicle = depot.getVehicleByRegNo(input.next());
-
+			// Checks the vehicle exists and handles any I/O errors
 			if (vehicle != null) {
 				System.out.print("Vehicle selected.");
 			} else {
 				System.err.print("Invalid registration number or no vehciles in depot. Try again!");
 				input.nextLine();
+				// Allows the user to re enter the vehicle
 				continue;
 			}
-
+			// Attempts to create a move date and handles errors in date parsing
 			try {
 				moveDate = createLocalDateTime("move");
 				// Check that the Manager is not trying to bypass or enter a past date
@@ -585,17 +608,21 @@ public class Sys {
 			System.out.print("\nPlease specify a depot: ");
 
 			String newLocation = input.next();
+			// Creates a local object depot and stores the new depot in it
 			Depot newDepot = getDepotByLocation(newLocation);
-
+			// Error handing for incorrect depot location
 			if (newDepot == null) {
 				System.err.println("Invalid location!");
 				input.nextLine();
 				continue;
 			}
 			if (depot != null) {
+				// Makes sure that the vehicle is not being moved to same depot
 				if (!currentLocation.equals(newLocation)) {
 					// if ((moveDate.equals(LocalDateTime.now())))
 					System.out.println("Vehicle transfer in progress...");
+					// Creates a new thread that will move the vehicle in a time specified in the
+					// last argument
 					new Thread(new VehicleDelivery(vehicle, depot, newDepot, 20)).start();
 					input.nextLine();
 					break;
@@ -610,6 +637,7 @@ public class Sys {
 
 		}
 		for (WorkSchedule s : schedules) {
+			// Checks the schedules in the depot for pending or active
 			depot.startCheck();
 			if (s.getStatus().equals(Status.PENDING)) {
 				if (s.getStatus().equals(Status.ACTIVE)) {
