@@ -41,7 +41,8 @@ public class StatusCheck implements Runnable {
 							// To check for ARCHIVED status:
 						} else if (schedules.getEndDate().equals(LocalDateTime.now())) {
 							schedules.setStatus(Status.ARCHIVED);
-							 System.out.println("The schedule\n" + schedules.toString() + "\n has been set to archived");
+							System.out.println("The schedule\n" + schedules.toString() + "\n has been set to archived");
+						
 						}
 					}
 
