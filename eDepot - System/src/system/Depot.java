@@ -150,7 +150,7 @@ public class Depot implements Serializable {
 	}
 	
 	/**
-	 * Declare a List of type vehicle,'getVehicles', to allow the private variable to be accessed by a
+	 * Declare a ArrayList of type vehicle,'getVehicles', to allow the private variable to be accessed by a
 	 * java class.
 	 * @return list of all vehicles.
 	 */
@@ -160,7 +160,7 @@ public class Depot implements Serializable {
 	}
 
 	/**
-	 * Declare a List of type vehicle,'getTrucks', to allow the private variable to be accessed by a
+	 * Declare a ArrayList of type Vehicle,'getTrucks', to allow the private variable to be accessed by a
 	 * java class.
 	 * @return list of all trucks.
 	 */
@@ -170,7 +170,7 @@ public class Depot implements Serializable {
 	}
 	
 	/**
-	 * Declare a List of type vehicle,'getTankers', to allow the private variable to be accessed by a
+	 * Declare a ArrayList of type Vehicle,'getTankers', to allow the private variable to be accessed by a
 	 * java class.
 	 * @return list of all tankers.
 	 */
@@ -178,10 +178,21 @@ public class Depot implements Serializable {
 	public List<Tanker> getTankers() {
 		return tankers;
 	}
+	
+	/**
+	 * Declare a ArrayList of type Driver,'getDrivers', to allow the private variable to be accessed by a
+	 * java class.
+	 * @return list of all drivers.
+	 */
 
 	public List<Driver> getDrivers() {
 		return drivers;
 	}
+	
+	/**
+	 * Method allows platform class Sys to add new drivers to the ArrayList of type Driver.
+	 * @param driver of type Driver.
+	 */
 
 	public void addDriver(Driver driver) {
 		drivers.add(driver);
