@@ -68,7 +68,7 @@ public class Sys {
 		 * depots.get(2).makeVehicle(ford); Vehicle nissan = new Tanker("6", "nissan",
 		 * "6", 100, 200, "water"); depots.get(2).makeVehicle(nissan);
 		 */
-		
+
 		// for (Depot d : depots) {
 		// d.startCheck();
 		// }
@@ -468,41 +468,49 @@ public class Sys {
 			displayVehicles();
 
 			System.out.print("\nPlease enter the vehicle registration number: ");
-			Vehicle vehicle = depot.getVehicleByRegNo(input.nextLine());
+			Vehicle vehicle = depot.getVehicleByRegNo(input.next());
 
 			if (vehicle != null) {
 				System.out.print("Vehicle selected.");
 			} else {
 				System.err.print("Invalid registration number or no vehciles in depot\nPlease try again...");
+				input.nextLine();
 				continue;
 			}
 
 			try {
 				moveDate = createLocalDateTime("move");
-				if (moveDate != null) {
-					System.out.print("\nMove date specified.\n");
+				// Check that the Manager is not trying to bypass or enter a past date
+				if ((!moveDate.isBefore(LocalDateTime.now()))) {
+					if (moveDate != null) {
+						System.out.print("\nMove date specified.\n");
+					}
+
 				} else {
-					System.out.println("Incorrect Date format!");
+					System.err.println("No date entered or date is in the past!");
 					continue;
 				}
-			} catch (Exception e) {
+			}
+
+			catch (Exception e) {
 				System.err.print("Date/time entry is out of bounds. Try again!");
 				continue; // Manager is not kicked out to their main menu if they make a mistake
 			}
-				displayDepots();
-				System.out.print("\nPlease specify a depot: ");
+			displayDepots();
+			System.out.print("\nPlease specify a depot: ");
 
-				String newLocation = input.next();
-				Depot newDepot = getDepotByLocation(newLocation);
+			String newLocation = input.next();
+			Depot newDepot = getDepotByLocation(newLocation);
 
-				if (depot != null) {
-					if ((!currentLocation.equals(newLocation))) {
+			if (depot != null) {
+				if (!currentLocation.equals(newLocation)) {
+					// if ((moveDate.equals(LocalDateTime.now())))
 						System.out.println("Vehicle transfer in progress...");
-						new Thread(new VehicleDelivery(vehicle, depot, newDepot, 20)).start();
-						input.nextLine();
-						break;
-					} else
-						System.err.println("Depot locations the same!");
+					new Thread(new VehicleDelivery(vehicle, depot, newDepot, moveDate, 20)).start();
+					input.nextLine();
+					break;
+				} else if (currentLocation.equals(newLocation)) {
+					System.err.println("Depot locations are the same!");
 					input.nextLine();
 					continue;
 				} else {
@@ -510,18 +518,18 @@ public class Sys {
 					continue;
 				}
 
-			
-		}
+			}
 
-		for (WorkSchedule s : schedules) {
-			depot.startCheck();
-			if (s.getStatus().equals(Status.PENDING)) {
-				if (s.getStatus().equals(Status.ACTIVE)) {
-					System.err.println("Vehicle busy! Try again!");
-					continue;
+			for (WorkSchedule s : schedules) {
+				depot.startCheck();
+				if (s.getStatus().equals(Status.PENDING)) {
+					if (s.getStatus().equals(Status.ACTIVE)) {
+						System.err.println("Vehicle busy! Try again!");
+						continue;
+					}
 				}
 			}
-		}
 
+		}
 	}
 }
