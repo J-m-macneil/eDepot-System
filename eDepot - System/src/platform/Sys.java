@@ -331,9 +331,14 @@ public class Sys {
 	private void addVehicle() {
 
 		System.out.print("Vehicle registration number: ");
+		
+		displayVehicles();
 
 		String regNo = input.next().toLowerCase();
-
+		if (!depot.getVehicleByRegNo(regNo).equals(null)) {
+			System.err.println("Invalid. Vehicle registration number is already on the system.");
+		} 
+		
 		System.out.print("Vehicle make: ");
 		String make = input.next().toLowerCase();
 
