@@ -109,7 +109,8 @@ public class Sys {
 			}
 		} while (!choice.toUpperCase().equals("Q"));
 		System.out.println("--GOODBYE--");
-		// Code will eventually return here and serialize all updated objects to drivers.ser
+		// Code will eventually return here and serialize all updated objects to
+		// drivers.ser
 		serialize();
 		System.exit(0);
 	}
@@ -140,14 +141,15 @@ public class Sys {
 			String password = input.nextLine();
 			// Retrieves driver object details by handing over the username
 			driver = depot.getDriverByName(username);
-			// Checks the driver exists and the password entered matches the one stored in object data
+			// Checks the driver exists and the password entered matches the one stored in
+			// object data
 			if (driver != null && driver.checkPassword(password)) {
 				// If the driver isn't a manager print the driver menu
 				if (!Manager.class.isInstance(driver)) {
 					currentUser = username;
 					System.out.println("\nCorrect! Logged on as driver: " + currentUser);
 					driverMenu();
-				// If the driver is a manager then print the manager menu
+					// If the driver is a manager then print the manager menu
 				} else {
 					Manager.class.cast(driver);
 					currentUser = username;
@@ -265,12 +267,14 @@ public class Sys {
 				break;
 			}
 			case "2": {
-				// Adds a driver to the drivers array list and in that depot, and later serialized
+				// Adds a driver to the drivers array list and in that depot, and later
+				// serialized
 				addDriver();
 				break;
 			}
 			case "3": {
-				// Adds a vehicle to the vehicles array list and in that depot, and later serialized
+				// Adds a vehicle to the vehicles array list and in that depot, and later
+				// serialized
 				addVehicle();
 				break;
 			}
@@ -280,7 +284,8 @@ public class Sys {
 				break;
 			}
 			case "5": {
-				// Moves a vehicle from one depot to another at a specific time. MultiThread included
+				// Moves a vehicle from one depot to another at a specific time. MultiThread
+				// included
 				reassignVehicle();
 				break;
 			}
@@ -297,15 +302,15 @@ public class Sys {
 				entryMenu();
 				break;
 			}
-			default: 
+			default:
 				System.err.println("You have entered an incorrect value. Try again!");
 			}
 		} while (!choice.toUpperCase().equals("L"));
 	}
-	
+
 	/**
-	 * Adds a driver to the array list drivers for the current depot.
-	 * Will ask for a username and password
+	 * Adds a driver to the array list drivers for the current depot. Will ask for a
+	 * username and password
 	 */
 	private void addDriver() {
 
@@ -317,7 +322,7 @@ public class Sys {
 		// Any drivers added are exclusive to the current depot object
 		depot.addDriver(new Driver(username, password));
 	}
-	
+
 	/**
 	 * Adds a vehicle of type Truck or Tanker to current depot. Includes relevant
 	 * I/O to gather necessary data
@@ -339,7 +344,8 @@ public class Sys {
 
 		System.out.println("Truck or Tanker:");
 		String vehicleType = input.next().toLowerCase();
-		// Checks if the vehicle entered in of type truck/tanker and adds adds relevant data
+		// Checks if the vehicle entered in of type truck/tanker and adds adds relevant
+		// data
 		if (vehicleType.equals("truck")) {
 
 			System.out.print("Vehicle cargo capacity: ");
@@ -357,17 +363,11 @@ public class Sys {
 		} else
 			System.err.println("Incorrect Vehicle type!");
 		input.nextLine();
-<<<<<<< HEAD
-=======
-
 	}
->>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
 
-	}
-	
 	/**
-	 * Reads the serialized file(.ser) in the working directory and generates 
-	 * all objects necessary for the program to operate
+	 * Reads the serialized file(.ser) in the working directory and generates all
+	 * objects necessary for the program to operate
 	 */
 	private void deSerialize() {
 		ObjectInputStream ois;
@@ -381,11 +381,11 @@ public class Sys {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Serializes the depots array list holding all depots that are of type Depot.
-	 * The depots hold arrays of drivers, vehicles and schedules. The method will only
-	 * read from the file in the working directory called .depots.ser
+	 * The depots hold arrays of drivers, vehicles and schedules. The method will
+	 * only read from the file in the working directory called .depots.ser
 	 */
 	private void serialize() {
 		ObjectOutputStream oos;
@@ -394,15 +394,16 @@ public class Sys {
 			oos = new ObjectOutputStream(new FileOutputStream("./depots.ser"));
 			// Writes the array list depots of type Depot into a serilaized file
 			oos.writeObject(depots);
-			
+
 			oos.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	/**
-	 * Displays all the current schedules for the current driver in the current depot.
+	 * Displays all the current schedules for the current driver in the current
+	 * depot.
 	 * 
 	 * @param driverUsername
 	 * @throws Exception
@@ -411,7 +412,8 @@ public class Sys {
 		// New local list is equal to all schedules in the current depot
 		List<WorkSchedule> schedules = depot.getSchedules();
 		for (WorkSchedule s : schedules) {
-			// Loops through the schedules and prints any schedules that match with the driver username
+			// Loops through the schedules and prints any schedules that match with the
+			// driver username
 			if (s.getDriver().getUserName().equals(driverUsername)) {
 				System.out.println(s.toString());
 			}
@@ -419,10 +421,10 @@ public class Sys {
 		// Useless code?
 		return;
 	}
-	
+
 	/**
-	 * Displays all vehicles in the current depot, will list separate text if the vehicle
-	 * is of type Truck or Tanker to cover extra variables 
+	 * Displays all vehicles in the current depot, will list separate text if the
+	 * vehicle is of type Truck or Tanker to cover extra variables
 	 */
 	private void displayVehicles() {
 		// Retrieve all vehicles in current depot
@@ -447,9 +449,9 @@ public class Sys {
 		for (Driver d : drivers)
 			System.out.println(d.toString());
 	}
-	
+
 	/**
-	 * Creates and returns a formatted date and time, should be called whenever 
+	 * Creates and returns a formatted date and time, should be called whenever
 	 * dates used in conjunction with LocalDateTime import
 	 * 
 	 * @param str text to specify why you are moving "move" or "remove"
@@ -585,10 +587,6 @@ public class Sys {
 			String newLocation = input.next();
 			Depot newDepot = getDepotByLocation(newLocation);
 
-<<<<<<< HEAD
-			if (depot != null) {
-				if ((!currentLocation.equals(newLocation))) {
-=======
 			if (newDepot == null) {
 				System.err.println("Invalid location!");
 				input.nextLine();
@@ -597,12 +595,10 @@ public class Sys {
 			if (depot != null) {
 				if (!currentLocation.equals(newLocation)) {
 					// if ((moveDate.equals(LocalDateTime.now())))
->>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
 					System.out.println("Vehicle transfer in progress...");
 					new Thread(new VehicleDelivery(vehicle, depot, newDepot, 20)).start();
 					input.nextLine();
 					break;
-<<<<<<< HEAD
 				} else
 					System.err.println("Depot locations the same!");
 				input.nextLine();
@@ -611,28 +607,16 @@ public class Sys {
 				System.err.println("Invalid location.\nPlease try again...");
 				continue;
 			}
-=======
-				} else {
-					System.err.println("Can't move vehicle inside same depot. Try again!");
-					input.nextLine();
+
+		}
+		for (WorkSchedule s : schedules) {
+			depot.startCheck();
+			if (s.getStatus().equals(Status.PENDING)) {
+				if (s.getStatus().equals(Status.ACTIVE)) {
+					System.err.println("Vehicle busy! Try again!");
 					continue;
 				}
->>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
 
-<<<<<<< HEAD
-		}
-=======
-			}
-			for (WorkSchedule s : schedules) {
-				depot.startCheck();
-				if (s.getStatus().equals(Status.PENDING)) {
-					if (s.getStatus().equals(Status.ACTIVE)) {
-						System.err.println("Vehicle busy! Try again!");
-						continue;
-					}
->>>>>>> branch 'master' of https://github.com/J-m-macneil/eDepot-System.git
-
-				}
 			}
 		}
 	}
