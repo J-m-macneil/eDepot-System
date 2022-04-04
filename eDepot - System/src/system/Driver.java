@@ -5,6 +5,14 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * System class Driver is an abstract class, which allows Manager to
+ * inherit from it. The system class implements the system class Schedulable and
+ * Serializable. Serializable allows the variable data to be serialized and deSerialized.
+ * 
+ * @author Matt Bailey, Joe Macneil, Liam Clarke.
+ * @version 1.0.
+ */
 public class Driver implements Schedulable, Serializable {
 
 	private static final long serialVersionUID = 1L;

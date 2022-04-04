@@ -1,5 +1,12 @@
 package system;
 
+/**
+ * System class Truck inherits from the Vehicle class, which extends the
+ * Vehicle class variables and declares them as super.
+ * 
+ * @author Matt Bailey, Joe Macneil, Liam Clarke.
+ * @version 1.0.
+ */
 public class Truck extends Vehicle {
 
 	//Declared private variables that can be accessed outside the class, if public getter methods are present in the class.
