@@ -5,6 +5,14 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * System class Vehicle is an abstract class, which allows Truck and Tanker to
+ * inherit from it. The system class implements the system class Schedulable and
+ * Serializable. Serializable allows the variable data to be serialized and deSerialized.
+ * 
+ * @author Matt Bailey, Joe Macneil, Liam Clarke.
+ * @version 1.0.
+ */
 public abstract class Vehicle implements Schedulable, Serializable {
 
 	// Declared private variables that can be accessed outside the class, if public
@@ -43,7 +51,6 @@ public abstract class Vehicle implements Schedulable, Serializable {
 	/**
 	 * Declares a 'getMake', to allow the protected variable to be accessed by a
 	 * java class.
-	 * 
 	 * @return Gets vehicle make.
 	 */
 	public String getMake() {
@@ -121,24 +128,8 @@ public abstract class Vehicle implements Schedulable, Serializable {
 	}
 
 	/**
-	 * Declare a 'toStringheader' to print and format a message alongside the
-	 * variable types when executed.
-	 */
-	public String toTruckString() {
-		return "Reg No: " + regNo + " | Make: " + make + " | Model: " + model + " | Weight: " + weight;
-	}
-
-	/**
-	 * Declare a 'toStringheader' to print and format a message alongside the
-	 * variable types when executed.
-	 */
-	public String toTankerString() {
-		return "Reg No: " + regNo + " | Make: " + make + " | Model: " + model + " | Weight: " + weight;
-	}
-
-	/**
 	 * Declared a 'isAvailable' method, to allow data to be checked whether the
-	 * current object, such as Vehicle is in a current PENDING or ACTIVE
+	 * current object, such as Vehicle or Driver is in a current PENDING or ACTIVE
 	 * schedule due to its parameters 'startDate' and 'endDate'. However, this
 	 * method is not used in our program at this current point, but could be
 	 * implemented in the future.
@@ -160,9 +151,9 @@ public abstract class Vehicle implements Schedulable, Serializable {
 		return true;
 	}
 
-	
 	/**
-	 * Declared a 'addSchedule' method, to allow the parameter 'workSchedule' to be added to the schedules array list.
+	 * Declared a 'addSchedule' method, to allow the parameter 'workSchedule' to be
+	 * added to the schedules array list.
 	 */
 	@Override
 	public void addSchedule(WorkSchedule workSchedule) {
