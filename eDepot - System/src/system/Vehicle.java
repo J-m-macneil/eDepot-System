@@ -138,7 +138,7 @@ public abstract class Vehicle implements Schedulable, Serializable {
 
 	/**
 	 * Declared a 'isAvailable' method, to allow data to be checked whether the
-	 * current object, such as Vehicle or Driver is in a current PENDING or ACTIVE
+	 * current object, such as Vehicle is in a current PENDING or ACTIVE
 	 * schedule due to its parameters 'startDate' and 'endDate'. However, this
 	 * method is not used in our program at this current point, but could be
 	 * implemented in the future.
